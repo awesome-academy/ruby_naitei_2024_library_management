@@ -15,3 +15,15 @@ en:
   sign_in:
     title: "Sign In"
     submit: "Sign In"
+  layouts:
+    application:
+      sign_out: "Sign Out"
+      books: "Books"
+      book_request: "Book Request"
+      users: "Users"
+      authors: "Authors"
+      book_request_list: "Book Request List"
+      book_list: "Book List"
+      user_list: "User List"
+      user_ban_list: "User Ban List"
+      author_list: "Author List"
