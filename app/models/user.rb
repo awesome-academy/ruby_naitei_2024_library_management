@@ -7,5 +7,6 @@ class User < ApplicationRecord
   has_many :comments
   has_many :author_followers
 
-  validates :citizen_id, :name, :birth, :gender, :phone, :address, :profile_url, presence: true
+  validates :citizen_id, :name, :birth, :gender, :phone, :address,
+            :profile_url, presence: true
 end

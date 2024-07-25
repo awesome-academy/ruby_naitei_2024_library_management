@@ -1,0 +1,27 @@
+<% provide :title, t("sign_up.title") %>
+<div class="flex items-center justify-center pt-36">
+  <div class="w-full max-w-sm bg-white p-8 shadow-xl rounded-xl">
+    <h1 class="text-3xl font-bold mb-14 text-center"><%= t("sign_up.title") %></h1>
+    <%= render_form_for(@account, class: "w-full") do |form| %>
+      <div class="grid grid-cols-1 items-baseline mb-4">
+        <%= form.label :email, t("activerecord.attributes.Account.email"), class: "text-left mr-4 text-lg" %>
+        <%= form.text_field :email, class: "col-span-2" %>
+      </div>
+      <div class="grid grid-cols-1 items-baseline">
+        <%= form.label :password, t("activerecord.attributes.Account.password"), class: "text-left mr-4 text-lg" %>
+        <%= form.password_field :password, class: "col-span-2 mb-8" %>
+      </div>
+      <div class="grid grid-cols-1 items-baseline">
+        <%= form.label :password_confirmation, t("activerecord.attributes.Account.password_confirmation"), class: "text-left mr-4 text-lg" %>
+        <%= form.password_field :password_confirmation, class: "col-span-2 mb-2" %>
+      </div>
+      <div class="mb-8 flex items-center text-sm">
+        <p class="mr-2"><%= t("sign_up.have_account") %></p>
+        <%= link_to t("sign_in.title"), "#", class: "text-blue-500 hover:text-blue-700" %>
+      </div>
+      <div class="flex justify-center">
+        <%= form.submit t("sign_up.submit") %>
+      </div>
+    <% end %>
+  </div>
+</div>

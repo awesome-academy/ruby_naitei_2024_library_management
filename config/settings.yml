@@ -1,0 +1,4 @@
+VALID_EMAIL_REGEX: '\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z'
+name_max_length: 50
+email_max_length: 255
+min_password_length: 6
