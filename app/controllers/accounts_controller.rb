@@ -6,7 +6,8 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new account_params
     if @account.save
-      redirect_to new_user_path account_id: @account.id
+      session[:account_id] = @account.id
+      redirect_to new_user_path
     else
       render :new, status: :unprocessable_entity
     end
