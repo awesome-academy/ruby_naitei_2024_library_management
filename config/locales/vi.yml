@@ -1,2 +1,17 @@
 vi:
-  hello: "Chào thế giới"
+  base_title: "Quản lý thư viện"
+  activerecord:
+    models:
+      Account: "Tài khoản"
+    attributes:
+      Account:
+        email: "Email"
+        password: "Mật khẩu"
+        password_confirmation: "Xác nhận mật khẩu"
+  sign_up:
+    title: "Tạo tài khoản"
+    submit: "Tiếp theo"
+    have_account: "Đã có tài khoản? "
+  sign_in:
+    title: "Đăng nhập"
+    submit: "Đăng nhập"

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_24_141023) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_25_092054) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
-    t.string "remember_id", null: false
+    t.string "remember_id"
     t.integer "status", default: 0, null: false
-    t.boolean "is_admin", null: false
+    t.boolean "is_admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
