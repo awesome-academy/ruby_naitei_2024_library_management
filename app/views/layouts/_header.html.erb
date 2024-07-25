@@ -1,0 +1,67 @@
+<header class="fixed z-20 top-0 px-4 w-full">
+  <div class="bg-header h-[76px] flex justify-between items-center
+              pl-8 pr-3  m-2 mx-auto max-w-[1400px] rounded-full ">
+    <div class="flex gap-x-10  items-center">
+      <%= link_to "#", id: "logo", class: "flex items-center pb-2" do %>
+        <%= image_tag "logo.png", alt: "sample app logo", class: "w-20" %>
+      <% end %>
+      <%= link_to t("books"), "#", class: " hover:text-foreground/50 text-lg duration-500"  %>
+      <%= link_to t("authors"), "#", class: " hover:text-foreground/50 text-lg duration-500"  %>
+      <%= render_popover do %>
+        <%= popover_trigger do %>
+          <span class=" hover:text-foreground/50 text-lg duration-500 cursor-pointer">
+            <%= t "categories" %>
+          </span>
+        <% end %>
+        <%= popover_content do %>
+          <% ["Action", "Adventure", "Comedy", "Drama", "Fantasy", "Horror",
+              "Mystery", "Romance", "Thriller"].each do |category| %>
+            <%= link_to "#", class: "block px-4 py-2 hover:bg-black/10" do %>
+              <%= category %>
+            <% end%>
+          <%end%>
+        <% end %>
+      <% end %>
+      <div class="rounded-3xl w-[400px] h-12 border bg-background px-5 py-2  flex items-center relative">
+        <i class="bi bi-search mr-4 text-xl"></i>
+        <input
+            placeholder="Search"
+            class="w-full h-8 bg-background focus-visible:outline-none pr-4"/>
+      </div>
+    </div>
+    <div class="flex gap-x-5 items-center">
+      <button class="hover:bg-black/20 duration-500 rounded-full p-3">
+        <i class="bi bi-book  text-3xl"  ></i>
+      </button>
+      <%= render_dropdown_menu do %>
+        <%= dropdown_menu_trigger do %>
+          <%= image_tag "avatar.jpeg", alt: "sample app avatar", class: "w-14 border cursor-pointer border-primary h-14 rounded-full" %>
+        <% end %>
+        <%= dropdown_menu_content do %>
+          <%= dropdown_menu_label "MinhMatMong" %>
+          <%= render_separator class: "my-1" %>
+          <%= dropdown_menu_item do %>
+            <div class="w-6 flex items-center pl-[1px] mr-2"><i class="bi text-lg bi-person-circle  "></i></div>
+            <span><%= t "profile_menu.profile" %></span>
+          <% end %>
+          <%= dropdown_menu_item do %>
+            <% if I18n.locale == :en %>
+              <div class="w-6 flex items-center justify-left mr-2"><%= image_tag "vi.png", class: "w-5" ,alt: "Vietnamese" %></div>
+              <span><%= link_to t("profile_menu.vietnamese"), locale: :vi %></span>
+            <% else %>
+              <div class="w-6 flex items-center justify-center mr-2">
+                  <%= image_tag "en.png", class: "w-4 " ,alt: "English"  %>
+              </div>
+              <span><%= link_to t("profile_menu.english"), locale: :en %></span>
+            <% end %>
+          <% end %>
+          <%= render_separator class: "my-1" %>
+          <%= dropdown_menu_item do  %>
+            <div class="w-6 flex items-center pl-[2px] mr-2"><i class="bi bi-box-arrow-right text-lg"></i></div>
+            <span><%= t "profile_menu.sign_out" %></span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</header>

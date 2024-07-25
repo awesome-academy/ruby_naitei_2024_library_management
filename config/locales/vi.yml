@@ -1,5 +1,15 @@
 vi:
   base_title: "Quản lý thư viện"
+  books: "Danh Sách"
+  authors: "Tác giả"
+  categories: "Thể loại"
+
+  profile_menu:
+    profile: "Hồ sơ"
+    language: "Ngôn ngữ"
+    sign_out: "Đăng xuất"
+    vietnamese: "Tiếng Việt"
+    english: "Tiếng Anh"
   activerecord:
     models:
       Account: "Tài khoản"
@@ -9,7 +19,7 @@ vi:
         email: "Email"
         password: "Mật khẩu"
         password_confirmation: "Xác nhận mật khẩu"
-      user: 
+      user:
         citizen_id: "Số căn cước công dân"
         name: "Tên"
         birth: "Ngày sinh"

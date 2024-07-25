@@ -2,3 +2,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.bg-header {
+    background: linear-gradient(0deg,
+        rgb(243, 236, 228),
+        rgb(243, 236, 228));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.1);
+}

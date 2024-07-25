@@ -1,6 +1,6 @@
 <% provide :title, t("sign_up.title") %>
-<div class="flex items-center justify-center pt-36">
-  <div class="w-full max-w-sm bg-white p-8 shadow-xl rounded-xl">
+<div class="flex w-full items-center justify-center pt-36">
+  <div class="w-full max-w-lg bg-white border-2 p-8 shadow-xl rounded-xl">
     <h1 class="text-3xl font-bold mb-14 text-center"><%= t("sign_up.title") %></h1>
     <%= render_form_for(@account, class: "w-full") do |form| %>
       <div class="grid grid-cols-1 items-baseline mb-4">

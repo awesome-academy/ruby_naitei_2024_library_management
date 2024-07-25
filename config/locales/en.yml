@@ -1,5 +1,15 @@
 en:
   base_title: "Library Management"
+  books: "Books"
+  authors: "Authors"
+  categories: "Categories"
+
+  profile_menu:
+    profile: "Profile"
+    language: "Language"
+    sign_out: "Sign out"
+    vietnamese: "Vietnamese"
+    english: "English"
   activerecord:
     models:
       Account: "Account"
