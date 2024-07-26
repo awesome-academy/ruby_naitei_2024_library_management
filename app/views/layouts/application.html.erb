@@ -9,65 +9,11 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <main class="mx-auto">
-      <header class="flex justify-between items-center py-2 px-6 border-b">
-        <%= image_tag "logo.png", alt: "logo", class: "w-16 h-16" %>
-        <div class="flex justify-between items-center">
-          <%= link_to "Nhan cute", "#" %>
-          <span class="inline-block px-2">  |  </span>
-          <%= link_to t(".sign_out"), "#" %>
-        </div>
-      </header>
-      <div class="flex gap-10 items-start">
-        <div class="min-w-[200px] border-r h-[100vh] px-2">
-          <%= render_accordion do %>
-            <%= accordion_title do %>
-              <%= t ".books"%>
-            <% end %>
-            <%= accordion_description do %>
-              <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".book_list"), "#" %></li>
-              </ul>
-            <% end %>
-          <% end %>
-
-          <%= render_accordion do %>
-            <%= accordion_title do %>
-              <%= t ".book_request"%>
-            <% end %>
-            <%= accordion_description do %>
-              <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t("book_request_list"), "#" %></li>
-              </ul>
-            <% end %>
-          <% end %>
-
-          <%= render_accordion do %>
-            <%= accordion_title do %>
-              <%= t ".users"%>
-            <% end %>
-            <%= accordion_description do %>
-              <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".user_ban_list"), "#" %></li>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".user_list"), "#" %></li>
-              </ul>
-            <% end %>
-          <% end %>
-          <%= render_accordion do %>
-            <%= accordion_title do %>
-              <%= t ".authors"%>
-            <% end %>
-            <%= accordion_description do %>
-              <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".author_list"), "#" %></li>
-              </ul>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="mt-8 w-full">
-          <%= yield %>
-        </div>
-      </div>
+    <main class="container mx-auto px-5 min-h-screen">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
     </main>
   </body>
 </html>

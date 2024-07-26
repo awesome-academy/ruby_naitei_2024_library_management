@@ -3,11 +3,19 @@ vi:
   activerecord:
     models:
       Account: "Tài khoản"
+      User: "Người dùng"
     attributes:
       Account:
         email: "Email"
         password: "Mật khẩu"
         password_confirmation: "Xác nhận mật khẩu"
+      user: 
+        citizen_id: "Số căn cước công dân"
+        name: "Tên"
+        birth: "Ngày sinh"
+        address: "Địa chỉ"
+        phone: "Số điện thoại"
+        gender: "Giới tính"
   sign_up:
     title: "Tạo tài khoản"
     submit: "Tiếp theo"
@@ -15,6 +23,13 @@ vi:
   sign_in:
     title: "Đăng nhập"
     submit: "Đăng nhập"
+    have_account: "Đăng ký tại đây!!!"
+  noti:
+    the_form_contains: "Biểu mẫu chứa"
+    error: "lỗi"
+    account_already_has_user: "Tài khoản đã có thông tin người dùng"
+    account_not_found: "Không tìm thấy tài khoản. Vui lòng thử lại."
+    successful_creation: "Đăng kí thành công."
   layouts:
     application:
       sign_out: "Đăng xuất"

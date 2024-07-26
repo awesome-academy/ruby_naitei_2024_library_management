@@ -3,11 +3,19 @@ en:
   activerecord:
     models:
       Account: "Account"
+      User: "User"
     attributes:
       Account:
         email: "Email"
         password: "Password"
         password_confirmation: "Password Confirmation"
+      user:
+        citizen_id: "Citizen ID"
+        name: "Name"
+        birth: "Birthday"
+        address: "Address"
+        phone: "Phone"
+        gender: "Gender"
   sign_up:
     title: "Create Account"
     submit: "Next"
@@ -15,6 +23,13 @@ en:
   sign_in:
     title: "Sign In"
     submit: "Sign In"
+    have_account: "Sign up here!!!"
+  noti:
+    the_form_contains: "The form contains"
+    error: "error"
+    account_already_has_user: "This account already has a user associated with it."
+    account_not_found: "Account not found. Please try again."
+    successful_creation: "Sign up successfully."
   layouts:
     application:
       sign_out: "Sign Out"
