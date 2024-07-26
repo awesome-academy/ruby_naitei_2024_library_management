@@ -15,3 +15,15 @@ vi:
   sign_in:
     title: "Đăng nhập"
     submit: "Đăng nhập"
+  layouts:
+    application:
+      sign_out: "Đăng xuất"
+      books: "Sách"
+      book_request: "Yêu cầu mượn sách"
+      users: "Người dùng"
+      authors: "Tác giả"
+      book_request_list: "Danh sách yêu cầu mượn sách"
+      book_list: "Danh sách sách"
+      user_list: "Danh sách người dùng"
+      user_ban_list: "Danh sách người dùng bị cấm"
+      author_list: "Danh sách tác giả"

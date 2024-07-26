@@ -1,12 +1,13 @@
 class Shadcn::FormBuilder < ActionView::Helpers::FormBuilder
-  def label(method, label_text = nil, options = {})
+  def label method, label_text = nil, options = {}
     error_class = @object.errors[method].any? ? "error" : ""
     options[:class] = @template.tw("#{options[:class]} #{error_class}")
     label_text ||= label_for(@object, method)
-    @template.render_label(name: "#{object_name}[#{method}]", label: label_text, **options)
+    @template.render_label(name: "#{object_name}[#{method}]",
+                           label: label_text, **options)
   end
 
-  def text_field(method, options = {})
+  def text_field method, options = {}
     error_class = @object.errors[method].any? ? "error" : ""
     options[:class] = @template.tw("#{options[:class]} #{error_class}")
     @template.render_input(
@@ -17,7 +18,7 @@ class Shadcn::FormBuilder < ActionView::Helpers::FormBuilder
     )
   end
 
-  def password_field(method, options = {})
+  def password_field method, options = {}
     error_class = @object.errors[method].any? ? "error" : ""
     options[:class] = @template.tw("#{options[:class]} #{error_class}")
     @template.render_input(
@@ -28,7 +29,7 @@ class Shadcn::FormBuilder < ActionView::Helpers::FormBuilder
     )
   end
 
-  def email_field(method, options = {})
+  def email_field method, options = {}
     error_class = @object.errors[method].any? ? "error" : ""
     options[:class] = @template.tw("#{options[:class]} #{error_class}")
     @template.render_input(
@@ -38,8 +39,8 @@ class Shadcn::FormBuilder < ActionView::Helpers::FormBuilder
       type: "email", **options
     )
   end
-  
-  def text_area(method, options = {})
+
+  def text_area method, options = {}
     error_class = @object.errors[method].any? ? "error" : ""
     options[:class] = @template.tw("#{options[:class]} #{error_class}")
     @template.render_textarea(
@@ -49,15 +50,16 @@ class Shadcn::FormBuilder < ActionView::Helpers::FormBuilder
       type: "text", **options
     )
   end
-  
-  def submit(value = nil, options = {})
+
+  def submit value = nil, options = {}
     @template.render_button(value, **options)
   end
 
   private
 
-  def label_for(object, method)
+  def label_for object, method
     return method.capitalize if object.nil?
+
     object.class.human_attribute_name(method)
   end
 end
