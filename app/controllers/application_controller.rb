@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :set_layout
+  before_action :set_categories
 
   private
   def set_layout
@@ -17,5 +18,9 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     {locale: I18n.locale}
+  end
+
+  def set_categories
+    @categories = Category.includes(:subcategories).no_parent_category
   end
 end

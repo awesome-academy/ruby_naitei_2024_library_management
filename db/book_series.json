@@ -1,0 +1,78 @@
+[
+  {
+    "title": "Tuyển tập Harry Potter",
+    "description": "Harry Potter is a series of seven fantasy novels written by British author J. K. Rowling.",
+    "author_id": 1,
+    "category_id": 1,
+    "books": [
+      {
+        "title": "Harry Potter và Hòn Đá Phù Thủy",
+        "summary": "Harry Potter và Hòn Đá Phù Thủy là cuốn sách đầu tiên trong loạt truyện về Harry Potter...",
+        "publication_date": "1997-06-26",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/cb/ea/f1/54614e3e1c9d5de1e7cd6b1be97bbbb4.jpg.webp"
+      },
+      {
+        "title": "Harry Potter và Phòng chứa Bí mật",
+        "summary": "Harry Potter và Phòng chứa Bí mật tiếp tục câu chuyện của Harry trong năm học thứ hai...",
+        "publication_date": "1998-07-02",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/59/d1/db/76f7d35e8142978529de5aaafdfd8052.jpg.webp"
+      },
+      {
+        "title": "Harry Potter và Tên Tù nhân ngục Azkaban",
+        "summary": "Harry Potter và Tên Tù nhân ngục Azkaban kể về năm học thứ ba của Harry...",
+        "publication_date": "1999-07-08",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/5b/02/06/35081166e68980775f5cb1fcd8ca6558.jpg.webp"
+      },
+      {
+        "title": "Harry Potter và Chiếc Cốc Lửa",
+        "summary": "Harry Potter và Chiếc Cốc Lửa là câu chuyện về năm học thứ tư của Harry...",
+        "publication_date": "2000-07-08",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/28/52/39/98767249ca530720557913823b5a5696.jpg.webp"
+      },
+      {
+        "title": "Harry Potter và Hội Phượng Hoàng",
+        "summary": "Harry Potter và Hội Phượng Hoàng kể về năm học thứ năm của Harry...",
+        "publication_date": "2003-06-21",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/ba/07/8e/63bbce559ee5d603acf46caea957b277.jpg.webp"
+      },
+      {
+        "title": "Harry Potter và Hoàng tử lai",
+        "summary": "Harry Potter và Hoàng tử lai là câu chuyện về năm học thứ sáu của Harry...",
+        "publication_date": "2005-07-16",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/3c/30/41/688b68177be3a3cef444a23cf431dd87.jpg.webp"
+      },
+      {
+        "title": "Harry Potter và Bảo bối Tử thần",
+        "summary": "Harry Potter và Bảo bối Tử thần là cuốn sách cuối cùng trong loạt truyện về Harry Potter...",
+        "publication_date": "2007-07-21",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/c1/02/5c/0364b68c8e895fe531e0bf161ae9ab35.jpg.webp"
+      }
+    ]
+  },
+  {
+    "title": "Tuyển tập Chúa tể những chiếc nhẫn",
+    "description": "The Lord of the Rings is an epic high-fantasy novel written by English author J. R. R. Tolkien.",
+    "author_id": 2,
+    "category_id": 3,
+    "books": [
+      {
+        "title": "Chúa tể những chiếc nhẫn: Đoàn hộ nhẫn",
+        "summary": "Chúa tể những chiếc nhẫn: Đoàn hộ nhẫn kể về cuộc hành trình của Frodo Baggins...",
+        "publication_date": "1954-07-29",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/16/b0/2b/371294e3fcb7aa6145652b38703dfa16.JPG.webp"
+      },
+      {
+        "title": "Chúa tể những chiếc nhẫn: Hai tòa tháp",
+        "summary": "Chúa tể những chiếc nhẫn: Hai tòa tháp tiếp tục cuộc hành trình của Frodo Baggins...",
+        "publication_date": "1954-11-11",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/e9/e4/21/58f8840563dab180a3d9bdc7b9dc3332.jpg.webp"
+      },
+      {
+        "title": "Chúa tể những chiếc nhẫn: Sự trở lại của nhà vua",
+        "summary": "Chúa tể những chiếc nhẫn: Sự trở lại của nhà vua là câu chuyện cuối cùng...",
+        "publication_date": "1955-10-20",
+        "image_url": "https://salt.tikicdn.com/cache/750x750/ts/product/2b/56/78/ec8584ff256a8ec657668d7b3350949e.jpg.webp"
+      }
+    ]
+  }
+]

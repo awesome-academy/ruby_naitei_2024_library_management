@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_25_092054) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_26_161309) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -63,9 +63,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_25_092054) do
     t.date "publication_date"
     t.bigint "category_id", null: false
     t.bigint "author_id", null: false
-    t.bigint "book_series_id", null: false
+    t.bigint "book_series_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cover_url"
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["book_series_id"], name: "index_books_on_book_series_id"
     t.index ["category_id"], name: "index_books_on_category_id"

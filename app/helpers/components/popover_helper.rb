@@ -2,7 +2,7 @@ module Components
   module PopoverHelper
     def render_popover(**options, &block)
       content = capture(&block) if block
-      render 'components/ui/popover', content:, **options
+      render "components/ui/popover", content:, **options
     end
 
     def popover_trigger(&block)

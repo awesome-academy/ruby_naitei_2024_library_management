@@ -1,0 +1,10 @@
+<div>
+  <%= link_to "#", class: "block px-2 py-2 hover:bg-black/10 font-bold" do %>
+    <%= category.name %>
+  <% end %>
+  <% category.subcategories.each do |subcategory| %>
+    <%= link_to "#", class: "block px-2 py-2 hover:bg-black/10" do %>
+      <%= subcategory.name %>
+    <% end %>
+  <% end %>
+</div>
