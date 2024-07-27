@@ -24,12 +24,16 @@ en:
     title: "Sign In"
     submit: "Sign In"
     have_account: "Sign up here!!!"
+    remember_me: "Remember me on this computer"
+    invalid: "Sign in fail"
   noti:
     the_form_contains: "The form contains"
     error: "error"
     account_already_has_user: "This account already has a user associated with it."
     account_not_found: "Account not found. Please try again."
     successful_creation: "Sign up successfully."
+    user_infor_404: "User information has not been registered."
+    permission_err: "You do not have permission to access this page"
   layouts:
     application:
       sign_out: "Sign Out"
@@ -42,3 +46,4 @@ en:
       user_list: "User List"
       user_ban_list: "User Ban List"
       author_list: "Author List"
+      profile: "Profile"

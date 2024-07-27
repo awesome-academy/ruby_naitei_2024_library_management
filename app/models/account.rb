@@ -16,9 +16,37 @@ class Account < ApplicationRecord
   has_one :user, dependent: :destroy
 
   before_save :downcase_email
+
+  def remember
+    self.remember_id = Account.new_token
+    update_column :remember_id, Account.digest(remember_id)
+  end
+
+  def authenticate? remember_id
+    BCrypt::Password.new(remember_id).is_password? remember_id
+  end
+
+  def forget
+    update_column :remember_id, nil
+  end
   private
 
   def downcase_email
     email.downcase!
+  end
+
+  class << self
+    def digest string
+      cost = if ActiveModel::SecurePassword.min_cost
+               BCrypt::Engine::MIN_COST
+             else
+               BCrypt::Engine.cost
+             end
+      BCrypt::Password.create string, cost:
+    end
+
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
   end
 end
