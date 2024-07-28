@@ -1,0 +1,6 @@
+<% provide :title, t("user.index.title") %>
+<h1 class="font-semibold"><%= t("user.index.title") %></h1>
+<ul class="users">
+  <%= render @users %>
+</ul>
+<%== pagy_nav(@pagy)%>

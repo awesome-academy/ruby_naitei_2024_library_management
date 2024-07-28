@@ -1,0 +1,13 @@
+<li class="flex items-center space-x-4 p-4 border-b border-gray-200 mb-3">
+  <div>
+    <% if user.profile_url.nil? %>
+      <%= image_tag "default_avatar.png", size: Settings.avatar.list_size, class: "w-16 h-16 rounded-full" %>
+    <% else %>
+      <%= image_tag user.profile_url, size: Settings.avatar.list_size, class: "w-16 h-16 rounded-full" %>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to user.name, "#", class: "text-lg font-semibold text-gray-900" %>
+    <p class="text-gray-500"><%= user.account.email %></p>
+  </div>
+</li>
