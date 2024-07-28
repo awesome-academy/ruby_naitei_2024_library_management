@@ -5,3 +5,8 @@ min_password_length: 6
 digit_12: 12
 digit_50: 50
 digit_255: 255
+avatar:
+  size_30: 30
+  size: 80
+  list_size: 50
+users_per_page: 10

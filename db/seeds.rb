@@ -84,3 +84,30 @@ books_series.each do |series|
     )
   end
 end
+admin_account = Account.create!(
+  email: "admin@gmail.com",
+  password: "admin123",
+  status: 0,
+  is_admin: 1
+)
+
+# Tạo tài khoản và người dùng giả
+50.times do
+  account = Account.create!(
+    email: Faker::Internet.unique.email,
+    password: "password",
+    status: 0,
+    is_admin: false
+  )
+
+  User.create!(
+    citizen_id: Faker::Number.number(digits: 12),
+    account_id: account.id,
+    name: Faker::Name.name,
+    birth: Faker::Date.between(from: "1970-01-01", to: "2010-12-31"),
+    gender: [true, false].sample,
+    phone: Faker::PhoneNumber.unique.cell_phone,
+    address: Faker::Address.full_address,
+    profile_url: "default_avatar.png",
+  )
+end
