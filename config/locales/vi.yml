@@ -5,7 +5,7 @@ vi:
   categories: "Thể loại"
   home: "Trang chủ"
   search: "Tìm kiếm theo tiêu đề, mô tả"
-
+  no_ratings: "Chưa có đánh giá"
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"
@@ -50,6 +50,7 @@ vi:
     permission_err: "Bạn không có quyền truy cập trang này"
     category_not_found: "Không tìm thấy thể loại"
     welcome: "Chào mừng đến với Librarails"
+    book_not_found: "Không tìm thấy sách"
     update_success: "Cập nhật thành công."
     update_fail: "Cập nhật thất bại."
     due_reminder_success: "Gửi mail nhắc nhở đến %{user_name} thành công."
@@ -98,6 +99,18 @@ vi:
     no_rating: "Chưa có đánh giá"
     published_date: "Ngày xuất bản"
     by: "Tác giả"
+  book_details:
+    your_rating: "Đánh giá của bạn"
+    add_to_request: "Thêm vào yêu cầu mượn sách"
+    add_to_favourite: "Thêm vào yêu thích"
+    available_quantity: "Số lượng hiện có"
+    review: "Bình luận"
+    summary: "Tóm tắt nội dung"
+    detail: "Thông tin chi tiết"
+    write_review: "Viết bình luận"
+    related_books: "Sách liên quan"
+    view_more: "Xem thêm =>"
+    author: "Tác giả"
   user_mailer:
     due_reminder:
       subject: "Nhắc nhở về thời gian trả sách"

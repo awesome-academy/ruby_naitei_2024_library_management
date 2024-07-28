@@ -37,5 +37,9 @@ class Book < ApplicationRecord
     end
   }
 
+  scope :filter_related_books, lambda {|category_ids, bid|
+    where(category_id: category_ids).where.not(id: bid).limit(4)
+  }
+
   validates :title, :summary, :quantity, :publication_date, presence: true
 end
