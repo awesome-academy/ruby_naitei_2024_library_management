@@ -1,0 +1,26 @@
+<% provide :title, t("books_page.title") %>
+<div class="py-10 space-y-10">
+  <h1 class="font-semibold text-4xl">
+    <%= @category&.name || (@keywords.present? ? "Tìm kiếm \"#{@keywords}\"" : t("books_page.all_books")) %>
+  </h1>
+  <section class="border-2 shadow-lg p-10 py-5 rounded-md">
+    <div class="flex justify-between items-center">
+      <h3><%= t "books_page.total" %>: <%= @total_books %> <%= t "books_page.books" %></h3>
+      <%= form_with url: books_path, method: :get, local: true, data: { turbo_frame: "books" } do %>
+        <div>
+          <label><%= t "books_page.sort_by" %>: </label>
+          <%= select_tag :sort, options_for_select([[t("books_page.latest"), "latest"], [t("books_page.oldest"), "oldest"], [t("books_page.highest_rating"), "highest_rating"]], params[:sort]), onchange: "this.form.submit();", class: "rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" %>
+        </div>
+      <% end %>
+    </div>
+    <%= render_separator class: "my-2" %>
+    <%= turbo_frame_tag "books" do %>
+      <div class="grid grid-cols-2 gap-8">
+        <%= render @books %>
+      </div>
+      <div class="w-full items-center justify-center flex py-5">
+        <%== pagy_nav(@pagy) %>
+      </div>
+    <% end %>
+  </section>
+</div>

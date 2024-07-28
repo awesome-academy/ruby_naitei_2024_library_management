@@ -1,6 +1,6 @@
 <% provide :title, t("sign_in.title") %>
 <div class="flex items-center justify-center pt-36">
-  <div class="w-full max-w-sm bg-white p-8 shadow-xl rounded-xl">
+  <div class="w-full max-w-md bg-white p-8 shadow-xl rounded-xl">
     <h1 class="text-3xl font-bold mb-14 text-center"><%= t("sign_in.title") %></h1>
     <%= form_for :session, url: login_path do |form| %>
       <div class="grid grid-cols-1 items-baseline mb-4">

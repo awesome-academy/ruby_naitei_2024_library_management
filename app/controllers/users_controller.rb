@@ -45,12 +45,12 @@ class UsersController < ApplicationController
   end
 
   def handle_account_not_found
-    flash[:alert] = t "noti.account_not_found"
+    flash[:warning] = t "noti.account_not_found"
     redirect_to new_user_path
   end
 
   def handle_account_already_has_user
-    flash[:alert] = t "noti.account_already_has_user"
+    flash[:warning] = t "noti.account_already_has_user"
     redirect_to root_path
   end
 

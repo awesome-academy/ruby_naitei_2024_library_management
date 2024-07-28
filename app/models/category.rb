@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
-  has_many :books, dependent: :destroy
+  has_many :books, dependent: :nullify
   has_many :subcategories, class_name: Category.name,
-            foreign_key: :parent_id, dependent: :destroy
+            foreign_key: :parent_id, dependent: :nullify
   belongs_to :parent_category, class_name: Category.name,
               foreign_key: :parent_id, optional: true
 

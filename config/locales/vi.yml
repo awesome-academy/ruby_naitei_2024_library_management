@@ -3,6 +3,8 @@ vi:
   books: "Danh Sách"
   authors: "Tác giả"
   categories: "Thể loại"
+  home: "Trang chủ"
+  search: "Tìm kiếm theo tiêu đề, mô tả"
 
   profile_menu:
     profile: "Hồ sơ"
@@ -10,6 +12,8 @@ vi:
     sign_out: "Đăng xuất"
     vietnamese: "Tiếng Việt"
     english: "Tiếng Anh"
+    sign_in: "Đăng nhập"
+    sign_up: "Đăng ký"
   activerecord:
     models:
       Account: "Tài khoản"
@@ -44,6 +48,8 @@ vi:
     successful_creation: "Đăng kí thành công."
     user_infor_404: "Thông tin người dùng chưa được đăng ký."
     permission_err: "Bạn không có quyền truy cập trang này"
+    category_not_found: "Không tìm thấy thể loại"
+    welcome: "Chào mừng đến với Librarails"
   user:
     index:
       title: "Danh sách người dùng"
@@ -67,3 +73,15 @@ vi:
       user_ban_list: "Danh sách người dùng bị cấm"
       author_list: "Danh sách tác giả"
       profile: "Hồ sơ"
+  books_page:
+    title: "Sách - Librarails"
+    all_books: "Tất cả sách"
+    total: "Tổng"
+    books: "Quyển sách"
+    sort_by: "Sắp xếp theo"
+    latest: "Mới nhất"
+    oldest: "Cũ nhất"
+    highest_rating: "Đánh giá cao nhất"
+    no_rating: "Chưa có đánh giá"
+    published_date: "Ngày xuất bản"
+    by: "Tác giả"

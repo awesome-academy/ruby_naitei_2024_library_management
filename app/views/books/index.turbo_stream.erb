@@ -1,0 +1,8 @@
+<%= turbo_stream.replace "books" do %>
+  <div class="grid grid-cols-2 gap-8">
+    <%= render @books %>
+  </div>
+  <div class="w-full items-center justify-center flex py-5">
+    <%== pagy_nav(@pagy) %>
+  </div>
+<% end %>

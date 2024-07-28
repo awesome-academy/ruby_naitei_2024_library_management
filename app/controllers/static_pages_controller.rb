@@ -1,3 +1,5 @@
 class StaticPagesController < ApplicationController
-  def home; end
+  def home
+    flash.now[:success] = t "noti.welcome"
+  end
 end
