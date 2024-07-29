@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :author_followers
 
-  enum gende: {male: 0, female: 1}
-  
+  enum gender: {male: 0, female: 1}
+
   validates :citizen_id, presence: true, length: {is: Settings.digit_12}
   validates :name, presence: true, length: {maximum: Settings.digit_50}
   validates :birth, presence: true

@@ -1,6 +1,6 @@
 <% provide :title, t("sign_in.title") %>
-<div class="flex items-center justify-center pt-7">
-  <div class="w-full max-w-sm bg-white p-8 shadow-xl rounded-xl">
+<div class="flex w-full items-center justify-center pt-7">
+  <div class="w-full max-w-lg bg-white p-8 shadow-xl rounded-xl">
     <h1 class="text-3xl font-bold mb-6 text-center"><%= t("sign_up.title") %></h1>
     <%= render_form_for(@user, class: "w-full") do |form| %>
       <%= render "shared/error_messages", object: form.object %>
