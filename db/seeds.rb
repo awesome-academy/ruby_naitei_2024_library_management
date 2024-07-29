@@ -257,17 +257,19 @@ books_list.each do |book|
 end
 
 # Seed book series
-
+books_series_list = []
 books_series.each do |series|
   book_series_details = BookSeries.create!(
     title: series["title"],
-    description: series["description"]
+    description: series["description"],
+    cover_url: series["cover_url"]
   )
 
   series["books"].each do |book|
-    Book.create!(
+    cbook = Book.create!(
       title: book["title"],
       summary: book["summary"],
+      description: book["summary"],
       quantity: rand(1..10),
       publication_date: book["publication_date"],
       category_id: series["category_id"],
@@ -275,8 +277,17 @@ books_series.each do |series|
       book_series_id: book_series_details.id,
       cover_url: book["image_url"]
     )
+    books_series_list << cbook
   end
 end
+
+books_series_list.each do |book|
+  BookInventory.create(
+    book_id: book.id,
+    available_quantity: rand(1..10)
+  )
+end
+
 admin_account = Account.create!(
   email: "admin@gmail.com",
   password: "admin123",

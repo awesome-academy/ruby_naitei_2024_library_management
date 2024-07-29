@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     get "requests/new", to: "requests#new", as: "new_request"
     root "static_pages#home"
     resources :books, only: %i(index show)
-    resources :accounts, only: [:new, :create]
-    resources :users, only: [:new, :create, :index]
+    resources :book_series, only: %i(show)
+    resources :accounts, only: %i(new create)
+    resources :users, only: %i(new create index)
     namespace :admin do
       resources :users, only: :index do
         member do

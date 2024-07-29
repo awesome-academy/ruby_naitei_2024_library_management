@@ -2,6 +2,7 @@
   {
     "title": "Tuyển tập Harry Potter",
     "description": "Harry Potter is a series of seven fantasy novels written by British author J. K. Rowling.",
+    "cover_url": "https://salt.tikicdn.com/cache/750x750/ts/product/1d/60/29/bb531129b638af4c7e37f00316686e8f.jpg.webp",
     "author_id": 1,
     "category_id": 1,
     "books": [
@@ -52,6 +53,7 @@
   {
     "title": "Tuyển tập Chúa tể những chiếc nhẫn",
     "description": "The Lord of the Rings is an epic high-fantasy novel written by English author J. R. R. Tolkien.",
+    "cover_url": "https://salt.tikicdn.com/cache/750x750/ts/product/18/2a/1a/88b7be05d91dce915edf037d65c02359.png.webp",
     "author_id": 2,
     "category_id": 3,
     "books": [

@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :load_book, only: :show
   def index
-    @category = Category.find_by(id: params[:category])
+    @category = Category.find_by id: params[:category]
     @total_books = filtered_books.to_a.size
     @keywords = params[:search]
     @pagy, @books = pagy(filtered_books)

@@ -82,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_01_142325) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cover_url"
   end
 
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -95,6 +96,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_01_142325) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_url"
+    t.string "description"
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["book_series_id"], name: "index_books_on_book_series_id"
     t.index ["category_id"], name: "index_books_on_category_id"

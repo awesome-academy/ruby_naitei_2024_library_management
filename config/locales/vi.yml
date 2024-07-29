@@ -7,7 +7,8 @@ vi:
   search: "Tìm kiếm theo tiêu đề, mô tả"
   no_ratings: "Chưa có đánh giá"
   published_date: "Ngày xuất bản"
-
+  home: "Trang chủ"
+  search: "Tìm kiếm"
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"
@@ -74,6 +75,7 @@ vi:
     book_delete_success: "Sách đã được xóa thành công."
     book_delete_fail: "Xóa sách thất bại."
     book_confirm_delete: "Bạn có chắc muốn xóa quyển sách này ?"
+    book_series_not_found: "Không tìm thấy bộ sách"
   user:
     filter: "Lọc"
     index:
@@ -152,3 +154,5 @@ vi:
       create_request: "Tạo yêu cầu"
       delete: "Xóa"
       request_empty: "Danh sách yêu cầu trống"
+  home_page:
+    start_reading: "Bắt đầu khám phá =>"

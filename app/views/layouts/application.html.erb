@@ -12,7 +12,6 @@
   </head>
   <body>
     <%= render "layouts/header" %>
-    <main class="container relative mx-auto mt-[84px] px-5">
       <% flash.each do |message_type, message| %>
         <%= render partial: "shared/notification", locals: { message: message, message_type: message_type } %>
       <% end %>
