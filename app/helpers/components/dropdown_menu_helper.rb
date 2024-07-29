@@ -2,7 +2,7 @@ module Components
   module DropdownMenuHelper
     def render_dropdown_menu(**options, &block)
       content = capture(&block) if block
-      render 'components/ui/dropdown_menu', content:, **options
+      render "components/ui/dropdown_menu", content:, **options
     end
 
     def dropdown_menu_trigger(&block)
@@ -19,7 +19,7 @@ module Components
 
     def dropdown_menu_item(label = nil, **_options, &block)
       content = (label || capture(&block))
-      render 'components/ui/shared/menu_item', content:
+      render "components/ui/shared/menu_item", content:
     end
   end
 end

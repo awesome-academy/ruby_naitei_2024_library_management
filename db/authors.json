@@ -1,0 +1,162 @@
+[
+    {
+      "name": "J.K. Rowling",
+      "birth": "1965-07-31",
+      "gender": true,
+      "bio": "British author, best known for the Harry Potter series.",
+      "nationality": "British",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/J._K._Rowling_2010.jpg/220px-J._K._Rowling_2010.jpg"
+    },
+    {
+      "name": "George R.R. Martin",
+      "birth": "1948-09-20",
+      "gender": true,
+      "bio": "American novelist and short story writer in the fantasy, horror, and science fiction genres.",
+      "nationality": "American",
+      "profile_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzZ4oVXp1DfQjnJiw0HsvQHLZ50oN6xGAEEKwaenscxVi9KlAn"
+    },
+    {
+      "name": "Agatha Christie",
+      "birth": "1890-09-15",
+      "gender": false,
+      "bio": "English writer known for her 66 detective novels and 14 short story collections.",
+      "nationality": "British",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Agatha_Christie.png/320px-Agatha_Christie.png"
+    },
+    {
+      "name": "Stephen King",
+      "birth": "1947-09-21",
+      "gender": true,
+      "bio": "American author of horror, supernatural fiction, suspense, crime, science-fiction, and fantasy novels.",
+      "nationality": "American",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Stephen_King%2C_Comicon.jpg/220px-Stephen_King%2C_Comicon.jpg"
+    },
+    {
+      "name": "Haruki Murakami",
+      "birth": "1949-01-12",
+      "gender": true,
+      "bio": "Japanese writer known for his distinct style and works such as 'Norwegian Wood'.",
+      "nationality": "Japanese",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Murakami_Haruki_%282009%29.jpg/220px-Murakami_Haruki_%282009%29.jpg"
+    },
+    {
+      "name": "Isabel Allende",
+      "birth": "1942-08-02",
+      "gender": false,
+      "bio": "Chilean writer known for novels like 'The House of the Spirits'.",
+      "nationality": "Chilean",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Isabel_Allende_Frankfurter_Buchmesse_2015_%28cropped%29.JPG/220px-Isabel_Allende_Frankfurter_Buchmesse_2015_%28cropped%29.JPG"
+    },
+    {
+      "name": "Jane Austen",
+      "birth": "1775-12-16",
+      "gender": false,
+      "bio": "English novelist known primarily for her six major novels.",
+      "nationality": "British",
+      "profile_url": "https://en.wikipedia.org/wiki/File:CassandraAusten-JaneAusten(c.1810)_hires.jpg"
+    },
+    {
+      "name": "Leo Tolstoy",
+      "birth": "1828-09-09",
+      "gender": true,
+      "bio": "Russian writer who is regarded as one of the greatest authors of all time.",
+      "nationality": "Russian",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/L._N._Tolstoy%2C_by_Prokudin-Gorsky_%28cropped%29.jpg/220px-L._N._Tolstoy%2C_by_Prokudin-Gorsky_%28cropped%29.jpg"
+    },
+    {
+      "name": "Mark Twain",
+      "birth": "1835-11-30",
+      "gender": true,
+      "bio": "American writer, humorist, entrepreneur, publisher, and lecturer.",
+      "nationality": "American",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mark_Twain_by_AF_Bradley.jpg/220px-Mark_Twain_by_AF_Bradley.jpg"
+    },
+    {
+      "name": "Gabriel Garcia Marquez",
+      "birth": "1927-03-06",
+      "gender": true,
+      "bio": "Colombian novelist, short-story writer, screenwriter, and journalist.",
+      "nationality": "Colombian",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Gabriel_Garcia_Marquez.jpg/220px-Gabriel_Garcia_Marquez.jpg"
+    },
+    {
+      "name": "Ernest Hemingway",
+      "birth": "1899-07-21",
+      "gender": true,
+      "bio": "American novelist, short-story writer, and journalist.",
+      "nationality": "American",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg"
+    },
+    {
+      "name": "F. Scott Fitzgerald",
+      "birth": "1896-09-24",
+      "gender": true,
+      "bio": "American novelist and short-story writer.",
+      "nationality": "American",
+      "profile_url": "https://en.wikipedia.org/wiki/File:F._Scott_Fitzgerald_(1929_photo_portrait_by_Nickolas_Muray)_Cropped.jpg"
+    },
+    {
+      "name": "Toni Morrison",
+      "birth": "1931-02-18",
+      "gender": false,
+      "bio": "American novelist, essayist, editor, teacher, and professor emeritus.",
+      "nationality": "American",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Toni_Morrison.jpg/220px-Toni_Morrison.jpg"
+    },
+    {
+      "name": "James Joyce",
+      "birth": "1882-02-02",
+      "gender": true,
+      "bio": "Irish novelist, short story writer, and poet.",
+      "nationality": "Irish",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Revolutionary_Joyce_Better_Contrast.jpg/220px-Revolutionary_Joyce_Better_Contrast.jpg"
+    },
+    {
+      "name": "Virginia Woolf",
+      "birth": "1882-01-25",
+      "gender": false,
+      "bio": "English writer, considered one of the most important modernist 20th-century authors.",
+      "nationality": "British",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/George_Charles_Beresford_-_Virginia_Woolf_in_1902_-_Restoration.jpg/220px-George_Charles_Beresford_-_Virginia_Woolf_in_1902_-_Restoration.jpg"
+    },
+    {
+      "name": "Herman Melville",
+      "birth": "1819-08-01",
+      "gender": true,
+      "bio": "American novelist, short story writer, and poet of the American Renaissance period.",
+      "nationality": "American",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Herman_Melville_by_Joseph_O_Eaton.jpg/220px-Herman_Melville_by_Joseph_O_Eaton.jpg"
+    },
+    {
+      "name": "Charles Dickens",
+      "birth": "1812-02-07",
+      "gender": true,
+      "bio": "English writer and social critic.",
+      "nationality": "British",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Dickens_Gurney_head.jpg/220px-Dickens_Gurney_head.jpg"
+    },
+    {
+      "name": "J.D. Salinger",
+      "birth": "1919-01-01",
+      "gender": true,
+      "bio": "American writer known for his widely read novel, 'The Catcher in the Rye'.",
+      "nationality": "American",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/J._D._Salinger_%28Catcher_in_the_Rye_portrait%29.jpg/220px-J._D._Salinger_%28Catcher_in_the_Rye_portrait%29.jpg"
+    },
+    {
+      "name": "Franz Kafka",
+      "birth": "1883-07-03",
+      "gender": true,
+      "bio": "German-speaking Bohemian writer, regarded as one of the major figures of 20th-century literature.",
+      "nationality": "Czech",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Franz_Kafka%2C_1923.jpg/220px-Franz_Kafka%2C_1923.jpg"
+    },
+    {
+      "name": "Edgar Allan Poe",
+      "birth": "1809-01-19",
+      "gender": true,
+      "bio": "American writer, poet, editor, and literary critic.",
+      "nationality": "American",
+      "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Edgar_Allan_Poe%2C_circa_1849%2C_restored%2C_squared_off.jpg/220px-Edgar_Allan_Poe%2C_circa_1849%2C_restored%2C_squared_off.jpg"
+    }
+  ]

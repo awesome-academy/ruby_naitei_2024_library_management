@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Literature",
+    "description": "Classic and modern literature",
+    "subcategories": [
+      {
+        "name": "Classics",
+        "description": "Timeless literary works"
+      },
+      {
+        "name": "Modern Literature",
+        "description": "Contemporary literary works"
+      }
+    ]
+  },
+  {
+    "name": "Science",
+    "description": "Books on various scientific fields",
+    "subcategories": [
+      {
+        "name": "Physics",
+        "description": "Books on physics"
+      },
+      {
+        "name": "Biology",
+        "description": "Books on biology"
+      }
+    ]
+  },
+  {
+    "name": "Technology",
+    "description": "Books on technological advancements",
+    "subcategories": [
+      {
+        "name": "Programming",
+        "description": "Books on various programming languages"
+      },
+      {
+        "name": "AI & Machine Learning",
+        "description": "Books on artificial intelligence and machine learning"
+      }
+    ]
+  },
+  {
+    "name": "History",
+    "description": "Books on historical events and figures",
+    "subcategories": [
+      {
+        "name": "Ancient History",
+        "description": "Books on ancient civilizations"
+      },
+      {
+        "name": "Modern History",
+        "description": "Books on modern historical events"
+      }
+    ]
+  },
+  {
+    "name": "Art",
+    "description": "Books on various art forms",
+    "subcategories": [
+      {
+        "name": "Painting",
+        "description": "Books on painting techniques and artists"
+      },
+      {
+        "name": "Sculpture",
+        "description": "Books on sculpture techniques and artists"
+      }
+    ]
+  },
+  {
+    "name": "Philosophy",
+    "description": "Books on philosophical ideas and theories",
+    "subcategories": [
+      {
+        "name": "Western Philosophy",
+        "description": "Books on Western philosophical traditions"
+      },
+      {
+        "name": "Eastern Philosophy",
+        "description": "Books on Eastern philosophical traditions"
+      }
+    ]
+  }
+]

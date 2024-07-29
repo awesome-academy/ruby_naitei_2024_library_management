@@ -1,0 +1,12 @@
+<%= render_popover do %>
+  <%= popover_trigger do %>
+    <span class="hover:text-foreground/50 text-lg duration-500 cursor-pointer">
+      <%= t "categories" %>
+    </span>
+  <% end %>
+  <%= popover_content do %>
+    <div class="grid grid-cols-3 gap-y-5 ">
+      <%= render @categories %>
+    </div>
+  <% end %>
+<% end %>
