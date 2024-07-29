@@ -16,3 +16,4 @@ status:
 day_7: 7
 day_5: 5
 mailer_from: "noreply@example.com"
+max_books: 5
