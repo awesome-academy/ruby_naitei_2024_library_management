@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   end
 
   private
+  def account_present?
+    session[:account_id].present? && Account.exists?(session[:account_id])
+  end
 
   def user_params
     params.require(:user).permit(User::VALID_ATTRIBUTES)
@@ -48,6 +51,7 @@ class UsersController < ApplicationController
   end
 
   def check_account_and_redirect
+    redirect_to new_account_path unless account_present?
     return unless current_account&.user.present?
 
     handle_account_already_has_user

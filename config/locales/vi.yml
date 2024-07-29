@@ -34,12 +34,16 @@ vi:
     title: "Đăng nhập"
     submit: "Đăng nhập"
     have_account: "Đăng ký tại đây!!!"
+    remember_me: "Nhớ tôi trên máy tính này"
+    invalid: "Đăng nhập thất bại"
   noti:
     the_form_contains: "Biểu mẫu chứa"
     error: "lỗi"
     account_already_has_user: "Tài khoản đã có thông tin người dùng"
     account_not_found: "Không tìm thấy tài khoản. Vui lòng thử lại."
     successful_creation: "Đăng kí thành công."
+    user_infor_404: "Thông tin người dùng chưa được đăng ký."
+    permission_err: "Bạn không có quyền truy cập trang này"
   layouts:
     application:
       sign_out: "Đăng xuất"
@@ -52,3 +56,4 @@ vi:
       user_list: "Danh sách người dùng"
       user_ban_list: "Danh sách người dùng bị cấm"
       author_list: "Danh sách tác giả"
+      profile: "Hồ sơ"
