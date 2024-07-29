@@ -5,7 +5,8 @@ module UsersHelper
 
   def status_options_for_select
     [[t("user.index.title"), ""], [t("user.banned.title"), "banned"],
-    [t("user.overdue.title"), "overdue"]]
+    [t("user.overdue.title"), "overdue"],
+    [t("user.neardue.title"), "neardue"]]
   end
 
   def user_avatar user, size = Settings.avatar.list_size
@@ -19,6 +20,8 @@ module UsersHelper
       t("user.banned.activate")
     when "overdue"
       t("user.overdue.ban")
+    when "neardue"
+      t("user.neardue.sent")
     else
       ""
     end

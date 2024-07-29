@@ -27,6 +27,9 @@ class User < ApplicationRecord
     .where(accounts: {status: Settings.status.active})
     .distinct
   end)
+  scope :neardue, (lambda do
+    joins(:borrow_books).merge(BorrowBook.near_due)
+  end)
 
   class << self
     def with_status status

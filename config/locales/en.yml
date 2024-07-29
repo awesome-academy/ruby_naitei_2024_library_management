@@ -65,6 +65,9 @@ en:
     overdue:
       title: "Overdue User List"
       ban: "Ban"
+    neardue:
+      title: "Near Due User List"
+      sent: "Sent email"
   layouts:
     component:
       type: "Type here ..."
