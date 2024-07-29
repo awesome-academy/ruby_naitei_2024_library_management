@@ -56,6 +56,9 @@ vi:
     banned:
       title: "Danh sách người dùng bị chặn"
       activate: "Kích hoạt"
+    overdue:
+      title: "Danh sách người dùng quá hạn trả sách"
+      ban: "Chặn"
   layouts:
     component:
       type: "Nhập vào đây ..."

@@ -21,6 +21,12 @@ class User < ApplicationRecord
   scope :banned, (lambda do
     joins(:account).where(accounts: {status: Settings.status.banned})
   end)
+  scope :overdue, (lambda do
+    joins(:borrow_books, :account)
+    .merge(BorrowBook.overdue)
+    .where(accounts: {status: Settings.status.active})
+    .distinct
+  end)
 
   class << self
     def with_status status

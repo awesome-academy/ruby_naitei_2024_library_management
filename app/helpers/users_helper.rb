@@ -4,7 +4,8 @@ module UsersHelper
   end
 
   def status_options_for_select
-    [[t("user.index.title"), ""], [t("user.banned.title"), "banned"]]
+    [[t("user.index.title"), ""], [t("user.banned.title"), "banned"],
+    [t("user.overdue.title"), "overdue"]]
   end
 
   def user_avatar user, size = Settings.avatar.list_size
