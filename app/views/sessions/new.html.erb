@@ -1,28 +1,30 @@
 <% provide :title, t("sign_in.title") %>
-<div class="flex items-center justify-center pt-36">
-  <div class="w-full max-w-md bg-white p-8 shadow-xl rounded-xl">
-    <h1 class="text-3xl font-bold mb-14 text-center"><%= t("sign_in.title") %></h1>
-    <%= form_for :session, url: login_path do |form| %>
-      <div class="grid grid-cols-1 items-baseline mb-4">
-        <%= form.label :email, t("activerecord.attributes.Account.email"), class: "text-left mr-4 text-lg font-medium" %>
-        <%= form.text_field :email, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
-      </div>
-      <div class="grid grid-cols-1 items-baseline">
-        <%= form.label :password, t("activerecord.attributes.Account.password"), class: "text-left mr-4 text-lg font-medium" %>
-        <%= form.password_field :password, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
-      </div>
-      <%= form.label :remember_me do %>
-        <%= form.check_box :remember_me, class: "rounded-md mb-1" %>
-        <span class="mt-4 text-sm"><%= t "sign_in.remember_me" %></span>
-      <% end %>
-      <div class="flex justify-center mt-8">
-        <%= form.submit t("sign_in.submit"),
+<main class="container relative mx-auto mt-[84px] px-5">
+  <div class="flex items-center justify-center pt-36">
+    <div class="w-full max-w-md bg-white p-8 shadow-xl rounded-xl">
+      <h1 class="text-3xl font-bold mb-14 text-center"><%= t("sign_in.title") %></h1>
+      <%= form_for :session, url: login_path do |form| %>
+        <div class="grid grid-cols-1 items-baseline mb-4">
+          <%= form.label :email, t("activerecord.attributes.Account.email"), class: "text-left mr-4 text-lg font-medium" %>
+          <%= form.text_field :email, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+        </div>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= form.label :password, t("activerecord.attributes.Account.password"), class: "text-left mr-4 text-lg font-medium" %>
+          <%= form.password_field :password, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+        </div>
+        <%= form.label :remember_me do %>
+          <%= form.check_box :remember_me, class: "rounded-md mb-1" %>
+          <span class="mt-4 text-sm"><%= t "sign_in.remember_me" %></span>
+        <% end %>
+        <div class="flex justify-center mt-8">
+          <%= form.submit t("sign_in.submit"),
               class: " h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md text-sm font-medium "%>
-      </div>
-      <div class="mb-8 flex items-center text-sm mt-5">
-        <p class="mr-2"><%= t("sign_in.have_account") %></p>
-        <%= link_to t("sign_up.title"), new_account_path, class: "text-blue-500 hover:text-blue-700" %>
-      </div>
-    <% end %>
+        </div>
+        <div class="mb-8 flex items-center text-sm mt-5">
+          <p class="mr-2"><%= t("sign_in.have_account") %></p>
+          <%= link_to t("sign_up.title"), new_account_path, class: "text-blue-500 hover:text-blue-700" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+</main>

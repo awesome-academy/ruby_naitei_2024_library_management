@@ -15,7 +15,7 @@
       <% end %>
     </div>
     <div class="flex gap-x-5 items-center">
-      <% if logged_in? %>
+      <% if current_user %>
         <%= link_to new_request_path, id: "logo", class: "hover:bg-black/20 duration-500 rounded-full p-3" do %>
           <i class="bi bi-book text-3xl"></i>
         <% end %>

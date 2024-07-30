@@ -49,6 +49,7 @@ en:
     title: "Create Account"
     submit: "Next"
     have_account: "Already have an account? "
+    invalid: "Sign up fail"
   sign_in:
     title: "Sign In"
     submit: "Sign In"
@@ -77,6 +78,9 @@ en:
     book_delete_fail: "Failed to delete the book."
     book_confirm_delete: "Are you sure you want to delete this book?"
     book_series_not_found: "Book series not found"
+    sign_in_first: "Please sign in first"
+    rating_fail: "There was an error when rating the book."
+
   user:
     filter: "Filter"
     index:

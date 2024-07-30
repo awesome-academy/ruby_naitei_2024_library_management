@@ -1,7 +1,7 @@
 <%= render_tooltip do %>
   <%= tooltip_trigger do %>
     <%= link_to book_path(book), class: "block border-primary  w-full" do %>
-      <%= image_tag book.cover_url, alt: "cover", class: "w-full"  %>
+      <%= image_tag book.cover_image.attached? ? book.cover_image : "default_cover_image.png", alt: "cover", class: "w-full"  %>
     <% end %>
   <% end %>
   <%= tooltip_content do %>

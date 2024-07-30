@@ -18,20 +18,23 @@ class SessionsController < ApplicationController
 
   private
   def find_account_by_email
-    @account = Account.find_by email: params.dig(:session, :email)&.downcase
-    handle_invalid_login if @account.nil?
-    return unless @account&.user.nil? && !@account&.is_admin
+    @account = Account.find_by(email: params.dig(:session, :email)&.downcase)
+    return handle_invalid_login if @account.nil?
+
+    return unless @account.user.nil? && !@account.is_admin
 
     flash[:warning] = t "noti.user_infor_404"
-    redirect_to new_user_path
+    redirect_to new_user_path and return
   end
 
   def log_in_account account
+    forwarding_url = session[:forwarding_url]
     reset_session
     log_in account
     remember_or_forget account
     redirect_to admin_users_path and return if account.is_admin
 
+    session[:forwarding_url] = forwarding_url
     redirect_back_or root_path
   end
 
