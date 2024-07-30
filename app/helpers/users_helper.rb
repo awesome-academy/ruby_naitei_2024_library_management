@@ -27,8 +27,13 @@ module UsersHelper
     end
   end
 
-  def user_button_path
-    "#"
+  def user_button_path user
+    case params[:status].to_s
+    when "banned", "overdue"
+      update_status_account_path user.account
+    else
+      ""
+    end
   end
 
   def user_button_active?

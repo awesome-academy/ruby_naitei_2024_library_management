@@ -50,6 +50,8 @@ vi:
     permission_err: "Bạn không có quyền truy cập trang này"
     category_not_found: "Không tìm thấy thể loại"
     welcome: "Chào mừng đến với Librarails"
+    update_success: "Cập nhật thành công."
+    update_fail: "Cập nhật thất bại."
   user:
     filter: "Lọc"
     index:
