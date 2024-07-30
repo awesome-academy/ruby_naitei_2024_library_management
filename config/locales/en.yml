@@ -44,7 +44,17 @@ en:
     successful_creation: "Sign up successfully."
     user_infor_404: "User information has not been registered."
     permission_err: "You do not have permission to access this page"
+  user:
+    index:
+      title: "User List"
+      new: "New User"
+    show:
+      title: "User Information"
+    edit:
+      title: "Update User Information"
   layouts:
+    component:
+      type: "Type here ..."
     application:
       sign_out: "Sign Out"
       books: "Books"

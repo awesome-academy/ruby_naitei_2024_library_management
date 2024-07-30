@@ -44,7 +44,17 @@ vi:
     successful_creation: "Đăng kí thành công."
     user_infor_404: "Thông tin người dùng chưa được đăng ký."
     permission_err: "Bạn không có quyền truy cập trang này"
+  user:
+    index:
+      title: "Danh sách người dùng"
+      new: "Người dùng mới"
+    show:
+      title: "Thông tin người dùng"
+    edit:
+      title: "Cập nhật thông tin người dùng"
   layouts:
+    component:
+      type: "Nhập vào đây ..."
     application:
       sign_out: "Đăng xuất"
       books: "Sách"
