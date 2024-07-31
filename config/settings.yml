@@ -10,3 +10,5 @@ avatar:
   size: 80
   list_size: 50
 users_per_page: 10
+status:
+  banned: 1

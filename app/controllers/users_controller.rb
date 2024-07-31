@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :check_account_and_redirect, only: :new
   before_action :is_admin_role?, only: %i(index)
   def index
-    @pagy, @users = pagy User.order_by_name, items: Settings.users_per_page
+    @pagy, @users = pagy User.order_by_name.with_status(params[:status]),
+                         items: Settings.users_per_page
   end
 
   def new

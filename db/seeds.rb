@@ -105,7 +105,7 @@ admin_account = Account.create!(
     account_id: account.id,
     name: Faker::Name.name,
     birth: Faker::Date.between(from: "1970-01-01", to: "2010-12-31"),
-    gender: [true, false].sample,
+    gender: [1, 0].sample,
     phone: Faker::PhoneNumber.unique.cell_phone,
     address: Faker::Address.full_address,
     profile_url: "default_avatar.png",

@@ -45,6 +45,7 @@ vi:
     user_infor_404: "Thông tin người dùng chưa được đăng ký."
     permission_err: "Bạn không có quyền truy cập trang này"
   user:
+    filter: "Lọc"
     index:
       title: "Danh sách người dùng"
       new: "Người dùng mới"
@@ -52,6 +53,9 @@ vi:
       title: "Thông tin người dùng"
     edit:
       title: "Cập nhật thông tin người dùng"
+    banned:
+      title: "Danh sách người dùng bị chặn"
+      activate: "Kích hoạt"
   layouts:
     component:
       type: "Nhập vào đây ..."

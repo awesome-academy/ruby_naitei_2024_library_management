@@ -18,4 +18,17 @@ class User < ApplicationRecord
   validates :address, presence: true, length: {maximum: Settings.digit_255}
   scope :for_account, ->(account_id){where(account_id:)}
   scope :order_by_name, ->{order(:name)}
+  scope :banned, (lambda do
+    joins(:account).where(accounts: {status: Settings.status.banned})
+  end)
+
+  class << self
+    def with_status status
+      if status.present? && respond_to?(status)
+        public_send(status)
+      else
+        all
+      end
+    end
+  end
 end

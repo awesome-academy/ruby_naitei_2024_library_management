@@ -45,6 +45,7 @@ en:
     user_infor_404: "User information has not been registered."
     permission_err: "You do not have permission to access this page"
   user:
+    filter: "Filter"
     index:
       title: "User List"
       new: "New User"
@@ -52,6 +53,9 @@ en:
       title: "User Information"
     edit:
       title: "Update User Information"
+    banned:
+      title: "Banned User List"
+      activate: "Activate"
   layouts:
     component:
       type: "Type here ..."
