@@ -3,6 +3,8 @@ en:
   books: "Books"
   authors: "Authors"
   categories: "Categories"
+  home: "Home"
+  search: "Search by title or summary"
 
   profile_menu:
     profile: "Profile"
@@ -10,6 +12,8 @@ en:
     sign_out: "Sign out"
     vietnamese: "Vietnamese"
     english: "English"
+    sign_in: "Sign in"
+    sign_up: "Sign up"
   activerecord:
     models:
       Account: "Account"
@@ -44,6 +48,8 @@ en:
     successful_creation: "Sign up successfully."
     user_infor_404: "User information has not been registered."
     permission_err: "You do not have permission to access this page"
+    category_not_found: "Category not found"
+    welcome: "Welcome to Librarails"
   user:
     filter: "Filter"
     index:
@@ -71,3 +77,15 @@ en:
       user_ban_list: "User Ban List"
       author_list: "Author List"
       profile: "Profile"
+  books_page:
+    title: "Books - Librarails"
+    all_books: "All Books"
+    total: "Total"
+    books: "Books"
+    sort_by: "Sort by"
+    latest: "Latest"
+    oldest: "Oldest"
+    highest_rating: "Highest Rating"
+    no_rating: "No Rating"
+    published_date: "Published Date"
+    by: "By"

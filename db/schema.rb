@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_26_161309) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_30_080959) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_26_161309) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cover_url"
   end
 
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -67,9 +68,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_26_161309) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_url"
+    t.string "description"
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["book_series_id"], name: "index_books_on_book_series_id"
     t.index ["category_id"], name: "index_books_on_category_id"
+    t.index ["title", "summary"], name: "index_books_on_title_and_summary", type: :fulltext
   end
 
   create_table "borrow_books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

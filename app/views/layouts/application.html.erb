@@ -13,10 +13,10 @@
     <%= render "layouts/header" %>
     <main class="container mx-auto mt-[84px] px-5">
       <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <%= render partial: "shared/notification", locals: { message: message, message_type: message_type } %>
       <% end %>
       <%= yield %>
-
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
   </body>
 </html>

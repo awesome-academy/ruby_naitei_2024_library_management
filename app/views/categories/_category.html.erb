@@ -1,9 +1,9 @@
 <div>
-  <%= link_to "#", class: "block px-2 py-2 hover:bg-black/10 font-bold" do %>
+  <%= link_to books_path(category: category.id), class:  "block px-2 py-2 hover:bg-black/10 font-bold #{"!bg-primary rounded-md text-primary-foreground" if @current_category&.id == category.id}" do %>
     <%= category.name %>
   <% end %>
   <% category.subcategories.each do |subcategory| %>
-    <%= link_to "#", class: "block px-2 py-2 hover:bg-black/10" do %>
+    <%= link_to books_path(category: subcategory.id), class: "block px-2 py-2 hover:bg-black/10 #{"!bg-primary rounded-md text-primary-foreground" if @current_category&.id == subcategory.id}" do %>
       <%= subcategory.name %>
     <% end %>
   <% end %>
