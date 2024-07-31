@@ -52,6 +52,7 @@ vi:
     welcome: "Chào mừng đến với Librarails"
     update_success: "Cập nhật thành công."
     update_fail: "Cập nhật thất bại."
+    due_reminder_success: "Gửi mail nhắc nhở đến %{user_name} thành công."
   user:
     filter: "Lọc"
     index:
@@ -97,3 +98,9 @@ vi:
     no_rating: "Chưa có đánh giá"
     published_date: "Ngày xuất bản"
     by: "Tác giả"
+  user_mailer:
+    due_reminder:
+      subject: "Nhắc nhở về thời gian trả sách"
+      hello: "Xin chào %{name},"
+      message: "Đây là lời nhắc nhở rằng bạn cần trả lại sách đã mượn trước ngày %{due_date}."
+      thanks: "Cảm ơn bạn!"

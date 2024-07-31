@@ -52,6 +52,7 @@ en:
     welcome: "Welcome to Librarails"
     update_success: "Update successful."
     update_fail: "Update failed."
+    due_reminder_success: "Reminder email sent to %{user_name}."
   user:
     filter: "Filter"
     index:
@@ -97,3 +98,9 @@ en:
     no_rating: "No Rating"
     published_date: "Published Date"
     by: "By"
+  user_mailer:
+    due_reminder:
+      subject: "Book Return Reminder"
+      hello: "Dear %{name},"
+      message: "This is a reminder that you need to return your borrowed book(s) by %{due_date}."
+      thanks: "Thank you!"

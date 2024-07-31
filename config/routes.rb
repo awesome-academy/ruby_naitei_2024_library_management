@@ -11,6 +11,10 @@ Rails.application.routes.draw do
         post "update_status"
       end
     end
-    resources :users, only: [:new, :create, :index]
+    resources :users, only: [:new, :create, :index] do
+      member do
+        post "due_reminder"
+      end
+    end
   end
 end

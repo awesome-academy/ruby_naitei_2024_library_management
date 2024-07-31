@@ -31,6 +31,8 @@ module UsersHelper
     case params[:status].to_s
     when "banned", "overdue"
       update_status_account_path user.account
+    when "neardue"
+      due_reminder_user_path user
     else
       ""
     end
