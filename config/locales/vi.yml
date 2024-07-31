@@ -65,6 +65,9 @@ vi:
     overdue:
       title: "Danh sách người dùng quá hạn trả sách"
       ban: "Chặn"
+    neardue:
+      title: "Danh sách người dùng gần hết hạn trả sách"
+      sent: "Gửi mail"
   layouts:
     component:
       type: "Nhập vào đây ..."
