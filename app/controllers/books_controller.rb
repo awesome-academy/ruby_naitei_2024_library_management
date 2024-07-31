@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-  include Pagy::Backend
   def index
     @category = Category.find_by(id: params[:category])
     @total_books = filtered_books.count

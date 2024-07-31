@@ -52,6 +52,7 @@ vi:
     welcome: "Chào mừng đến với Librarails"
     update_success: "Cập nhật thành công."
     update_fail: "Cập nhật thất bại."
+    book_confirm_delete: "Bạn có chắc chắn muốn xóa sách này không?"
   user:
     filter: "Lọc"
     index:
@@ -97,3 +98,6 @@ vi:
     no_rating: "Chưa có đánh giá"
     published_date: "Ngày xuất bản"
     by: "Tác giả"
+    add_book: "Thêm sách"
+    edit: "Sửa"
+    delete: "Xóa"

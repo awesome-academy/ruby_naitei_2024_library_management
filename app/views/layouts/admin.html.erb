@@ -26,7 +26,7 @@
             <% end %>
             <%= accordion_description do %>
               <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".book_list"), "#" %></li>
+                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".book_list"), books_path %></li>
               </ul>
             <% end %>
           <% end %>
@@ -47,6 +47,7 @@
               <%= t ".users" %>
             <% end %>
             <%= accordion_description do %>
+              <ul>
                 <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".user_list"), users_path %></li>
               </ul>
             <% end %>

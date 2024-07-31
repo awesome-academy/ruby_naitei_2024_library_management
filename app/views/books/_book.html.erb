@@ -15,6 +15,9 @@
     <p class="" ><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || t("books_page.no_ratingd") %></p>
     <p class="text-muted-foreground" ><%= t "books_page.published_date" %>: <%= book.publication_date %></p>
     <p class=" line-clamp-3 text-muted-foreground "><%= book.summary %></p>
-    <p class="rounded-full p-3 py-1 mt-2 bg-primary text-primary-foreground w-fit"><%= link_to book.category.name, books_path(category: book.category.id) %></p>
+    <div class="flex justify-between items-center">
+      <p class="rounded-full p-3 py-1 mt-2 bg-primary text-primary-foreground w-fit"><%= link_to book.category.name, books_path(category: book.category.id) %></p>
+      <%= render "admin_controls", book: book if is_admin?%>
+    </div>
   </div>
 </div>

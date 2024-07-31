@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   private
   def find_account_by_email
     @account = Account.find_by email: params.dig(:session, :email)&.downcase
-    return unless @account&.user.nil? && !@account.is_admin
+    return unless @account&.user.nil? && !@account&.is_admin
 
     flash[:warning] = t "noti.user_infor_404"
     redirect_to new_user_path

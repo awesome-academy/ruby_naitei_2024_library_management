@@ -1,8 +1,11 @@
 <% provide :title, t("books_page.title") %>
 <div class="py-10 space-y-10">
-  <h1 class="font-semibold text-4xl">
-    <%= @category&.name || (@keywords.present? ? "Tìm kiếm \"#{@keywords}\"" : t("books_page.all_books")) %>
-  </h1>
+  <div class="flex justify-between items-center">
+    <h1 class="font-semibold text-4xl">
+      <%= @category&.name || (@keywords.present? ? "Tìm kiếm \"#{@keywords}\"" : t("books_page.all_books")) %>
+    </h1>
+    <%= admin_add_book_link %>
+  </div>
   <section class="border-2 shadow-lg p-10 py-5 rounded-md">
     <div class="flex justify-between items-center">
       <h3><%= t "books_page.total" %>: <%= @total_books %> <%= t "books_page.books" %></h3>

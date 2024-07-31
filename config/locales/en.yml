@@ -52,6 +52,7 @@ en:
     welcome: "Welcome to Librarails"
     update_success: "Update successful."
     update_fail: "Update failed."
+    book_confirm_delete: "Are you sure you want to delete this book?"
   user:
     filter: "Filter"
     index:
@@ -97,3 +98,6 @@ en:
     no_rating: "No Rating"
     published_date: "Published Date"
     by: "By"
+    add_book: "Add book"
+    edit: "Edit"
+    delete: "Delete"
