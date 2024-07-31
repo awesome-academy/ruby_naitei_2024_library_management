@@ -62,6 +62,9 @@ en:
     banned:
       title: "Banned User List"
       activate: "Activate"
+    overdue:
+      title: "Overdue User List"
+      ban: "Ban"
   layouts:
     component:
       type: "Type here ..."
