@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
 
   def set_categories
     @categories = Category.includes(:subcategories).no_parent_category
+    @current_category = Category.find_by(id: params[:category])
   end
 
   def is_admin_role?

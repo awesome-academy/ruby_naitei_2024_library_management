@@ -45,8 +45,9 @@ books.each do |item|
   book = Book.create(
     title: item["name"],
     summary: item["description"],
+    description: item["short_description"],
     quantity: rand(1..10),
-    publication_date: Faker::Date.between(from: "2000-01-01", to: "2024-12-31"),
+    publication_date: Faker::Date.between(from: "1970-01-01", to: "2024-01-01"),
     category_id: rand(1..18),
     author_id: rand(1..20),
     book_series_id: nil,

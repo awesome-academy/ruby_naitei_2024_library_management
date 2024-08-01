@@ -5,7 +5,7 @@ en:
   categories: "Categories"
   home: "Home"
   search: "Search by title or summary"
-
+  no_ratings: "No ratings"
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -50,6 +50,7 @@ en:
     permission_err: "You do not have permission to access this page"
     category_not_found: "Category not found"
     welcome: "Welcome to Librarails"
+    book_not_found: "Book not found"
     update_success: "Update successful."
     update_fail: "Update failed."
     due_reminder_success: "Reminder email sent to %{user_name}."
@@ -98,6 +99,17 @@ en:
     no_rating: "No Rating"
     published_date: "Published Date"
     by: "By"
+  book_details:
+    your_rating: "Your Rating"
+    add_to_request: "Add to Borrow Request"
+    add_to_favourite: "Add to Favorite"
+    available_quantity: "Available Quantity"
+    review: "Review"
+    detail: "Book Details"
+    write_review: "Write a review"
+    related_books: "Related Books"
+    view_more: "View more =>"
+    author: "Author"
   user_mailer:
     due_reminder:
       subject: "Book Return Reminder"
