@@ -20,6 +20,7 @@ en:
     models:
       Account: "Account"
       User: "User"
+      Book: "Book"
     attributes:
       Account:
         email: "Email"
@@ -32,6 +33,16 @@ en:
         address: "Address"
         phone: "Phone"
         gender: "Gender"
+      book:
+        id: "ID"
+        title: "Title"
+        summary: "Summary"
+        author: "Author"
+        category: "Category"
+        status: "Status"
+        rating: "Rating"
+        published_date: "Published Date"
+        quantity: "Quantity"
   sign_up:
     title: "Create Account"
     submit: "Next"
@@ -78,6 +89,10 @@ en:
     neardue:
       title: "Near Due User List"
       sent: "Sent email"
+  book:
+    index:
+      title: "Book List"
+      add: "Add"
   layouts:
     component:
       type: "Type here ..."

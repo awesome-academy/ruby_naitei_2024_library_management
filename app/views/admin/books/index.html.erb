@@ -1,0 +1,19 @@
+<% provide :title, t("book.index.title") %>
+<div class="flex justify-between items-center">
+  <h1 class="text-xl font-semibold"><%= t("book.index.title") %></h1>
+  <%= button_to t("book.add"), "#", class: "mr-8 h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium" %>
+</div>
+<%= render_table do %>
+  <%= table_head do %>
+    <%= table_header t("activerecord.attributes.book.id") %>
+    <%= table_header t("activerecord.attributes.book.title") %>
+    <%= table_header t("activerecord.attributes.book.quantity") %>
+    <%= table_header %>
+  <% end %>
+  <%= table_body do %>
+    <% render @books %>
+  <% end %>
+<% end %>
+<div class="w-full items-center justify-center flex py-5">
+  <%== pagy_nav(@pagy) %>
+</div>

@@ -12,6 +12,7 @@ class Book < ApplicationRecord
   scope :latest, ->{order(publication_date: :desc)}
   scope :oldest, ->{order(publication_date: :asc)}
   scope :default_order, ->{order(created_at: :asc)}
+  scope :order_by_title, ->{order(title: :asc)}
   scope :filter_by_category, lambda {|category|
     return if category.blank?
 
