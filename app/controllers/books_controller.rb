@@ -13,8 +13,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @initial_rating = get_initial_rating
-    @related_books = get_related_books
+    @initial_rating = find_initial_rating
+    @comments = find_comments
+    @related_books = find_related_books
   end
 
   private
@@ -24,14 +25,19 @@ class BooksController < ApplicationController
         .sorted_by(params[:sort])
   end
 
-  def get_initial_rating
+  def find_initial_rating
     @book.ratings.find_by(user_id: current_user&.id)&.rating || 0
   end
 
-  def get_related_books
+  def find_comments
+    @book.comments.includes(:user)
+  end
+
+  def find_related_books
     category = @book.category
     category_ids = [category.id]
     category_ids += category.subcategories.pluck(:id) if category.parent_id.nil?
+
     Book.filter_related_books(category_ids, @book.id)
   end
 

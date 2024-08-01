@@ -21,3 +21,4 @@ max_books: 5
 b: 6
 book_per_row: 4
 authors_per_page: 10
+time_format: "%Y-%m-%d %H:%M:%S"

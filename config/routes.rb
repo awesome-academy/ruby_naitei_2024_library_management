@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     get "static_pages/home"
     get "requests/new", to: "requests#new", as: "new_request"
     root "static_pages#home"
-    resources :books, only: %i(index show)
     resources :book_series, only: %i(show)
     resources :accounts, only: %i(new create)
     resources :users, only: %i(new create index)
@@ -31,6 +30,9 @@ Rails.application.routes.draw do
       member do
         patch :update
       end
+    end
+    resources :books do
+      resources :comments, only: %i(create index)
     end
   end
 end

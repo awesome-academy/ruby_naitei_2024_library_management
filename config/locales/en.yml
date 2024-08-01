@@ -9,6 +9,7 @@ en:
   published_date: "Published Date"
   home: "Home"
   search: "Search"
+  loading: "Loading ..."
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -91,6 +92,7 @@ en:
     book_series_not_found: "Book series not found"
     sign_in_first: "Please sign in first"
     rating_fail: "There was an error when rating the book."
+    comment_fail: "There was an error when commenting on the book."
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."

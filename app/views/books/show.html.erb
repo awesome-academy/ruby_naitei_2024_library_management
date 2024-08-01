@@ -63,12 +63,30 @@
           <%= link_to t("book_details.view_more"), books_path(category: @book.category.id), class: "hover:underline" %>
         </div>
         <div class="grid grid-cols-4 gap-4 py-4">
-          <%= render partial: 'books/related_book', collection: @related_books %>
+          <%= render partial: "books/related_book", collection: @related_books %>
         </div>
       </div>
-      <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
-        <h2 class="font-semibold text-2xl"><%= t "book_details.review" %></h2>
-        <%= render_input name: "sample_input", id: "sample_input", placeholder: t("book_details.write_review") %>
+      <div  class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2">
+        <div class="flex justify-between">
+          <h2 class="font-semibold text-2xl"><%= t "book_details.review" %></h2>
+          <div class="flex gap-x-2">
+            <label><%= t "books_page.sort_by" %>: </label>
+            <div class="flex gap-x-2" id="sorter" >
+              <%= link_to book_comments_path(@book, sort: "latest"), method: :get, data: { turbo: true, turbo_stream: true } do %>
+                <i class="bi bi-arrow-up-circle text-xl text-yellow-500"></i>
+              <% end %>
+              <%= link_to book_comments_path(@book, sort: "oldest"), method: :get, data: { turbo: true, turbo_stream: true } do %>
+                <i class="bi bi-arrow-down-circle text-xl"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= render "comments/form", comment: Comment.new %>
+        <div class="space-y-4 py-4">
+          <%= turbo_frame_tag "comment_section", src: book_comments_path(@book, format: :html) do %>
+            <%= render "comments/loading" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

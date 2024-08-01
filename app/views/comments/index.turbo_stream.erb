@@ -1,0 +1,12 @@
+<%= turbo_stream.update "comment_section" do %>
+  <%= render @comments %>
+  <div class="flex justify-center w-full">  <%== pagy_nav(@pagy) %></div>
+<% end %>
+<%= turbo_stream.update "sorter" do %>
+  <%= link_to book_comments_path(@book, sort: "latest"), method: :get, data: { turbo: true, turbo_stream: true } do %>
+    <i class="bi bi-arrow-up-circle text-xl <%= params[:sort] == 'latest' ? 'text-yellow-500' : 'text-gray-500' %>"></i>
+  <% end %>
+  <%= link_to book_comments_path(@book, sort: "oldest"), method: :get, data: { turbo: true, turbo_stream: true } do %>
+    <i class="bi bi-arrow-down-circle text-xl <%= params[:sort] == 'oldest' ? 'text-yellow-500' : 'text-gray-500' %>"></i>
+  <% end %>
+<% end %>
