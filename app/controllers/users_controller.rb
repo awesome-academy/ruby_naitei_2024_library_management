@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   before_action :check_account_and_redirect, only: :new
-  before_action :is_admin_role?, only: %i(index due_reminder)
-  before_action :load_user, only: :due_reminder
   def index
     @pagy, @users = pagy User.order_by_name.with_status(params[:status]),
                          items: Settings.users_per_page
@@ -19,12 +17,6 @@ class UsersController < ApplicationController
     else
       handle_failed_creation
     end
-  end
-
-  def due_reminder
-    @user.send_due_reminder
-    flash[:success] = t "due_reminder_success", user_name: @user.name
-    redirect_to users_path status: "neardue"
   end
 
   private
@@ -67,13 +59,5 @@ class UsersController < ApplicationController
     return if current_account&.user.blank?
 
     handle_account_already_has_user
-  end
-
-  def load_user
-    @user = User.find_by id: params[:id]
-    return if @user
-
-    flash[:danger] = t "noti.not_found"
-    redirect_to root_path
   end
 end

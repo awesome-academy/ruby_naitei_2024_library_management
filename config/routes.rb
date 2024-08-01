@@ -6,14 +6,18 @@ Rails.application.routes.draw do
     get "static_pages/home"
     root "static_pages#home"
     resources :books, only: %i(index show)
-    resources :accounts, only: [:new, :create] do
-      member do
-        post "update_status"
+    resources :accounts, only: [:new, :create]
+    resources :users, only: [:new, :create]
+    namespace :admin do
+      resources :users, only: :index do
+        member do
+          post "due_reminder"
+        end
       end
-    end
-    resources :users, only: [:new, :create, :index] do
-      member do
-        post "due_reminder"
+      resources :accounts do
+        member do
+          post "update_status"
+        end
       end
     end
   end
