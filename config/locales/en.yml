@@ -71,6 +71,9 @@ en:
     over_limit_request_noti: "The number of requested books must not exceed 5."
     request_success_noti: "Request successfully."
     request_failure_noti: "Request failed."
+    book_delete_success: "Book was successfully deleted."
+    book_delete_fail: "Failed to delete the book."
+    book_confirm_delete: "Are you sure you want to delete this book?"
   user:
     filter: "Filter"
     index:
