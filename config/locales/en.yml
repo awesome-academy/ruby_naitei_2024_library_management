@@ -6,6 +6,8 @@ en:
   home: "Home"
   search: "Search by title or summary"
   no_ratings: "No ratings"
+  published_date: "Published Date"
+
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -54,6 +56,10 @@ en:
     update_success: "Update successful."
     update_fail: "Update failed."
     due_reminder_success: "Reminder email sent to %{user_name}."
+    empty_request_noti: "Please select at least one book."
+    over_limit_request_noti: "The number of requested books must not exceed 5."
+    request_success_noti: "Request successfully."
+    request_failure_noti: "Request failed."
   user:
     filter: "Filter"
     index:
@@ -99,6 +105,8 @@ en:
     no_rating: "No Rating"
     published_date: "Published Date"
     by: "By"
+    by_author: "By %{author}"
+    no_rating: "No rating"
   book_details:
     your_rating: "Your Rating"
     add_to_request: "Add to Borrow Request"
@@ -116,3 +124,10 @@ en:
       hello: "Dear %{name},"
       message: "This is a reminder that you need to return your borrowed book(s) by %{due_date}."
       thanks: "Thank you!"
+  requests:
+    new:
+      back: "Back"
+      send_request: "Send Request"
+      create_request: "Create Request"
+      delete: "Delete"
+      request_empty: "Request is empty"

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :author_followers, dependent: :destroy
+  has_many :carts, dependent: :destroy
+  has_many :books, through: :carts, dependent: :destroy
 
   enum gender: {male: 0, female: 1}
 
@@ -33,6 +35,10 @@ class User < ApplicationRecord
 
   def send_due_reminder
     UserMailer.with(user: self).reminder_email.deliver_now
+  end
+
+  def books_in_carts
+    books
   end
 
   class << self
