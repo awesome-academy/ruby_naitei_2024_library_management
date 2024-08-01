@@ -42,6 +42,7 @@ vi:
         rating: "Đánh giá"
         published_date: "Ngày xuất bản"
         quantity: "Số lượng"
+        cover: "Ảnh bìa"
   sign_up:
     title: "Tạo tài khoản"
     submit: "Tiếp theo"
@@ -95,6 +96,8 @@ vi:
     index:
       title: "Danh sách sách"
       add: "Thêm"
+    new:
+      title: "Thêm sách mới"
   layouts:
     component:
       type: "Nhập vào đây ..."

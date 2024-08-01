@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  BOOK_PARAMS = %i(title summary quantity publication_date category_id
+                   author_id description cover_image).freeze
   belongs_to :category
   belongs_to :author
   belongs_to :book_series, optional: true
@@ -8,6 +10,7 @@ class Book < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :users, through: :carts, dependent: :destroy
+  has_one_attached :cover_image
 
   scope :latest, ->{order(publication_date: :desc)}
   scope :oldest, ->{order(publication_date: :asc)}
@@ -42,7 +45,7 @@ class Book < ApplicationRecord
   scope :filter_related_books, lambda {|category_ids, bid|
     where(category_id: category_ids).where.not(id: bid).limit(4)
   }
-
-  validates :title, :summary, :quantity, :publication_date, presence: true
   scope :in_user_cart, ->(user){where(id: user.books_in_carts.pluck(:id))}
+  validates :title, :summary, :quantity, :publication_date, :cover_image,
+            presence: true
 end

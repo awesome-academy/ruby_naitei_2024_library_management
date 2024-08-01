@@ -1,5 +1,6 @@
 require "json"
 require "faker"
+require "open-uri"
 
 # Load JSON files
 # books_file_path = Rails.root.join("db","books.json")
@@ -221,10 +222,9 @@ authors.each do |author|
 end
 
 # Seed books
-
 books_list = []
 books.each do |item|
-  book = Book.create(
+  book = Book.new(
     title: item["name"],
     summary: item["description"],
     description: item["short_description"],
@@ -232,10 +232,20 @@ books.each do |item|
     publication_date: Faker::Date.between(from: "1970-01-01", to: "2024-01-01"),
     category_id: rand(1..18),
     author_id: rand(1..20),
-    book_series_id: nil,
-    cover_url: item["book_cover"]
+    book_series_id: nil
   )
 
+  # Download and attach cover image
+  if item["book_cover"].present?
+    begin
+      file = URI.open(item["book_cover"])
+      book.cover_image.attach(io: file, filename: File.basename(URI.parse(item["book_cover"]).path))
+    rescue => e
+      puts "Failed to attach cover for book #{item["name"]}: #{e.message}"
+    end
+  end
+
+  book.save!
   books_list << book
 end
 
