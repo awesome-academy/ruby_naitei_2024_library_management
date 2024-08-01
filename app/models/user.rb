@@ -31,6 +31,10 @@ class User < ApplicationRecord
     joins(:borrow_books).merge(BorrowBook.near_due)
   end)
 
+  def send_due_reminder
+    UserMailer.with(user: self).reminder_email.deliver_now
+  end
+
   class << self
     def with_status status
       if status.present? && respond_to?(status)
