@@ -1,6 +1,6 @@
 <li class="flex items-center space-x-4 p-4 border-b border-gray-200 mb-3">
   <div>
-    <%= user_avatar(user) %> 
+    <%= user_avatar(user) %>
   </div>
   <div>
     <%= link_to user.name, "#", class: "text-lg font-semibold text-gray-900" %>
@@ -8,7 +8,7 @@
   </div>
   <% if user_button_active? %>
     <div class="!ml-auto">
-      <%= link_to user_button_name, user_button_path, class: "mr-24 h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md text-sm font-medium" %>
+      <%= button_to user_button_name, user_button_path(user), data: { "turbo-method": :post }, class: "mr-24 h-10 px-4 py-2 bg-lime-500 text-primary-foreground hover:bg-lime-500/90 rounded-md text-sm font-medium" %>
     </div>
   <% end %>
 </li>

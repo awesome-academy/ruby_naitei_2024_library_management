@@ -4,3 +4,4 @@
   <%= submit_tag t("user.filter"), class: "mr-24 h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary-500/90 rounded-md text-sm font-medium" %>
 <% end %>
 <%= render partial: "user", collection: @users, as: :user %>
+<%== pagy_nav @pagy %>

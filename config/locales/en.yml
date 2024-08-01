@@ -50,6 +50,8 @@ en:
     permission_err: "You do not have permission to access this page"
     category_not_found: "Category not found"
     welcome: "Welcome to Librarails"
+    update_success: "Update successful."
+    update_fail: "Update failed."
   user:
     filter: "Filter"
     index:
