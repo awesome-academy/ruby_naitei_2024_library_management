@@ -43,6 +43,7 @@ en:
         rating: "Rating"
         published_date: "Published Date"
         quantity: "Quantity"
+        cover: "Cover"
   sign_up:
     title: "Create Account"
     submit: "Next"
@@ -96,6 +97,8 @@ en:
     index:
       title: "Book List"
       add: "Add"
+    new:
+      title: "Add New Book"
   layouts:
     component:
       type: "Type here ..."
