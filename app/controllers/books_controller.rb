@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-  include Pagy::Backend
   before_action :load_book, only: :show
   def index
     @category = Category.find_by(id: params[:category])

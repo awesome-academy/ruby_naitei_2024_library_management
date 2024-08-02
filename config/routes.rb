@@ -20,6 +20,7 @@ Rails.application.routes.draw do
           post "update_status"
         end
       end
+      resources :books, only: :index
     end
     resources :requests, only: %i(new create)
   end

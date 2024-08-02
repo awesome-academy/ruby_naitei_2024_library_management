@@ -32,6 +32,16 @@ vi:
         address: "Địa chỉ"
         phone: "Số điện thoại"
         gender: "Giới tính"
+      book:
+        id: "Mã"
+        title: "Tiêu đề"
+        summary: "Mô tả"
+        author: "Tác giả"
+        category: "Thể loại"
+        status: "Trạng thái"
+        rating: "Đánh giá"
+        published_date: "Ngày xuất bản"
+        quantity: "Số lượng"
   sign_up:
     title: "Tạo tài khoản"
     submit: "Tiếp theo"
@@ -78,6 +88,10 @@ vi:
     neardue:
       title: "Danh sách người dùng gần hết hạn trả sách"
       sent: "Gửi mail"
+  book:
+    index:
+      title: "Danh sách sách"
+      add: "Thêm"
   layouts:
     component:
       type: "Nhập vào đây ..."
