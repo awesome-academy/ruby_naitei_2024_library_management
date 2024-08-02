@@ -98,6 +98,9 @@ vi:
       add: "Thêm"
     new:
       title: "Thêm sách mới"
+    edit:
+      title: "Cập nhật thông tin sách"
+      update: "Cập nhật"
   layouts:
     component:
       type: "Nhập vào đây ..."
