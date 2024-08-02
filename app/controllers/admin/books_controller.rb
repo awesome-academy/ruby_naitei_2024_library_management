@@ -1,5 +1,5 @@
 class Admin::BooksController < Admin::ApplicationController
-  before_action :load_book, only: %i(destroy)
+  before_action :load_book, only: %i(destroy edit update)
   def index
     @pagy, @books = pagy Book.order_by_title, items: Settings.books_per_page
   end
@@ -26,6 +26,18 @@ class Admin::BooksController < Admin::ApplicationController
     else
       flash[:warning] = t "noti.book_created_fail"
       redirect_to new_admin_book_path
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @book.update(book_params)
+      flash[:success] = t "noti.book_updated_success"
+      redirect_to admin_books_path
+    else
+      flash[:warning] = t "noti.book_updated_fail"
+      redirect_to edit_admin_book_path
     end
   end
 

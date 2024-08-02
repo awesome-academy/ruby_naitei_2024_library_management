@@ -99,6 +99,9 @@ en:
       add: "Add"
     new:
       title: "Add New Book"
+    edit:
+      title: "Update Book Information"
+      update: "Update"
   layouts:
     component:
       type: "Type here ..."
