@@ -1,0 +1,9 @@
+<div class="space-y-5">
+  <div class="flex items-center justify-between">
+    <h2 class="font-semibold text-4xl "><%= category.name %></h2>
+    <%= link_to t("book_details.view_more"), books_path(category: category.id), class: "hover:underline" %>
+  </div>
+  <div class="grid grid-cols-4 gap-10 bg-card rounded-lg p-6">
+    <%= render partial: "books/book_tbn", collection: category.books.limit(Settings.book_per_row), as: :book %>
+  </div>
+</div>

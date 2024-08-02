@@ -7,7 +7,8 @@ en:
   search: "Search by title or summary"
   no_ratings: "No ratings"
   published_date: "Published Date"
-
+  home: "Home"
+  search: "Search"
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -75,6 +76,7 @@ en:
     book_delete_success: "Book was successfully deleted."
     book_delete_fail: "Failed to delete the book."
     book_confirm_delete: "Are you sure you want to delete this book?"
+    book_series_not_found: "Book series not found"
   user:
     filter: "Filter"
     index:
@@ -155,3 +157,5 @@ en:
       create_request: "Create Request"
       delete: "Delete"
       request_empty: "Request is empty"
+  home_page:
+    start_reading: "Start Exploring =>"

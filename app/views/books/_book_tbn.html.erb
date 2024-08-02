@@ -1,0 +1,17 @@
+<%= render_tooltip do %>
+  <%= tooltip_trigger do %>
+    <%= link_to book_path(book), class: "block border-primary  w-full" do %>
+      <%= image_tag book.cover_url, alt: "cover", class: "w-full"  %>
+    <% end %>
+  <% end %>
+  <%= tooltip_content do %>
+    <div class="max-w-sm">
+      <h2 class="font-semibold text-primary text-xl"><%= book.title %></h2>
+      <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to "By #{book.author.name}", "#" %></p>
+      <p class="" ><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || 'No ratings' %></p>
+      <p class="text-muted-foreground" >Publication Date: <%= book.publication_date %></p>
+      <p class=" line-clamp-2 text-muted-foreground "><%= book.description %></p>
+      <p class="rounded-full p-3 py-1 mt-2 bg-primary text-primary-foreground w-fit"><%= link_to book.category.name, books_path(category: book.category.id) %></p>
+    </div>
+  <% end %>
+<% end %>

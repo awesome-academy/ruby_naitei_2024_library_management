@@ -1,0 +1,16 @@
+<div  class="flex h-fit w-full gap-4 bg-card rounded-lg border-2 p-4">
+  <%= link_to book_series_path(book_series), class: "border-2 flex-1 h-full" do %>
+    <%= image_tag book_series.cover_url, alt: "cover", class: "w-full"  %>
+  <% end %>
+  <div class="py-2 flex-[2]">
+    <%= render_tooltip do %>
+      <%= tooltip_trigger do %>
+        <h2 class="font-bold text-primary text-lg hover:underline line-clamp-1"><%= link_to book_series.title, book_series_path(book_series) %></h2>
+      <% end %>
+      <%= tooltip_content do %>
+        <%= book_series.title %>
+      <% end %>
+    <% end %>
+    <p class=" line-clamp-3 text-muted-foreground "><%= book_series.description %></p>
+  </div>
+</div>

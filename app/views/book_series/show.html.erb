@@ -1,0 +1,14 @@
+<main class="container relative mx-auto mt-[84px] px-5">
+  <div class="flex w-full py-10 gap-20 relative ">
+    <div  class="border-2 flex-1 h-fit sticky top-28">
+      <%= image_tag @book_series.cover_url, alt: "cover", class: "w-full"  %>
+      <div class=" font-semibold items-center space-y-3 p-4 bg-card">
+        <h2 class="font-bold text-primary text-2xl"><%= @book_series.title %></h2>
+        <p class=" line-clamp-3 text-muted-foreground "><%= @book_series.description %></p>
+      </div>
+    </div>
+    <div class=" flex-[2] bg-card space-y-4 p-5 rounded-lg ">
+      <%= render partial: "books/book", collection: @book_series.books, as: :book %>
+    </div>
+  </div>
+</main>

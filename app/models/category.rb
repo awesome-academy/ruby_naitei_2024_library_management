@@ -6,6 +6,6 @@ class Category < ApplicationRecord
               foreign_key: :parent_id, optional: true
 
   scope :no_parent_category, ->{where(parent_id: nil)}
-
+  scope :get_books, ->{where(parent_id: nil).limit(Settings.b).includes(:books)}
   validates :name, presence: true
 end
