@@ -4,4 +4,14 @@ class Request < ApplicationRecord
   has_many :borrow_books, dependent: :destroy
 
   validates :status, presence: true
+
+  private
+
+  def send_email
+    if approved?
+      RequestMailer.with(request: self, user:).request_approved.deliver_now
+    elsif rejected?
+      RequestMailer.with(request: self, user:).rejection_email.deliver_now
+    end
+  end
 end
