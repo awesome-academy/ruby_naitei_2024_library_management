@@ -1,0 +1,7 @@
+<h1><%= t "request_mailer.failure.subject" %></h1>
+<p><%= t "request_mailer.failure.hello", name: @request.user.name %></p>
+<p><%= t "request_mailer.failure.message", description: @request.description %></p>
+<p>
+  <%= link_to request_url(@request) %>
+</p>
+<p><%= t "request_mailer.failure.thanks" %></p>

@@ -145,6 +145,18 @@ vi:
       hello: "Xin chào %{name},"
       message: "Đây là lời nhắc nhở rằng bạn cần trả lại sách đã mượn trước ngày %{due_date}."
       thanks: "Cảm ơn bạn!"
+  request_mailer:
+    success:
+      subject: "Yêu Cầu Mượn Sách"
+      hello: "Gửi %{name},"
+      message: "Bạn đã yêu cầu mượn các cuốn sách sau:"
+      thanks: "Cảm ơn bạn!"
+    failure:
+      subject: "Yêu Cầu Mượn Sách: Yêu Cầu Của Bạn Đã Bị Từ Chối"
+      hello: "Kính gửi %{name},"
+      message: "Yêu cầu mượn sách của bạn đã bị từ chối. Lý do từ chối yêu cầu của bạn là: %{description}. Xem thêm tại đây"
+      thanks: "Trân trọng,"
+
   requests:
     new:
       back: "Quay lại"

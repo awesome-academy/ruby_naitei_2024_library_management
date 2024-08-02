@@ -1,0 +1,6 @@
+<h1><%= t('request_mailer.success.hello', name: @user.name) %></h1>
+<p><%= t('request_mailer.success.message') %></p>
+<p>
+  <%= link_to t('request_mailer.success.view_request'), request_url(@request) %>
+</p>
+<p><%= t('request_mailer.success.thanks') %></p>

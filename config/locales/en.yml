@@ -145,6 +145,17 @@ en:
       hello: "Dear %{name},"
       message: "This is a reminder that you need to return your borrowed book(s) by %{due_date}."
       thanks: "Thank you!"
+  request_mailer:
+    success:
+      subject: "Book Borrow Request"
+      hello: "Dear %{name},"
+      message: "You have requested to borrow book(s). See more here: "
+      thanks: "Thank you!"
+    failure:
+      subject: "Book Borrow Request : Your Request has been Rejected"
+      hello: "Dear %{name},"
+      message: "Your request to borrow book(s) has been denied. Your request has been rejected for the following reason: %{description}. See more here : "
+      thanks: "Best regards,"
   requests:
     new:
       back: "Back"
