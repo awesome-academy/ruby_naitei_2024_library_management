@@ -1,5 +1,5 @@
 class Admin::AuthorsController < Admin::ApplicationController
-  before_action :load_author, only: %i(edit update)
+  before_action :load_author, only: %i(edit update destroy)
 
   def index
     @pagy, @authors = pagy Author.order_by_name,
@@ -31,6 +31,15 @@ class Admin::AuthorsController < Admin::ApplicationController
       flash.now[:warning] = t "noti.author.updated_fail"
       render :edit
     end
+  end
+
+  def destroy
+    if @author.destroy
+      flash[:success] = t "noti.author.deleted_success"
+    else
+      flash[:error] = t "noti.author.deleted_fail"
+    end
+    redirect_to admin_authors_path
   end
 
   private

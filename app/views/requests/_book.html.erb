@@ -6,7 +6,7 @@
     <div class="flex justify-between items-center">
       <h2 class="font-bold text-primary text-lg hover:underline line-clamp-1"><%= link_to book.title, "#" %></h2>
     </div>
-    <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to t("books_page.by_author", author: book.author.name), "#" %></p>
+    <p class="italic text-sm hover:underline text-muted-foreground"><%= author_info_link @book %></p>
     <p class=""><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || t("books_page.no_rating") %></p>
     <p class="text-muted-foreground"><%= t(".published_date") %>: <%= book.publication_date %></p>
     <p class="line-clamp-3 text-muted-foreground"><%= book.summary %></p>

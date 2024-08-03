@@ -151,6 +151,8 @@ en:
     edit:
       title: "Update Author Information"
       update: "Update"
+    deleted: "Author has been deleted"
+    by: "By %{name}"
   layouts:
     component:
       type: "Type here ..."

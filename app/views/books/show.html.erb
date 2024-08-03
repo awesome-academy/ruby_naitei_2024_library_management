@@ -49,7 +49,7 @@
       </div>
       <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
         <h2 class="font-semibold text-2xl"><%= t "book_details.detail" %></h2>
-        <p class=""><%= t "book_details.author" %>: <%= link_to @book.author.name, "#" %></p>
+        <p class=""><%= t "book_details.author" %>: <%= author_info_link @book %></p>
         <p class="" ><%= t "books_page.published_date" %>: <%= @book.publication_date %></p>
       </div>
       <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">

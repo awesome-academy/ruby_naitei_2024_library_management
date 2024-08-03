@@ -7,7 +7,7 @@
   <%= tooltip_content do %>
     <div class="max-w-sm">
       <h2 class="font-semibold text-primary text-xl"><%= book.title %></h2>
-      <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to "#{t("books_page.by")} #{book.author.name}", "#" %></p>
+      <p class="italic text-sm hover:underline text-muted-foreground"><%= author_info_link(book) %></p>
       <p class="" ><i class="bi bi-star-fill"></i> <%= "#{book.ratings.average(:rating)} (#{book.ratings.count})" || t("books_page.no_rating") %></p>
       <p class="text-muted-foreground" ><%= t "published_date" %>: <%= book.publication_date %></p>
       <p class=" line-clamp-2 text-muted-foreground "><%= book.description %></p>

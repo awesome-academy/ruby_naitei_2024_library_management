@@ -146,6 +146,8 @@ vi:
     edit:
       title: "Cập nhật thông tin tác giả"
       update: "Cập nhật"
+    deleted: "Tác giả đã bị xoá"
+    by: "Bởi %{name}"
   layouts:
     component:
       type: "Nhập vào đây ..."

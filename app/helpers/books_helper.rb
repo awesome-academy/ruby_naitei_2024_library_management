@@ -12,4 +12,13 @@ module BooksHelper
       end
     end
   end
+
+  def author_info_link book
+    if book.author.present?
+      link_to "#{t('books_page.by')} #{book.author.name}",
+              author_url(book.author), data: {turbo_frame: "_top"}
+    else
+      t "author.deleted"
+    end
+  end
 end
