@@ -24,6 +24,14 @@ module SessionsHelper
     current_account.present?
   end
 
+  def authenticate_user
+    return if logged_in?
+
+    store_location
+    flash[:danger] = t "noti.sign_in_first"
+    redirect_to login_path, status: :see_other
+  end
+
   def forget account
     account.forget
     cookies.delete :user_id
@@ -61,13 +69,5 @@ module SessionsHelper
   def redirect_back_or default
     redirect_to session[:forwarding_url] || default
     session.delete(:forwarding_url)
-  end
-
-  def authenticate_user
-    return if logged_in?
-
-    store_location
-    flash[:danger] = t "noti.sign_in_first"
-    redirect_to login_path, status: :see_other
   end
 end

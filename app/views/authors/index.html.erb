@@ -1,0 +1,20 @@
+<% provide :title, t("authors_page.title") %>
+<main class="container relative mx-auto mt-[84px] px-5">
+  <div class="py-10 space-y-10">
+    <h1 class="font-semibold text-4xl">
+      <%= t "authors_page.all_authors" %>
+    </h1>
+    <section class="border-2 shadow-lg p-10 py-5 rounded-md">
+      <div class="flex justify-between items-center">
+        <h3><%= t "authors_page.total" %>: <%= @total_authors %> <%= t "authors" %></h3>
+      </div>
+      <%= render_separator class: "my-2" %>
+      <div class="grid grid-cols-4 gap-10">
+        <%= render @authors %>
+      </div>
+      <div class="w-full items-center justify-center flex py-5">
+        <%== pagy_nav(@pagy) %>
+      </div>
+    </section>
+  </div>
+</main>

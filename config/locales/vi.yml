@@ -10,6 +10,8 @@ vi:
   home: "Trang chủ"
   search: "Tìm kiếm"
   loading: "Đang tải ..."
+  male: "Nam"
+  female: "Nữ"
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"
@@ -196,7 +198,6 @@ vi:
       hello: "Kính gửi %{name},"
       message: "Yêu cầu mượn sách của bạn đã bị từ chối. Lý do từ chối yêu cầu của bạn là: %{description}. Xem thêm tại đây"
       thanks: "Trân trọng,"
-
   requests:
     all: "Tất cả"
     approved: "Đã duyệt"
@@ -224,3 +225,16 @@ vi:
       description: "Mô tả"
   home_page:
     start_reading: "Bắt đầu khám phá =>"
+  authors_page:
+    details: "Thông tin tác giả"
+    title: "Tác giả - Librarails"
+    all_authors: "Tất cả tác giả"
+    total: "Tổng"
+    authors: "Tác giả"
+    name: "Họ và tên"
+    birth: "Ngày sinh"
+    gender: "Giới tính"
+    bio: "Tiểu sử"
+    nationality: "Quốc tịch"
+    books: "Tác phẩm"
+    follow: "Theo dõi"
