@@ -1,0 +1,6 @@
+<% provide :title, t("author.new.title") %>
+<% provide :button_text, t("author.index.add") %>
+<h1 class="text-xl font-semibold"><%= t "author.new.title" %></h1>
+<div class="w-full max-w-lg bg-white p-8 shadow-xl rounded-xl mx-auto">
+  <%= render "form", author: @author, url: admin_authors_path, method: :post %>
+</div>

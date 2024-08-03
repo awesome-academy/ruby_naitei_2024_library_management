@@ -1,0 +1,38 @@
+<%= render_form_with model: author, url: url, method: method do |form| %>
+  <div class="grid grid-cols-1 items-baseline mb-4">
+    <%= form.label :name, t("activerecord.attributes.author.name"), class: "text-left mr-4 text-lg" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="grid grid-cols-1 items-baseline">
+    <%= form.label :birth, t("activerecord.attributes.author.birth"), class: "text-left mr-4 text-lg" %>
+    <%= form.date_field :birth, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+  </div>
+  <div class="grid grid-cols-1 items-baseline">
+    <%= form.label :gender, t("activerecord.attributes.author.gender"), class: "text-left mr-4 text-lg" %>
+    <%= form.select :gender, options_for_select(gender_options_for_select, @author.gender), {}, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+  </div>
+
+  <div class="grid grid-cols-1 items-baseline mb-4">
+    <%= form.label :bio, t("activerecord.attributes.author.bio"), class: "text-left mr-4 text-lg" %>
+    <%= form.text_area :bio, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+  </div>
+
+  <div class="grid grid-cols-1 items-baseline mb-4">
+    <%= form.label :nationality, t("activerecord.attributes.author.nationality"), class: "text-left mr-4 text-lg" %>
+    <%= form.text_field :nationality %>
+  </div>
+
+  <div class="mb-4">
+    <label for="author_profile_image" class="block text-left text-lg font-medium text-gray-700">
+      <%= t("activerecord.attributes.author.profile_image") %>
+    </label>
+    <div class="mt-1">
+      <%= form.file_field :profile_image, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <%= form.submit yield(:button_text) %>
+  </div>
+<% end %>
