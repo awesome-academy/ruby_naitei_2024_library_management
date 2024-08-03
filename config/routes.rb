@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   scope "(:locale)", locale: /en|vi/ do
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
     resources :book_series, only: %i(show)
     resources :accounts, only: %i(new create)
     resources :users, only: %i(new create index)
+    resources :ratings, only: %i(create)
     namespace :admin do
       resources :users, only: :index do
         member do

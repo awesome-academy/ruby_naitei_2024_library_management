@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @initial_rating = get_initial_rating
     @related_books = get_related_books
   end
 
@@ -21,6 +22,10 @@ class BooksController < ApplicationController
     Book.filter_by_category(@category)
         .filter_by_search(params[:search])
         .sorted_by(params[:sort])
+  end
+
+  def get_initial_rating
+    @book.ratings.find_by(user_id: current_user&.id)&.rating || 0
   end
 
   def get_related_books
