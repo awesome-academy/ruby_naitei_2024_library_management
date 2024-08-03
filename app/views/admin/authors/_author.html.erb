@@ -1,0 +1,27 @@
+<%= table_body do %>
+  <%= table_row do %>
+    <%= table_column do %>
+      <%= author.id %>
+    <% end %>
+    <%= table_column do %>
+      <div class="w-96 overflow-hidden whitespace-nowrap text-ellipsis">
+        <%= author.name %>
+      </div>
+    <% end %>
+    <%= table_column do %>
+      <%= author.gender %>
+    <% end %>
+    <%= table_column do %>
+      <%= author.nationality %>
+    <% end %>
+    <%= table_column do %>
+      <%= author.books.count %>
+    <% end %>
+    <%= table_column do %>
+      <div class="flex gap-2">
+        <%= link_to t(".edit"), edit_admin_author_path(author), class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
+        <%= button_to t(".delete"), admin_author_path(author), method: :delete, class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-red-700 text-red-700 font-semibold hover:text-white border border-red-700 hover:border-transparent rounded-md font-medium" %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
