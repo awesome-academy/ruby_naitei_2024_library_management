@@ -22,6 +22,7 @@ en:
       Account: "Account"
       User: "User"
       Book: "Book"
+      Author: "Author"
     attributes:
       Account:
         email: "Email"
@@ -45,6 +46,15 @@ en:
         published_date: "Published Date"
         quantity: "Quantity"
         cover: "Cover"
+      author:
+        id: "ID"
+        name: "Name"
+        birth: "Birth Date"
+        gender: "Gender"
+        bio: "Bio"
+        nationality: "Nationality"
+        profile_image: "Profile Image"
+        book_quantity: "Book Quantity"
   sign_up:
     title: "Create Account"
     submit: "Next"
@@ -80,7 +90,14 @@ en:
     book_series_not_found: "Book series not found"
     sign_in_first: "Please sign in first"
     rating_fail: "There was an error when rating the book."
-
+    author:
+      created_success: "Author created successfully."
+      created_fail: "Failed to create author."
+      updated_success: "Author updated successfully."
+      updated_fail: "Failed to update author."
+      deleted_success: "Author deleted successfully."
+      deleted_fail: "Failed to delete author."
+      not_found: "Author not found"
   user:
     filter: "Filter"
     index:
@@ -107,6 +124,15 @@ en:
       title: "Add New Book"
     edit:
       title: "Update Book Information"
+      update: "Update"
+  author:
+    index:
+      title: "Author List"
+      add: "Add"
+    new:
+      title: "Add New Author"
+    edit:
+      title: "Update Author Information"
       update: "Update"
   layouts:
     component:

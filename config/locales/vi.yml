@@ -21,6 +21,8 @@ vi:
     models:
       Account: "Tài khoản"
       User: "Người dùng"
+      Book: "Sách"
+      Author: "Tác giả"
     attributes:
       Account:
         email: "Email"
@@ -44,6 +46,15 @@ vi:
         published_date: "Ngày xuất bản"
         quantity: "Số lượng"
         cover: "Ảnh bìa"
+      author:
+        id: "Mã"
+        name: "Tên"
+        birth: "Ngày sinh"
+        gender: "Giới tính"
+        bio: "Tiểu sử"
+        nationality: "Quốc tịch"
+        profile_image: "Ảnh đại diện"
+        book_quantity: "Số lượng sách"
   sign_up:
     title: "Tạo tài khoản"
     submit: "Tiếp theo"
@@ -79,6 +90,14 @@ vi:
     book_series_not_found: "Không tìm thấy bộ sách"
     sign_in_first: "Vui lòng đăng nhập trước"
     rating_fail: "Có lỗi xảy ra khi đánh giá"
+    author:
+      create_success: "Tạo tác giả thành công"
+      create_fail: "Tạo tác giả thất bại"
+      update_success: "Cập nhật tác giả thành công"
+      update_fail: "Cập nhật tác giả thất bại"
+      delete_success: "Xóa tác giả thành công"
+      delete_fail: "Xóa tác giả thất bại"
+      not_found: "Không tìm thấy tác giả"
   user:
     filter: "Lọc"
     index:
@@ -106,6 +125,15 @@ vi:
     edit:
       title: "Cập nhật thông tin sách"
       update: "Cập nhật"
+  author:
+    index:
+      title: "Danh sách tác giả"
+      add: "Thêm"
+    new:
+      title: "Thêm tác giả mới"
+    edit:
+      title: "Cập nhật thông tin tác giả"
+      update: "Cập nhật"
   layouts:
     component:
       type: "Nhập vào đây ..."
