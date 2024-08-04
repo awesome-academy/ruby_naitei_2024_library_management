@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :carts, only: %i(create destroy show)
     resources :authors, only: %i(show index)
     namespace :admin do
+      root "users#index"
       resources :users, only: :index do
         member do
           post "due_reminder"
