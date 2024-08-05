@@ -132,6 +132,7 @@ vi:
     index:
       title: "Danh sách tác giả"
       add: "Thêm"
+      stt: "STT"
     new:
       title: "Thêm tác giả mới"
     edit:

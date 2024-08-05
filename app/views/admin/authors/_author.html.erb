@@ -1,6 +1,9 @@
 <%= table_body do %>
   <%= table_row do %>
     <%= table_column do %>
+      <%= author_counter + @pagy.offset + 1 %>
+    <% end %>
+    <%= table_column do %>
       <%= author.id %>
     <% end %>
     <%= table_column do %>

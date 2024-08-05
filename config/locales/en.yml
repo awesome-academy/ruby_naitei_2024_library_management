@@ -137,6 +137,7 @@ en:
     index:
       title: "Author List"
       add: "Add"
+      stt: "Ordinal"
     new:
       title: "Add New Author"
     edit:
