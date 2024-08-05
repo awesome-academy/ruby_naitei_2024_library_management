@@ -27,15 +27,24 @@ categories.each do |category|
 end
 
 # Seed authors
-authors.each do |author|
-  Author.create!(
-    name: author["name"],
-    birth: author["birth"],
-    gender: author["gender"],
-    bio: author["bio"],
-    nationality: author["nationality"],
-    profile_url: author["profile_url"]
+authors.each do |author_data|
+  author = Author.new(
+    name: author_data["name"],
+    birth: author_data["birth"],
+    gender: author_data["gender"],
+    bio: author_data["bio"],
+    nationality: author_data["nationality"]
   )
+  # Tải hình ảnh từ URL và đính kèm vào Active Storage
+  profile_image_url = author_data["profile_url"]
+  profile_image = URI.open(profile_image_url)
+  author.profile_image.attach(io: profile_image, filename: File.basename(profile_image_url))
+
+  if author.save
+    puts "Author #{author.name} created successfully."
+  else
+    puts "Failed to create author #{author.name}: #{author.errors.full_messages.join(', ')}"
+  end
 end
 
 # Seed books

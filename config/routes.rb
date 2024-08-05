@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         end
       end
       resources :books, only: %i(index new create destroy edit update)
+      resources :authors
     end
     resources :requests, only: %i(new create)
   end

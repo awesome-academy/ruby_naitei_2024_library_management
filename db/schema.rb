@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_01_142325) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_03_085902) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_01_142325) do
   create_table "authors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.date "birth"
-    t.boolean "gender"
+    t.integer "gender"
     t.string "bio"
     t.string "nationality"
     t.string "profile_url"
@@ -178,7 +178,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_01_142325) do
     t.bigint "account_id", null: false
     t.string "name"
     t.date "birth"
-    t.boolean "gender"
+    t.integer "gender"
     t.string "phone"
     t.string "address"
     t.string "profile_url"
