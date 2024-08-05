@@ -22,6 +22,8 @@ vi:
   borrow_books: "Danh sách mượn sách"
   title: "Tiêu đề"
   ban_message: "Bạn cần phải trả sách đúng hạn, sau khi trả sách bạn có thể tiếp tục mượn sách."
+  favourite_books: "Sách yêu thích"
+  favourite: "Yêu thích"
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"
@@ -278,3 +280,5 @@ vi:
       user_name: "Tên người dùng"
       borrow_date: "Ngày mượn"
       return_date: "Ngày trả"
+  favourites:
+    title: "Sách yêu thích - Librarails"

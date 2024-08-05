@@ -10,6 +10,17 @@
         <%= t "ban_message" %>
       </div>
     <% end %>
+    <%  if @favourite_books.any? %>
+      <div class="space-y-5">
+        <div class="flex items-center justify-between">
+          <h2 class="font-semibold text-4xl "><%= t "favourite_books" %></h2>
+          <%= link_to t("book_details.view_more"), favourites_path, class: "hover:underline" %>
+        </div>
+        <div class="grid grid-cols-4 gap-10 bg-card rounded-lg p-6">
+          <%= render partial: "books/book_tbn", collection: @favourite_books.limit(Settings.favourite_books_home), as: :book %>
+        </div>
+      </div>
+    <% end %>
     <div class="space-y-5">
       <h2 class="font-semibold text-4xl "><%= t "home_page.book_series" %></h2>
       <div class="grid grid-cols-2 gap-10">

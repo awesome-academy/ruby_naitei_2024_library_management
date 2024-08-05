@@ -56,10 +56,16 @@
                 <span><%= link_to t("profile_menu.vietnamese"), locale: :vi %></span>
               <% else %>
                 <div class="w-6 flex items-center justify-center mr-2">
-                  <%= image_tag "en.png", class: "w-4", alt: "English" %>
+                  <%= image_tag "en.png", class: "w-5", alt: "English" %>
                 </div>
                 <span><%= link_to t("profile_menu.english"), locale: :en %></span>
               <% end %>
+            <% end %>
+            <%= dropdown_menu_item do %>
+              <div class="w-6 flex items-center pl-[2px] mr-2">
+                <i class="bi bi-bookmark-heart text-lg"></i>
+              </div>
+              <span><%= link_to t("favourite"), favourites_path %></span>
             <% end %>
             <%= render_separator class: "my-1" %>
             <%= dropdown_menu_item do %>

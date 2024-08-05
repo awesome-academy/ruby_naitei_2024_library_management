@@ -9,6 +9,7 @@ class Book < ApplicationRecord
   has_many :favourites, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :users, through: :favourites, dependent: :destroy
   has_many :users, through: :carts, dependent: :destroy
   has_one_attached :cover_image
 
