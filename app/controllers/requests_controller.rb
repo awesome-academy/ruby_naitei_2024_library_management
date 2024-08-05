@@ -7,17 +7,24 @@ class RequestsController < ApplicationController
   end
 
   def create
+    if account_banned?
+      handle_banned_account
+      return
+    end
+
     @request = current_user.requests.build(request_params)
     selected_books = fetch_selected_books
 
-    return if handle_empty_books(selected_books) ||
-              handle_book_limit(selected_books) ||
-              handle_borrowed_books_limit(selected_books)
-
-    process_request selected_books
-  rescue ActiveRecord::RecordInvalid
-    flash[:danger] = t "noti.request_failure_noti"
-    render :new
+    begin
+      handle_errors(selected_books)
+      process_request(selected_books)
+    rescue StandardError => e
+      flash[:warning] = e.message
+      redirect_to new_request_path
+    rescue ActiveRecord::RecordInvalid
+      flash[:danger] = t("noti.request_failure_noti")
+      render :new
+    end
   end
 
   def index
@@ -32,20 +39,30 @@ class RequestsController < ApplicationController
     @requests = @requests.search_by_book(params[:search])
   end
 
+  def borrowed_books
+    @pagy, @borrowed_books = pagy(
+      BorrowBook
+        .borrowed
+        .with_details
+    )
+  end
+
   def update
     @request = Request.find_by(id: params[:id])
+
     if @request.nil?
-      render json: {success: false, error: "Request not found"},
-             status: :not_found
-    elsif @request.update(status: params[:status],
-                          description: params[:description])
+      render_not_found
+    elsif @request.update(request_params)
+      handle_approved_status if params[:status] == "approved"
+      @request.send_email if %w(approved rejected).include?(params[:status])
       render json: {success: true}
     else
-      render json: {success: false, errors: @request.errors.full_messages}
+      render_update_error
     end
   end
 
   private
+
   def fetch_requests_with_books requests
     requests.includes(:books)
   end
@@ -54,34 +71,22 @@ class RequestsController < ApplicationController
     Book.in_user_cart(current_user)
   end
 
-  def handle_empty_books selected_books
-    return if selected_books.present?
-
-    flash[:warning] = t "noti.empty_request_noti"
-    redirect_to new_request_path
-    true
+  def handle_errors selected_books
+    if selected_books.blank?
+      raise StandardError, t("noti.empty_request_noti")
+    elsif selected_books.count > Settings.max_books
+      raise StandardError, t("noti.over_limit_request_noti")
+    elsif exceed_borrow_limit?(selected_books)
+      raise StandardError, t("noti.over_limit_request_noti")
+    end
   end
 
-  def handle_book_limit selected_books
-    return unless selected_books.count > Settings.max_books
-
-    flash[:warning] = t "noti.over_limit_request_noti"
-    redirect_to new_request_path
-    true
-  end
-
-  def handle_borrowed_books_limit selected_books
+  def exceed_borrow_limit? selected_books
     borrowed_books_count = BorrowBook.borrowed_by_user(current_user).count
     pending_books = Request.pending_for_user(current_user).count
     total_books_count = borrowed_books_count + pending_books
 
-    if total_books_count + selected_books.size > Settings.max_books
-      flash[:warning] = t "noti.over_limit_request_noti"
-      redirect_to new_request_path
-      return true
-    end
-
-    false
+    total_books_count + selected_books.size > Settings.max_books
   end
 
   def process_request selected_books
@@ -104,5 +109,27 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:status, :description)
+  end
+
+  def handle_approved_status
+    @request.borrow_books.update_all(is_borrow: true)
+  end
+
+  def render_not_found
+    render json: {success: false, error: t("noti.request_not_found")},
+           status: :not_found
+  end
+
+  def render_update_error
+    render json: {success: false, errors: @request.errors.full_messages}
+  end
+
+  def account_banned?
+    current_user.account.ban?
+  end
+
+  def handle_banned_account
+    flash[:danger] = t("noti.banned_message")
+    redirect_to new_request_path
   end
 end
