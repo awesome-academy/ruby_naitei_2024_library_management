@@ -1,0 +1,6 @@
+<%= turbo_stream.update dom_id(@book, :favourite_button) do %>
+  <%= render "favourites/button", book: @book, favourite: nil %>
+<% end %>
+<%= turbo_stream.replace "book_title" do %>
+  <h2 class="font-bold text-primary text-3xl " id="book_title"><%=  @book.title %></h2>
+<%end %>

@@ -101,6 +101,8 @@ vi:
     sign_in_first: "Vui lòng đăng nhập trước"
     rating_fail: "Có lỗi xảy ra khi đánh giá"
     comment_fail: "Có lỗi xảy ra khi bình luận"
+    add_to_favourites_fail: "Có lỗi xảy ra khi thêm vào danh sách yêu thích"
+    remove_from_favourites_fail: "Có lỗi xảy ra khi xóa khỏi danh sách yêu thích"
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"

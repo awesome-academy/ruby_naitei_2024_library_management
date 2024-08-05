@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :ratings, only: %i(create)
     resources :carts, only: %i(create destroy show)
     resources :authors, only: %i(show index)
+    resources :favourites, only: %i(create destroy)
     namespace :admin do
       root "users#index"
       resources :users, only: :index do

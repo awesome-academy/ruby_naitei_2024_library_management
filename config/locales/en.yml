@@ -101,6 +101,8 @@ en:
     sign_in_first: "Please sign in first"
     rating_fail: "There was an error when rating the book."
     comment_fail: "There was an error when commenting on the book."
+    add_to_favourites_fail: "There was an error when adding the book to the favorite list."
+    remove_from_favourites_fail: "There was an error when removing the book from the favorite list."
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."

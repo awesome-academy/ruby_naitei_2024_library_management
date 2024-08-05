@@ -15,6 +15,7 @@ class BooksController < ApplicationController
   def show
     @initial_rating = find_initial_rating
     @comments = find_comments
+    @favourite = find_favourite
     @related_books = find_related_books
   end
 
@@ -27,6 +28,10 @@ class BooksController < ApplicationController
 
   def find_initial_rating
     @book.ratings.find_by(user_id: current_user&.id)&.rating || 0
+  end
+
+  def find_favourite
+    current_user&.favourites&.find_by(book_id: @book.id)
   end
 
   def find_comments

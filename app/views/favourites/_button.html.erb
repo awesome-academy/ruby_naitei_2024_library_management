@@ -1,0 +1,20 @@
+<%= render_tooltip do %>
+  <%= tooltip_trigger do %>
+    <% if favourite  %>
+      <%= button_to favourite_path(favourite), method: :delete, form: { data: { turbo_stream: true } }, class: "border-2 border-primary border-red-500 bg-red-200 text-primary font-bold rounded-md hover:bg-secondary text-xl p-2 px-4" do %>
+        <i class="bi bi-bookmark-heart-fill text-red-500"></i>
+      <% end %>
+    <% else %>
+      <%= button_to favourites_path(book_id: book.id), method: :post, form: { data: { turbo_stream: true } }, class: "border-2 border-primary text-primary font-bold rounded-md hover:bg-secondary text-xl p-2 px-4" do %>
+        <i class="bi bi-bookmark-heart"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= tooltip_content do %>
+    <% if favourite %>
+      <%= t "book_details.remove_from_favourite" %>
+    <% else %>
+      <%= t "book_details.add_to_favourite" %>
+    <% end %>
+  <% end %>
+<% end %>
