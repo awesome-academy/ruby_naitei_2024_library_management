@@ -17,6 +17,7 @@ vi:
     english: "Tiếng Anh"
     sign_in: "Đăng nhập"
     sign_up: "Đăng ký"
+    my_request: "Yêu cầu của tôi"
   activerecord:
     models:
       Account: "Tài khoản"
@@ -145,6 +146,7 @@ vi:
       authors: "Tác giả"
       book_request_list: "Danh sách yêu cầu mượn sách"
       book_list: "Danh sách sách"
+      request_list: "Danh sách yêu cầu"
       user_list: "Danh sách người dùng"
       user_ban_list: "Danh sách người dùng bị cấm"
       author_list: "Danh sách tác giả"
@@ -194,11 +196,29 @@ vi:
       thanks: "Trân trọng,"
 
   requests:
+    all: "Tất cả"
+    approved: "Đã duyệt"
+    rejected: "Đã từ chối"
+    pending: "Chờ duyệt"
+    canceled: "Đã hủy"
     new:
       back: "Quay lại"
       send_request: "Gửi yêu cầu"
       create_request: "Tạo yêu cầu"
       delete: "Xóa"
       request_empty: "Danh sách yêu cầu trống"
+    show:
+      pending_list: "Danh sách chờ"
+      borrowed_list: "Danh sách đã mượn"
+      borrowing_list: "Danh sách đang mượn"
+      book_list: "Danh sách sách"
+    request_list:
+      pending_requests: "Yêu cầu chờ"
+      reject_requests: "Yêu cầu bị từ chối"
+      approved_requests: "Yêu cầu đã duyệt"
+      cancel_request: "Yêu cầu đã hủy"
+    request:
+      request_id: "Mã yêu cầu"
+      description: "Mô tả"
   home_page:
     start_reading: "Bắt đầu khám phá =>"

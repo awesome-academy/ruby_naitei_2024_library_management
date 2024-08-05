@@ -17,6 +17,7 @@ en:
     english: "English"
     sign_in: "Sign in"
     sign_up: "Sign up"
+    my_request: "My Request"
   activerecord:
     models:
       Account: "Account"
@@ -98,6 +99,11 @@ en:
       deleted_success: "Author deleted successfully."
       deleted_fail: "Failed to delete author."
       not_found: "Author not found"
+    book_already_in_cart: "This book is already in your cart."
+    add_book_to_cart_success: "Add book to cart successfully."
+    add_book_to_cart_fail: "Add book to cart failed."
+    remove_book_from_cart_success: "Remove book from cart successfully."
+    remove_book_from_cart_fail: "Remove book from cart failed."
   user:
     filter: "Filter"
     index:
@@ -192,11 +198,29 @@ en:
       message: "Your request to borrow book(s) has been denied. Your request has been rejected for the following reason: %{description}. See more here : "
       thanks: "Best regards,"
   requests:
+    all: "All"
+    approved: "Approved"
+    rejected: "Rejected"
+    pending: "Pending"
+    canceled: "Canceled"
     new:
       back: "Back"
       send_request: "Send Request"
       create_request: "Create Request"
       delete: "Delete"
       request_empty: "Request is empty"
+    show:
+      pending_list: "Pending List"
+      borrowed_list: "Borrowed List"
+      borrowing_list: "Borrowing List"
+      book_list: "Book List"
+    request_list:
+      pending_requests: "Pending Requests"
+      reject_requests: "Reject Requests"
+      approved_requests: "Approved Requests"
+      cancel_request: "Cancel Request"
+    request:
+      request_id: "Request ID"
+      description: "Description"
   home_page:
     start_reading: "Start Exploring =>"
