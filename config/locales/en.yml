@@ -45,6 +45,7 @@ en:
         address: "Address"
         phone: "Phone"
         gender: "Gender"
+        profile_image: "Profile Image"
       book:
         id: "ID"
         title: "Title"
@@ -103,6 +104,8 @@ en:
     comment_fail: "There was an error when commenting on the book."
     add_to_favourites_fail: "There was an error when adding the book to the favorite list."
     remove_from_favourites_fail: "There was an error when removing the book from the favorite list."
+    user_update_success: "User was successfully updated."
+    user_update_fail: "Failed to update user."
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."
@@ -123,8 +126,10 @@ en:
       new: "New User"
     show:
       title: "User Information"
+      edit: "Edit"
     edit:
       title: "Update User Information"
+      submit: "Submit"
     banned:
       title: "Banned User List"
       activate: "Activate"

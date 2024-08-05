@@ -1,0 +1,47 @@
+<% provide :title, t("user.show.title") %>
+<main class="container relative mx-auto mt-[84px] px-5">
+  <div class="flex w-full py-10 gap-10 relative ">
+    <div  class="border-2 flex-1 h-fit sticky top-32">
+      <%= image_tag @user.profile_image.attached? ? @user.profile_image : "default_avatar.png", alt: "cover", class: "w-full" %>
+    </div>
+    <div class=" flex-[2] space-y-4">
+      <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2">
+        <div class="flex items-center justify-between">
+          <h2 class="font-bold text-primary text-3xl"><%= t "user.show.title" %></h2>
+          <%= link_to t("user.show.edit"), edit_user_path(@user), class: "mr-2 p-3 py-1 bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
+        </div>
+      </div>
+
+      <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.name" %> :</strong>
+          <%= @user.name %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.account.email" %> :</strong>
+          <%= @user.email %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.citizen_id" %> :</strong>
+          <%= @user.citizen_id %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.birth" %> :</strong>
+          <%= @user.birth %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.gender" %> :</strong>
+          <%= @user.gender %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.address" %> :</strong>
+          <%= @user.address %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.phone" %> :</strong>
+          <%= @user.phone %>
+        </p>
+      </div>
+    </div>
+  </div>
+</main>

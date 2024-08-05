@@ -1,0 +1,42 @@
+<% provide :title, t("user.edit.title") %>
+<main class="container relative mx-auto mt-[84px] px-5">
+  <div class="flex w-full items-center justify-center pt-7">
+    <div class="w-full max-w-lg bg-white p-8 shadow-xl rounded-xl">
+      <h1 class="text-3xl font-bold mb-6 text-center"><%= t "user.edit.title" %></h1>
+      <%= render_form_for(@user, class: "w-full") do |form| %>
+        <%= render "shared/error_messages", object: form.object %>
+        <div class="grid grid-cols-1 items-baseline mb-4">
+          <%= form.label :citizen_id, t("activerecord.attributes.user.citizen_id"), class: "text-left mr-4 text-lg" %>
+          <%= form.text_field :citizen_id, class: "col-span-2" %>
+        </div>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= form.label :name, t("activerecord.attributes.user.name"), class: "text-left mr-4 text-lg" %>
+          <%= form.text_field :name, class: "col-span-2 mb-4" %>
+        </div>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= form.label :birth, t("activerecord.attributes.user.birth"), class: "text-left mr-4 text-lg" %>
+          <%= form.date_field :birth, class: "col-span-2 mb-4 rounded-md border border-input bg-background" %>
+        </div>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= form.label :gender, t("activerecord.attributes.user.gender"), class: "text-left mr-4 text-lg" %>
+          <%= form.select :gender, options_for_select(gender_options_for_select, @user.gender), {}, class: "col-span-2 mb-4 rounded-md border border-input bg-background" %>
+        </div>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= form.label :phone, t("activerecord.attributes.user.phone"), class: "text-left mr-4 text-lg" %>
+          <%= form.text_field :phone, class: "col-span-2 mb-4" %>
+        </div>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= form.label :address, t("activerecord.attributes.user.address"), class: "text-left mr-4 text-lg" %>
+          <%= form.text_field :address, class: "col-span-2 mb-4" %>
+        </div>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= form.label :profile_image, t("activerecord.attributes.user.profile_image"), class: "text-left mr-4 text-lg" %>
+          <%= form.file_field :profile_image, class: "block mb-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+        </div>
+        <div class="flex justify-center">
+          <%= form.submit t(".") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

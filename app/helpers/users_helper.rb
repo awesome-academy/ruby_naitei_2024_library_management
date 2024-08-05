@@ -10,7 +10,11 @@ module UsersHelper
   end
 
   def user_avatar user, size = Settings.avatar.list_size
-    image_url = user.profile_url.presence || "default_avatar.png"
+    image_url = if user.profile_image.attached?
+                  user.profile_image
+                else
+                  "default_avatar.png"
+                end
     image_tag image_url, size:, class: "w-16 h-16 rounded-full"
   end
 

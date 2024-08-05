@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_account_and_redirect, only: :new
+  before_action :load_user, :correct_user, only: %i(show edit update)
   def index
     @pagy, @users = pagy User.order_by_name.with_status(params[:status]),
                          items: Settings.users_per_page
@@ -19,7 +20,37 @@ class UsersController < ApplicationController
     end
   end
 
+  def show; end
+
+  def edit; end
+
+  def update
+    if @user.update(user_params)
+      flash[:success] = t "noti.user_update_success"
+      redirect_to @user
+    else
+      flash.now[:error] = t "noti.user_update_fail"
+      render :edit
+    end
+  end
+
   private
+
+  def correct_user
+    return if current_user == @user
+
+    flash[:alert] = t "noti.permission_err"
+    redirect_to root_path
+  end
+
+  def load_user
+    @user = User.find_by id: params[:id]
+    return if @user
+
+    flash[:danger] = t "noti.not_found"
+    redirect_to root_path
+  end
+
   def account_present?
     session[:account_id].present? && Account.exists?(session[:account_id])
   end
