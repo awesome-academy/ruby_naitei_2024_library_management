@@ -1,0 +1,11 @@
+<div class="flex gap-x-2 py-2">
+  <div class="flex">
+    <%= image_tag comment.user.profile_url || "avatar.jpeg", class: "w-12 h-12 rounded-full border border-primary" %>
+  </div>
+  <div class="">
+    <p class="flex items-center gap-x-2"><strong><%= comment.user.name %></strong>
+      <p><%= simple_format comment.comment_text %></p>
+      <small class="italic text-muted-foreground"><%= comment.created_at.strftime(Settings.time_format) %></small>
+    </div>
+  </div>
+</div>
