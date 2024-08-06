@@ -1,4 +1,6 @@
 class Admin::AuthorsController < Admin::ApplicationController
+  before_action :load_author, only: %i(edit update)
+
   def index
     @pagy, @authors = pagy Author.order_by_name,
                            items: Settings.authors_per_page
@@ -19,7 +21,27 @@ class Admin::AuthorsController < Admin::ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if @author.update author_params
+      flash[:success] = t "noti.author.updated_success"
+      redirect_to admin_authors_path
+    else
+      flash.now[:warning] = t "noti.author.updated_fail"
+      render :edit
+    end
+  end
+
   private
+
+  def load_author
+    @author = Author.find_by id: params[:id]
+    return if @author
+
+    flash[:danger] = t "noti.author.not_found"
+    redirect_to authors_path
+  end
 
   def author_params
     params.require(:author).permit Author::AUTHOR_PARAMS
