@@ -8,7 +8,7 @@ class Admin::UsersController < Admin::ApplicationController
   def due_reminder
     @user.send_due_reminder
     flash[:success] = t "due_reminder_success", user_name: @user.name
-    redirect_to users_path status: "neardue"
+    redirect_to admin_users_path status: "neardue"
   end
 
   private
@@ -17,6 +17,6 @@ class Admin::UsersController < Admin::ApplicationController
     return if @user
 
     flash[:danger] = t "noti.not_found"
-    redirect_to root_path
+    redirect_to admin_users_path
   end
 end

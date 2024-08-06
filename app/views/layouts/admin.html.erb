@@ -18,6 +18,9 @@
           <%= button_to t(".sign_out"), logout_path, method: :delete, data: { "turbo-method": :delete }  %>
         </div>
       </header>
+      <% flash.each do |message_type, message| %>
+        <%= render partial: "shared/notification", locals: { message: message, message_type: message_type } %>
+      <% end %>
       <div class="flex gap-10 items-start">
         <div class="min-w-[200px] border-r h-[100vh] px-2">
           <%= render_accordion do %>
