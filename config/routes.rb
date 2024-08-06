@@ -15,6 +15,13 @@ Rails.application.routes.draw do
     resources :favourites, only: %i(create destroy)
     namespace :admin do
       root "users#index"
+      get "requests/show", to: "requests#show", as: "requests_show"
+      get "borrowed_books", to: "borrow_books#index", as: :borrowed_books
+      resources :requests, only: %i(index show update) do
+        member do
+          patch :update
+        end
+      end
       resources :users, only: :index do
         member do
           post "due_reminder"
@@ -25,9 +32,19 @@ Rails.application.routes.draw do
           post "update_status"
         end
       end
-      resources :books, only: %i(index new create destroy edit update)
       resources :authors
+      resources :books, only: %i(index new create destroy edit update) do
+        collection do
+          get "borrowed_books"
+        end
+      end
+      resources :borrow_books do
+        collection do
+          patch :mark_as_returned
+        end
+      end
     end
+    
     resources :requests, only: %i(new create show index update) do
       member do
         patch :update
@@ -36,6 +53,6 @@ Rails.application.routes.draw do
     resources :books do
       resources :comments, only: %i(create index)
     end
-
+    get "borrow_books", to: "borrow_books#index", as: :borrow_books
   end
 end

@@ -18,6 +18,10 @@ vi:
   company: "Công ty"
   goal: "Mục tiêu dự án: Học Ruby on Rails"
   design: "Thiết kế và phát triển bởi"
+  mark_as_returned: "Đánh dấu trả sách"
+  borrow_books: "Danh sách mượn sách"
+  title: "Tiêu đề"
+  ban_message: "Bạn cần phải trả sách đúng hạn, sau khi trả sách bạn có thể tiếp tục mượn sách."
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"
@@ -27,6 +31,7 @@ vi:
     sign_in: "Đăng nhập"
     sign_up: "Đăng ký"
     my_request: "Yêu cầu của tôi"
+    my_book: "Sách của tôi"
   activerecord:
     models:
       Account: "Tài khoản"
@@ -106,6 +111,15 @@ vi:
     remove_from_favourites_fail: "Có lỗi xảy ra khi xóa khỏi danh sách yêu thích"
     user_update_success: "Cập nhật thông tin cá nhân thành công"
     user_update_fail: "Cập nhật thông tin cá nhân thất bại"
+    book_returned_success: "Trả sách thành công."
+    book_returned_fail: "Trả sách thất bại."
+    request_not_found: "Không tìm thấy yêu cầu"
+    book_already_in_cart: "Sách này đã có trong giỏ hàng của bạn."
+    add_book_to_cart_success: "Thêm sách vào giỏ hàng thành công."
+    add_book_to_cart_fail: "Thêm sách vào giỏ hàng thất bại."
+    remove_book_from_cart_success: "Xóa sách khỏi giỏ hàng thành công."
+    remove_book_from_cart_fail: "Xóa sách khỏi giỏ hàng thất bại."
+    banned_message: "Tài khoản của bạn đã bị chặn."
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"
@@ -217,7 +231,7 @@ vi:
     approved: "Đã duyệt"
     rejected: "Đã từ chối"
     pending: "Chờ duyệt"
-    canceled: "Đã hủy"
+    cancel: "Đã hủy"
     new:
       back: "Quay lại"
       send_request: "Gửi yêu cầu"
@@ -237,6 +251,8 @@ vi:
     request:
       request_id: "Mã yêu cầu"
       description: "Mô tả"
+      reject: "Từ chối"
+      approve: "Duyệt"
   home_page:
     start_reading: "Bắt đầu khám phá =>"
   authors_page:
@@ -252,3 +268,13 @@ vi:
     nationality: "Quốc tịch"
     books: "Tác phẩm"
     follow: "Theo dõi"
+  borrow_books:
+    book:
+      borrowing: "Đang mượn"
+      returned: "Đã trả"
+      all: "Tất cả"
+      book_id: "Mã sách"
+      request_id: "Mã yêu cầu"
+      user_name: "Tên người dùng"
+      borrow_date: "Ngày mượn"
+      return_date: "Ngày trả"

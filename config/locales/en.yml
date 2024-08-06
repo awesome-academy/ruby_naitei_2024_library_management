@@ -18,6 +18,10 @@ en:
   company: "Company"
   goal: "Project's Goal: Learn Ruby on Rails"
   design: "Design and Developed by"
+  mark_as_returned: "Mark as Returned"
+  borrow_books: "Borrow Books"
+  title: "Title"
+  ban_message: "You need to return the book on time, after returning the book you can continue to borrow the book."
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -27,6 +31,7 @@ en:
     sign_in: "Sign in"
     sign_up: "Sign up"
     my_request: "My Request"
+    my_book: "My Book"
   activerecord:
     models:
       Account: "Account"
@@ -106,6 +111,15 @@ en:
     remove_from_favourites_fail: "There was an error when removing the book from the favorite list."
     user_update_success: "User was successfully updated."
     user_update_fail: "Failed to update user."
+    book_returned_success: "Book returned successfully."
+    book_returned_fail: "Failed to return the book."
+    request_not_found: "Request not found"
+    book_already_in_cart: "This book is already in your cart."
+    add_book_to_cart_success: "Add book to cart successfully."
+    add_book_to_cart_fail: "Add book to cart failed."
+    remove_book_from_cart_success: "Remove book from cart successfully."
+    remove_book_from_cart_fail: "Remove book from cart failed."
+    banned_message: "Your account has been banned."
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."
@@ -114,11 +128,6 @@ en:
       deleted_success: "Author deleted successfully."
       deleted_fail: "Failed to delete author."
       not_found: "Author not found"
-    book_already_in_cart: "This book is already in your cart."
-    add_book_to_cart_success: "Add book to cart successfully."
-    add_book_to_cart_fail: "Add book to cart failed."
-    remove_book_from_cart_success: "Remove book from cart successfully."
-    remove_book_from_cart_fail: "Remove book from cart failed."
   user:
     filter: "Filter"
     index:
@@ -169,6 +178,7 @@ en:
       authors: "Authors"
       book_request_list: "Book Request List"
       book_list: "Book List"
+      request_list: "Request List"
       user_list: "User List"
       user_ban_list: "User Ban List"
       author_list: "Author List"
@@ -220,7 +230,7 @@ en:
     approved: "Approved"
     rejected: "Rejected"
     pending: "Pending"
-    canceled: "Canceled"
+    cancel: "Canceled"
     new:
       back: "Back"
       send_request: "Send Request"
@@ -240,6 +250,8 @@ en:
     request:
       request_id: "Request ID"
       description: "Description"
+      reject: "Reject"
+      approve: "Approve"
   home_page:
     start_reading: "Start Exploring =>"
   authors_page:
@@ -254,3 +266,13 @@ en:
     nationality: "Nationality"
     books: "Books"
     follow: "Follow"
+  borrow_books:
+    book:
+      borrowing: "Borrowing"
+      returned: "Returned"
+      all: "All"
+      book_id: "Book ID"
+      request_id: "Request ID"
+      user_name: "User Name"
+      borrow_date: "Borrow Date"
+      return_date: "Return Date"

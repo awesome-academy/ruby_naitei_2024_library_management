@@ -25,4 +25,25 @@ class BorrowBook < ApplicationRecord
   scope :borrowing_by_user, lambda {|user|
                               where(user:, is_borrow: true)
                             }
+  scope :borrowed, ->{where(is_borrow: true)}
+
+  scope :with_details, (lambda do
+    joins(:book, :request, :user)
+      .select("books.id, books.title, books.summary,
+      borrow_books.borrow_date, borrow_books.return_date,
+      borrow_books.user_id, users.name as user_name,
+      borrow_books.request_id, borrow_books.is_borrow")
+  end)
+
+  scope :filter_by_search, lambda {|search_query|
+    return if search_query.blank?
+
+    where("MATCH(title, summary) AGAINST(?)", search_query)
+  }
+
+  scope :filter_by_status, lambda {|status|
+    return if status.blank?
+
+    where(is_borrow: status)
+  }
 end
