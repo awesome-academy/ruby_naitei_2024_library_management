@@ -4,7 +4,7 @@ class User < ApplicationRecord
   belongs_to :account
   has_many :borrow_books, dependent: :destroy
   has_many :requests, dependent: :destroy
-  has_many :favorites, dependent: :destroy
+  has_many :favourites, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :author_followers, dependent: :destroy

@@ -95,7 +95,7 @@ books_series.each do |series|
     cbook = Book.new(
       title: book["title"],
       summary: book["summary"],
-      description: book["description"],
+      description: series["description"],
       quantity: rand(1..10),
       publication_date: book["publication_date"],
       category_id: series["category_id"],

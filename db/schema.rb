@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_03_085902) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_05_031618) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -145,13 +145,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_03_085902) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "favorites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "favourites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_favorites_on_book_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.index ["book_id"], name: "index_favourites_on_book_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "ratings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -203,8 +203,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_03_085902) do
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "comments", "books"
   add_foreign_key "comments", "users"
-  add_foreign_key "favorites", "books"
-  add_foreign_key "favorites", "users"
+  add_foreign_key "favourites", "books"
+  add_foreign_key "favourites", "users"
   add_foreign_key "ratings", "books"
   add_foreign_key "ratings", "users"
   add_foreign_key "requests", "users"
