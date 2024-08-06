@@ -12,6 +12,12 @@ vi:
   loading: "Đang tải ..."
   male: "Nam"
   female: "Nữ"
+  sitemap: "Các trang"
+  about_us: "Về chúng tôi"
+  name: "Tên nhóm"
+  company: "Công ty"
+  goal: "Mục tiêu dự án: Học Ruby on Rails"
+  design: "Thiết kế và phát triển bởi"
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"

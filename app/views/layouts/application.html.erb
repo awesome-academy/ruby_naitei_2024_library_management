@@ -16,6 +16,9 @@
       <%= render partial: "shared/notification", locals: { message: message, message_type: message_type } %>
     <% end %>
     <%= yield %>
+    <% unless exclude_footer? %>
+      <%= render "layouts/footer" %>
+    <% end %>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
   </body>
 </html>

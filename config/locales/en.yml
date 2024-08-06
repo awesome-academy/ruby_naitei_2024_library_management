@@ -12,6 +12,12 @@ en:
   loading: "Loading ..."
   male: "Male"
   female: "Female"
+  sitemap: "Sitemap"
+  about_us: "About Us"
+  name: "Name"
+  company: "Company"
+  goal: "Project's Goal: Learn Ruby on Rails"
+  design: "Design and Developed by"
   profile_menu:
     profile: "Profile"
     language: "Language"
