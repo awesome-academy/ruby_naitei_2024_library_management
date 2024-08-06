@@ -7,7 +7,7 @@ class Admin::AccountsController < Admin::ApplicationController
     else
       flash[:danger] = t "noti.update_fail"
     end
-    redirect_to users_path status: "banned"
+    redirect_to admin_users_path status: "banned"
   end
 
   private
@@ -16,6 +16,6 @@ class Admin::AccountsController < Admin::ApplicationController
     return if @account
 
     flash[:danger] = t "noti.account_not_found"
-    redirect_to users_path
+    redirect_to admin_users_path
   end
 end

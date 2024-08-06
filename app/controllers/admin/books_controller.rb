@@ -48,7 +48,7 @@ class Admin::BooksController < Admin::ApplicationController
     return if @book
 
     flash[:danger] = t "noti.book_not_found"
-    redirect_to books_path
+    redirect_to admin_books_path
   end
 
   def book_params

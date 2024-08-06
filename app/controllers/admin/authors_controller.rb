@@ -40,7 +40,7 @@ class Admin::AuthorsController < Admin::ApplicationController
     return if @author
 
     flash[:danger] = t "noti.author.not_found"
-    redirect_to authors_path
+    redirect_to admin_authors_path
   end
 
   def author_params
