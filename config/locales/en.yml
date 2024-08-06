@@ -10,6 +10,8 @@ en:
   home: "Home"
   search: "Search"
   loading: "Loading ..."
+  male: "Male"
+  female: "Female"
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -227,3 +229,15 @@ en:
       description: "Description"
   home_page:
     start_reading: "Start Exploring =>"
+  authors_page:
+    details: "Author Details"
+    title: "Authors - Librarails"
+    all_authors: "All Authors"
+    total: "Total"
+    name: "Name"
+    birth: "Date of Birth"
+    gender: "Gender"
+    bio: "Biography"
+    nationality: "Nationality"
+    books: "Books"
+    follow: "Follow"

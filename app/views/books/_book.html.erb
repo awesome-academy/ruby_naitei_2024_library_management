@@ -9,7 +9,7 @@
         <%= book.title %>
       <% end %>
     <% end %>
-    <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to "#{t("books_page.by")} #{book.author.name}", "#" %></p>
+    <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to "#{t("books_page.by")} #{book.author.name}", author_url(book.author), data: {turbo_frame: "_top"} %></p>
     <p class="" ><i class="bi bi-star-fill"></i> <%= "#{book.ratings.average(:rating)} (#{book.ratings.count})" || t("books_page.no_rating") %></p>
     <p class="text-muted-foreground" ><%= t "books_page.published_date" %>: <%= book.publication_date %></p>
     <p class=" line-clamp-3 text-muted-foreground "><%= book.description %></p>

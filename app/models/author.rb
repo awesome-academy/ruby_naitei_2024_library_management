@@ -6,6 +6,7 @@ class Author < ApplicationRecord
 
   enum gender: {male: 0, female: 1}
 
+  scope :order_by_name, ->{order(name: :asc)}
+
   validates :name, :birth, :bio, :nationality, :profile_image, presence: true
-  scope :order_by_name, ->{order(:name)}
 end

@@ -1,0 +1,4 @@
+<div  id="author-<%= author.id %>" class="p-4 bg-card rounded-xl">
+  <div class="aspect-square overflow-hidden h-[289px]"><%= image_tag author.profile_image.attached? ? author.profile_image : "default_cover_image.png", alt: "avatar", class: "w-full object-cover"  %></div>
+  <p class="italic text-xl hover:underline  mt-4 "><%= link_to  author.name, author_path(author) %></p>
+</div>
