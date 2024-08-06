@@ -24,6 +24,10 @@ vi:
   ban_message: "Bạn cần phải trả sách đúng hạn, sau khi trả sách bạn có thể tiếp tục mượn sách."
   favourite_books: "Sách yêu thích"
   favourite: "Yêu thích"
+  restrict_age: "Bạn phải đủ 16 tuổi để sử dụng trang này."
+  book_return_confirm: "Xác nhận trả sách"
+  edit: "Chỉnh sửa"
+  delete: "Xóa"
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"

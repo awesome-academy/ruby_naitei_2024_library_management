@@ -21,7 +21,7 @@ module SessionsHelper
   end
 
   def logged_in?
-    current_account.present?
+    current_account&.user.present?
   end
 
   def authenticate_user

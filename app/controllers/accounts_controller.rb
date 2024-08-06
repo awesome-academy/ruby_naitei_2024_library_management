@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
       session[:account_id] = @account.id
       redirect_to new_user_path
     else
+      flash.now[:danger] = @account.errors.full_messages[0]
       render :new, status: :unprocessable_entity
     end
   end

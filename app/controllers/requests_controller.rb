@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+  include SessionsHelper
+  before_action :authenticate_user
   protect_from_forgery with: :null_session
 
   def new
@@ -28,7 +30,7 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = Request.includes(:borrow_books)
+    @requests = current_user.requests.includes(:borrow_books)
 
     if params[:status].present?
       @requests = @requests.filter_by_status(params[:status])

@@ -1,6 +1,9 @@
 class Book < ApplicationRecord
   BOOK_PARAMS = %i(title summary quantity publication_date category_id
                    author_id description cover_image).freeze
+
+  after_save :create_or_update_book_inventory
+
   belongs_to :category
   belongs_to :author
   belongs_to :book_series, optional: true
@@ -49,4 +52,14 @@ class Book < ApplicationRecord
   scope :in_user_cart, ->(user){where(id: user.books_in_carts.pluck(:id))}
   validates :title, :summary, :quantity, :publication_date, :cover_image,
             presence: true
+
+  private
+
+  def create_or_update_book_inventory
+    if book_inventory.present?
+      book_inventory.update(available_quantity: quantity)
+    else
+      create_book_inventory(available_quantity: quantity)
+    end
+  end
 end

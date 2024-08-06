@@ -10,61 +10,12 @@
   </head>
   <body>
     <main class="mx-auto w-[100vw]">
-      <header class="bg-background flex fixed z-10 top-0 left-0 right-0 justify-between items-center py-2 px-6 border-b">
-        <%= image_tag "logo.png", alt: "logo", class: "w-16 h-16" %>
-        <div class="flex justify-between items-center">
-          <%= link_to "Nhan cute", "#" %>
-          <span class="inline-block px-2">  |  </span>
-          <%= button_to t(".sign_out"), logout_path, method: :delete, data: { "turbo-method": :delete }  %>
-        </div>
-      </header>
+      <%= render "layouts/admin/header" %>
       <% flash.each do |message_type, message| %>
         <%= render partial: "shared/notification", locals: { message: message, message_type: message_type } %>
       <% end %>
       <div class="flex gap-10 items-start w-full mt-[80px]">
-        <div class="w-[260px] border-r h-[100vh] px-2 fixed z-10 top-20 left-0 bg-background">
-          <%= render_accordion do %>
-            <%= accordion_title do %>
-              <%= t ".books" %>
-            <% end %>
-            <%= accordion_description do %>
-              <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".book_list"), admin_books_path %></li>
-              </ul>
-            <% end %>
-          <% end %>
-
-          <%= render_accordion do %>
-            <%= accordion_title do %>
-              <%= t ".book_request" %>
-            <% end %>
-            <%= accordion_description do %>
-              <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t("book_request_list"), admin_requests_show_path %></li>
-              </ul>
-            <% end %>
-          <% end %>
-
-          <%= render_accordion do %>
-            <%= accordion_title do %>
-              <%= t ".users" %>
-            <% end %>
-            <%= accordion_description do %>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".user_list"), admin_users_path %></li>
-              </ul>
-            <% end %>
-          <% end %>
-          <%= render_accordion do %>
-            <%= accordion_title do %>
-              <%= t ".authors" %>
-            <% end %>
-            <%= accordion_description do %>
-              <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".author_list"), admin_authors_path %></li>
-              </ul>
-            <% end %>
-          <% end %>
-        </div>
+        <%= render "layouts/admin/sidebar" %>
         <div class="mt-4 w-9/12 ml-[340px] relative z-0">
           <%= yield %>
         </div>

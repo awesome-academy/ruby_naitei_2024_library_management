@@ -18,11 +18,13 @@ class User < ApplicationRecord
 
   enum gender: {male: 0, female: 1}
 
-  validates :citizen_id, presence: true, length: {is: Settings.digit_12}
+  validates :citizen_id, presence: true, length: {is: Settings.digit_12},
+uniqueness: true
   validates :name, presence: true, length: {maximum: Settings.digit_50}
   validates :birth, presence: true
   validates :phone, presence: true
   validates :address, presence: true, length: {maximum: Settings.digit_255}
+  validate :restrict_age
   scope :for_account, ->(account_id){where(account_id:)}
   scope :order_by_name, ->{order(:name)}
   scope :banned, (lambda do
@@ -54,5 +56,15 @@ class User < ApplicationRecord
         all
       end
     end
+  end
+
+  private
+
+  def restrict_age
+    return if birth.blank?
+
+    return unless birth >= 16.years.ago.to_date
+
+    errors.add(:birth, I18n.t("restrict_age"))
   end
 end
