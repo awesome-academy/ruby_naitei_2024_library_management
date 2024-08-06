@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     root "static_pages#home"
     resources :book_series, only: %i(show)
     resources :accounts, only: %i(new create)
-    resources :users, only: %i(new create index)
+    resources :users
     resources :ratings, only: %i(create)
     resources :carts, only: %i(create destroy show)
     resources :authors, only: %i(show index)

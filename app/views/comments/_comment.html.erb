@@ -1,6 +1,6 @@
 <div class="flex gap-x-2 py-2">
   <div class="flex">
-    <%= image_tag comment.user.profile_url || "avatar.jpeg", class: "w-12 h-12 rounded-full border border-primary" %>
+    <%= image_tag @user.profile_image.attached? ? @user.profile_image : "default_avatar.png", alt: "cover", class: "w-12 h-12 rounded-full border border-primary" %>
   </div>
   <div class="">
     <p class="flex items-center gap-x-2"><strong><%= comment.user.name %></strong>

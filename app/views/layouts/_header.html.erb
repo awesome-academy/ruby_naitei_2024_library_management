@@ -30,7 +30,7 @@
               <div class="w-6 flex items-center pl-[1px] mr-2">
                 <i class="bi text-lg bi-person-circle"></i>
               </div>
-              <span><%= t "profile_menu.profile" %></span>
+              <span><%= link_to t("profile_menu.profile"), user_path(current_user) %></span>
             <% end %>
             <%= dropdown_menu_item do %>
               <%= link_to requests_path, class: "flex items-center" do %>

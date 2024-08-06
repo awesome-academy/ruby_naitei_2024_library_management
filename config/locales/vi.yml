@@ -45,6 +45,7 @@ vi:
         address: "Địa chỉ"
         phone: "Số điện thoại"
         gender: "Giới tính"
+        profile_image: "Ảnh đại diện"
       book:
         id: "Mã"
         title: "Tiêu đề"
@@ -69,7 +70,7 @@ vi:
     title: "Tạo tài khoản"
     submit: "Tiếp theo"
     have_account: "Đã có tài khoản? "
-    invalid: "Đăng kí thất bại"
+    invalid: "Đăng nhập thất bại"
   sign_in:
     title: "Đăng nhập"
     submit: "Đăng nhập"
@@ -103,6 +104,8 @@ vi:
     comment_fail: "Có lỗi xảy ra khi bình luận"
     add_to_favourites_fail: "Có lỗi xảy ra khi thêm vào danh sách yêu thích"
     remove_from_favourites_fail: "Có lỗi xảy ra khi xóa khỏi danh sách yêu thích"
+    user_update_success: "Cập nhật thông tin cá nhân thành công"
+    user_update_fail: "Cập nhật thông tin cá nhân thất bại"
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"
@@ -118,8 +121,10 @@ vi:
       new: "Người dùng mới"
     show:
       title: "Thông tin người dùng"
+      edit: "Chỉnh sửa"
     edit:
       title: "Cập nhật thông tin người dùng"
+      submit: "Cập nhật"
     banned:
       title: "Danh sách người dùng bị chặn"
       activate: "Kích hoạt"

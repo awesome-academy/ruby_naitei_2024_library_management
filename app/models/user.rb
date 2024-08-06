@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  VALID_ATTRIBUTES = %i(citizen_id name birth gender phone address).freeze
+  VALID_ATTRIBUTES = %i(citizen_id name birth gender phone address
+                        profile_image).freeze
 
   belongs_to :account
   has_many :borrow_books, dependent: :destroy
@@ -10,6 +11,9 @@ class User < ApplicationRecord
   has_many :author_followers, dependent: :destroy
   has_many :carts, dependent: :destroy
   has_many :books, through: :carts, dependent: :destroy
+  has_one_attached :profile_image
+
+  delegate :email, to: :account
 
   enum gender: {male: 0, female: 1}
 
