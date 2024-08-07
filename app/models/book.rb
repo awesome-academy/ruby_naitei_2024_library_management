@@ -14,6 +14,7 @@ class Book < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :users, through: :favourites, dependent: :destroy
   has_many :users, through: :carts, dependent: :destroy
+  has_many :carts, dependent: :destroy
   has_one_attached :cover_image
 
   scope :latest, ->{order(publication_date: :desc)}

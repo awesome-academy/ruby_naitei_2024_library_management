@@ -1,5 +1,6 @@
+<% provide :page_title, t("borrow_books_title") %>
 <div class="container relative mx-auto mt-[84px] px-5">
-  <h1 class="mt-4 text-3xl font-semibold py-6"><%= t "borrow_books" %></h1>
+  <h1 class="mt-4 text-3xl font-semibold py-6"><%= t "borrow_books_title" %></h1>
   <%= form_with url: borrow_books_path, method: :get, local: true, class: "your-form-class flex justify-end gap-4 items-center mb-8" do %>
     <%= select_tag :status, options_for_select(status_borrow_options_for_select, params[:status]), class: "col-span-2 rounded-md border border-input bg-background" %>
     <%= text_field_tag :search, params[:search], placeholder: t("search"), class: "col-span-2 rounded-md border border-input bg-background" %>
@@ -7,14 +8,14 @@
   <% end %>
   <%= render_table do %>
     <%= table_head do %>
-      <%= table_header t(".book_id"), class: "w-1/10" %>
+      <%= table_header t("borrow_books.book.book_id"), class: "w-1/10" %>
       <%= table_header class: "w-1/4" do %>
         <%= t "title" %>
       <% end %>
-      <%= table_header t(".request_id"), class: "w-1/10" %>
-      <%= table_header t(".user_name"), class: "w-1/8" %>
-      <%= table_header t(".borrow_date"), class: "w-1/10" %>
-      <%= table_header t(".return_date"), class: "w-1/10" %>
+      <%= table_header t("borrow_books.book.request_id"), class: "w-1/10" %>
+      <%= table_header t("borrow_books.book.user_name"), class: "w-1/8" %>
+      <%= table_header t("borrow_books.book.borrow_date"), class: "w-1/10" %>
+      <%= table_header t("borrow_books.book.return_date"), class: "w-1/10" %>
       <%= table_header "", class: "w-1/8" %>
     <% end %>
     <%= table_body do %>
@@ -35,12 +36,19 @@
             <%= book.return_date.present? ? book.return_date : "" %>
           <% end %>
           <%= table_column do %>
-            <div class="border rounded-lg py-2 px-4 text-center <%= borrow_status_class(book.is_borrow) %>">
-              <%= book.is_borrow ? t(".borrowing") : t(".returned") %>
+            <div class="border rounded-lg py-2 px-4 text-center <%= borrow_status_class(book) %>">
+              <%= status book %>
             </div>
           <% end %>
         <% end %>
       <% end %>
     <% end %>
+  <% end %>
+  <% if @borrowed_books.empty? %>
+    <%= render "shared/no_data" %>
+  <% else %>
+    <div class="w-full items-center justify-center flex py-5">
+      <%== pagy_nav(@borrowed_pagy) %>
+    </div>
   <% end %>
 </div>

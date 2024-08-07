@@ -19,7 +19,7 @@ en:
   goal: "Project's Goal: Learn Ruby on Rails"
   design: "Design and Developed by"
   mark_as_returned: "Mark as Returned"
-  borrow_books: "Borrow Books"
+  borrow_books_title: "Borrow Books"
   title: "Title"
   ban_message: "You need to return the book on time, after returning the book you can continue to borrow the book."
   favourite_books: "Favourite Books"
@@ -28,6 +28,9 @@ en:
   book_return_confirm: "Borrow return confirmations"
   edit: "Edit"
   delete: "Delete"
+  link: "Link"
+  header:
+    sign_out: "Sign out"
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -126,6 +129,8 @@ en:
     remove_book_from_cart_success: "Remove book from cart successfully."
     remove_book_from_cart_fail: "Remove book from cart failed."
     banned_message: "Your account has been banned."
+    confirm_to_cancel_request: "Are you sure you want to cancel this request?"
+    description_cancel_request: "Please enter the reason for canceling the request."
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."
@@ -163,6 +168,12 @@ en:
     edit:
       title: "Update Book Information"
       update: "Update"
+    status:
+      pending: "Pending"
+      approved: "Approved"
+      rejected: "Rejected"
+      cancel: "Cancelled"
+      available: "Available"
   author:
     index:
       title: "Author List"
@@ -184,7 +195,7 @@ en:
       authors: "Authors"
       book_request_list: "Book Request List"
       book_list: "Book List"
-      request_list: "Request List"
+      request_list_title: "Request List"
       user_list: "User List"
       user_ban_list: "User Ban List"
       author_list: "Author List"
@@ -258,6 +269,12 @@ en:
       description: "Description"
       reject: "Reject"
       approve: "Approve"
+      rejected: "Rejected"
+      approved: "Approved"
+      cancel: "Canceled"
+      pending: "Pending"
+      cancel_button: "Cancel"
+      confirm: "confirm"
   home_page:
     start_reading: "Start Exploring =>"
   authors_page:
@@ -282,5 +299,7 @@ en:
       user_name: "User Name"
       borrow_date: "Borrow Date"
       return_date: "Return Date"
+  shared:
+    data_empty: "No data"
   favourites:
     title: "Favourite Books - Librarails"

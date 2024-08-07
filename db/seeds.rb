@@ -157,7 +157,7 @@ request3 = Request.create!(user_id: 7, status: 1)
 request4 = Request.create!(user_id: 8, status: 1)
 
 # Tạo dữ liệu cho borrow_books
-BorrowBook.create!(user_id: 5, book_id: 1, request_id: request1.id, borrow_date: 10.days.ago, return_date: nil, is_borrow: true)
-BorrowBook.create!(user_id: 6, book_id: 2, request_id: request2.id, borrow_date: 15.days.ago, return_date: nil, is_borrow: true)
-BorrowBook.create!(user_id: 7, book_id: 3, request_id: request3.id, borrow_date: 20.days.ago, return_date: nil, is_borrow: true)
-BorrowBook.create!(user_id: 8, book_id: 4, request_id: request3.id, borrow_date: 6.days.ago, return_date: nil, is_borrow: true)
+# BorrowBook.create!(user_id: 5, book_id: 1, request_id: request1.id, borrow_date: 10.days.ago, return_date: nil, is_borrow: true)
+# BorrowBook.create!(user_id: 6, book_id: 2, request_id: request2.id, borrow_date: 15.days.ago, return_date: nil, is_borrow: true)
+# BorrowBook.create!(user_id: 7, book_id: 3, request_id: request3.id, borrow_date: 20.days.ago, return_date: nil, is_borrow: true)
+# BorrowBook.create!(user_id: 8, book_id: 4, request_id: request3.id, borrow_date: 6.days.ago, return_date: nil, is_borrow: true)

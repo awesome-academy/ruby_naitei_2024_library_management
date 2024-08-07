@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       resources :books, only: %i(index new create destroy edit update) do
         collection do
           get "borrowed_books"
-        end 
+        end
       end
       resources :borrow_books do
         collection do
@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :requests, only: %i(new create show index update) do
+    resources :requests, only: %i(new create index update) do
       member do
         patch :update
       end

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('click', function() {
       const requestId = this.dataset.requestId;
       const action = this.dataset.action;
-      const description = document.querySelector('#sample_input').value;
+      const description = document.querySelector(`#sample_input_${action}`).value;
 
       fetch(`/requests/${requestId}`, {
         method: 'PATCH',
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => {
         console.error('Error:', error);
       });
+      location.reload();
     });
   });
 });

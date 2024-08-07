@@ -32,6 +32,14 @@ module SessionsHelper
     redirect_to login_path, status: :see_other
   end
 
+  def authenticate_account
+    return if current_account.present?
+
+    store_location
+    flash[:danger] = t "noti.sign_in_first"
+    redirect_to login_path, status: :see_other
+  end
+
   def forget account
     account.forget
     cookies.delete :user_id

@@ -5,8 +5,6 @@ class Request < ApplicationRecord
 
   validates :status, presence: true
 
-  private
-
   def send_email
     if approved?
       RequestMailer.with(request: self, user:).request_approved.deliver_now
@@ -19,6 +17,8 @@ class Request < ApplicationRecord
 
     where(status:)
   }
+
+  scope :newest_first, ->{order(created_at: :desc)}
 
   scope :search_by_book, lambda {|query|
     joins(borrow_books: :book).merge(Book.filter_by_search(query))

@@ -1,13 +1,14 @@
-<h1 class="mt-4 text-3xl font-semibold py-6"><%= t "borrow_books" %></h1>
+<% provide :page_title, t("borrow_books_title") %>
+<h1 class="mt-4 text-3xl font-semibold py-6"><%= t "borrow_books_title" %></h1>
 <%= render_table do %>
   <%= table_head do %>
-    <%= table_header t("borrow_books.book_id"), class: "w-1/10" %>
+    <%= table_header t("borrow_books.book.book_id"), class: "w-1/10" %>
     <%= table_header class: "w-1/4" do %>
       <%= t "title" %>
     <% end %>
-    <%= table_header t("borrow_books.request_id"), class: "w-1/10"  %>
-    <%= table_header t("borrow_books.user_name"), class: "w-1/8"  %>
-    <%= table_header t("borrow_books.borrow_date"), class: "w-1/10" %>
+    <%= table_header t("borrow_books.book.request_id"), class: "w-1/10"  %>
+    <%= table_header t("borrow_books.book.user_name"), class: "w-1/8"  %>
+    <%= table_header t("borrow_books.book.borrow_date"), class: "w-1/10" %>
     <%= table_header "", class: "w-1/6" %>
   <% end %>
   <%= table_body do %>
@@ -38,4 +39,11 @@
       <% end %>
     <% end %>
   <% end %>
+<% end %>
+<% if @borrowed_books.empty? %>
+  <%= render "shared/no_data" %>
+<% else %>
+  <div class="w-full items-center justify-center flex py-5">
+    <%== pagy_nav(@borrowed_pagy) %>
+  </div>
 <% end %>
