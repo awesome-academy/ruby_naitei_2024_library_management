@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
   private
 
   def account_banned?
-    current_user.account.ban?
+    current_user&.account&.ban?
   end
 
   def handle_banned_account

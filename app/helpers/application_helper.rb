@@ -12,6 +12,6 @@ module ApplicationHelper
       admin_users_path, admin_accounts_path,
       admin_books_path
     ]
-    excluded_paths.include?(request.path)
+    excluded_paths.include?(request.path) || flash[:danger]
   end
 end

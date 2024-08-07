@@ -10,7 +10,7 @@
         <%= t "ban_message" %>
       </div>
     <% end %>
-    <%  if @favourite_books.any? %>
+    <%  if @favourite_books && @favourite_books.any? %>
       <div class="space-y-5">
         <div class="flex items-center justify-between">
           <h2 class="font-semibold text-4xl "><%= t "favourite_books" %></h2>

@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user.birth ||= 16.years.ago.to_date
   end
 
   def create
@@ -71,7 +72,7 @@ class UsersController < ApplicationController
   end
 
   def handle_failed_creation
-    flash[:danger] = @user.errors.full_messages.to_sentence
+    flash[:danger] = @user.errors.full_messages[0]
     redirect_to new_user_path
   end
 

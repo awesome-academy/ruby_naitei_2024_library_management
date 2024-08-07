@@ -1,4 +1,7 @@
 class CartsController < ApplicationController
+  include SessionsHelper
+  before_action :authenticate_user
+
   def create
     if book_already_in_cart?
       flash[:danger] = t "noti.book_already_in_cart"

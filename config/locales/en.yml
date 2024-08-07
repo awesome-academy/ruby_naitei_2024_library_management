@@ -24,6 +24,10 @@ en:
   ban_message: "You need to return the book on time, after returning the book you can continue to borrow the book."
   favourite_books: "Favourite Books"
   favourite: "Favourite"
+  restrict_age: "You must be at least 16 years old to use this site."
+  book_return_confirm: "Borrow return confirmations"
+  edit: "Edit"
+  delete: "Delete"
   profile_menu:
     profile: "Profile"
     language: "Language"
