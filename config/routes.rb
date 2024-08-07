@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :ratings, only: %i(create)
     resources :carts, only: %i(create destroy show)
     resources :authors, only: %i(show index)
-    resources :favourites, only: %i(create destroy)
+    resources :favourites, only: %i(create destroy index)
     namespace :admin do
       root "users#index"
       get "requests/show", to: "requests#show", as: "requests_show"

@@ -1,0 +1,20 @@
+<% provide :title, t("favourites.title") %>
+<main class="container relative mx-auto mt-[84px] px-5">
+  <div class="py-10 space-y-10">
+    <h1 class="font-semibold text-4xl text-red-500">
+      <%= t "favourite_books" %>
+    </h1>
+    <section class="border-2 shadow-lg p-10 py-5 rounded-md">
+      <div class="flex justify-between items-center">
+        <h3><%= t "books_page.total" %>: <%= @total_books %> <%= t "books_page.books" %></h3>
+      </div>
+      <%= render_separator class: "my-2" %>
+      <div class="grid grid-cols-2 gap-8">
+        <%= render partial: "books/book", collection: @favourite_books, as: :book %>
+      </div>
+      <div class="w-full items-center justify-center flex py-5">
+        <%== pagy_nav(@pagy) %>
+      </div>
+    </section>
+  </div>
+</main>

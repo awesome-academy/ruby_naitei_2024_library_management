@@ -3,6 +3,11 @@ class FavouritesController < ApplicationController
   before_action :authenticate_user
   before_action :find_book, only: %i(create)
 
+  def index
+    @pagy, @favourite_books = pagy current_user.favourite_books
+    @total_books = @favourite_books.count
+  end
+
   def create
     @favourite = current_user.favourites.new(book: @book)
 

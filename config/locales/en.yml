@@ -22,6 +22,8 @@ en:
   borrow_books: "Borrow Books"
   title: "Title"
   ban_message: "You need to return the book on time, after returning the book you can continue to borrow the book."
+  favourite_books: "Favourite Books"
+  favourite: "Favourite"
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -276,3 +278,5 @@ en:
       user_name: "User Name"
       borrow_date: "Borrow Date"
       return_date: "Return Date"
+  favourites:
+    title: "Favourite Books - Librarails"
