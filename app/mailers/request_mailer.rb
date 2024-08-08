@@ -7,7 +7,7 @@ class RequestMailer < ApplicationMailer
     )
   end
 
-  def request_approved _request
+  def request_approved
     @request = params[:request]
     mail(
       to: @request.user.account.email,

@@ -1,35 +1,35 @@
 <div class="w-[260px] border-r h-[100vh] px-2 fixed z-10 top-20 left-0 bg-background">
   <%= render_accordion do %>
     <%= accordion_title do %>
-      <%= t ".books" %>
+      <%= t "activerecord.models.Book" %>
     <% end %>
     <%= accordion_description do %>
-      <%= link_to t(".book_list"), admin_books_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
+      <%= link_to t("book.index.title"), admin_books_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
     <% end %>
   <% end %>
   <%= render_accordion do %>
     <%= accordion_title do %>
-      <%= t ".book_request" %>
+      <%= t "layouts.application.book_request" %>
     <% end %>
     <%= accordion_description do %>
-      <%= link_to t("book_request_list"), admin_requests_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
+      <%= link_to t("layouts.application.book_request_list"), admin_requests_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
       <%= link_to t("book_return_confirm"), borrowed_books_admin_books_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
     <% end %>
   <% end %>
   <%= render_accordion do %>
     <%= accordion_title do %>
-      <%= t ".users" %>
+      <%= t "layouts.application.users" %>
     <% end %>
     <%= accordion_description do %>
-      <%= link_to t(".user_list"), admin_users_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
+      <%= link_to t("layouts.application.user_list"), admin_users_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
     <% end %>
   <% end %>
   <%= render_accordion do %>
     <%= accordion_title do %>
-      <%= t ".authors" %>
+      <%= t "layouts.application.authors" %>
     <% end %>
     <%= accordion_description do %>
-      <%= link_to t(".author_list"), admin_authors_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
+      <%= link_to t("layouts.application.author_list"), admin_authors_path, class: "py-3 px-6 hover:bg-[#E0E0E0] w-full block cursor-pointer" %>
     <% end %>
   <% end %>
 </div>

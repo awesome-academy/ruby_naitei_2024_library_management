@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   include SessionsHelper
-  before_action :authenticate_user
+  before_action :authenticate_account
+  before_action :authenticate_user, only: %i(index)
   protect_from_forgery with: :null_session
 
   def new
@@ -14,38 +15,26 @@ class RequestsController < ApplicationController
       return
     end
 
-    @request = current_user.requests.build(request_params)
+    @request = build_request
     selected_books = fetch_selected_books
 
-    begin
-      handle_errors(selected_books)
-      process_request(selected_books)
-    rescue StandardError => e
-      flash[:warning] = e.message
+    if handle_errors(selected_books)
+      process_request(selected_books, request_params["borrow_date"])
+    else
       redirect_to new_request_path
-    rescue ActiveRecord::RecordInvalid
-      flash[:danger] = t("noti.request_failure_noti")
-      render :new
     end
   end
 
   def index
-    @requests = current_user.requests.includes(:borrow_books)
-
-    if params[:status].present?
-      @requests = @requests.filter_by_status(params[:status])
-    end
-
-    return if params[:search].blank?
-
-    @requests = @requests.search_by_book(params[:search])
+    @requests = current_user.requests.includes(:borrow_books).newest_first
+    @requests = filter_by_status(@requests)
+    @request_pagy, @requests = search_requests(@requests)
   end
 
-  def borrowed_books
-    @pagy, @borrowed_books = pagy(
-      BorrowBook
-        .borrowed
-        .with_details
+  def borrowed _books
+    @borrowed_pagy, @borrowed_books = pagy(
+      BorrowBook.borrowed.with_details,
+      items: Settings.number_5
     )
   end
 
@@ -55,15 +44,24 @@ class RequestsController < ApplicationController
     if @request.nil?
       render_not_found
     elsif @request.update(request_params)
-      handle_approved_status if params[:status] == "approved"
+      if params[:status] == "approved"
+        handle_approved_status
+        decrement_available_quantity
+      end
       @request.send_email if %w(approved rejected).include?(params[:status])
-      render json: {success: true}
     else
       render_update_error
     end
   end
 
   private
+
+  def build_request
+    current_user.requests.build(
+      status: request_params["status"],
+      description: request_params["description"]
+    )
+  end
 
   def fetch_requests_with_books requests
     requests.includes(:books)
@@ -74,9 +72,21 @@ class RequestsController < ApplicationController
   end
 
   def handle_errors selected_books
+    validate_selected_books(selected_books)
+    true
+  rescue StandardError => e
+    flash[:warning] = e.message
+    false
+  rescue ActiveRecord::RecordInvalid
+    flash[:danger] = t("noti.request_failure_noti")
+    render :new
+    false
+  end
+
+  def validate_selected_books selected_books
     if selected_books.blank?
       raise StandardError, t("noti.empty_request_noti")
-    elsif selected_books.count > Settings.max_books
+    elsif selected_books.count > Settings.number_5
       raise StandardError, t("noti.over_limit_request_noti")
     elsif exceed_borrow_limit?(selected_books)
       raise StandardError, t("noti.over_limit_request_noti")
@@ -88,10 +98,10 @@ class RequestsController < ApplicationController
     pending_books = Request.pending_for_user(current_user).count
     total_books_count = borrowed_books_count + pending_books
 
-    total_books_count + selected_books.size > Settings.max_books
+    total_books_count + selected_books.size > Settings.number_5
   end
 
-  def process_request selected_books
+  def process_request selected_books, borrow_date
     ActiveRecord::Base.transaction do
       @request.save!
       selected_books.each do |book|
@@ -99,7 +109,7 @@ class RequestsController < ApplicationController
           user: current_user,
           book:,
           request: @request,
-          borrow_date: Time.current,
+          borrow_date:,
           is_borrow: false
         )
         current_user.carts.where(book_id: book.id).destroy_all
@@ -110,7 +120,7 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:status, :description)
+    params.require(:request).permit(:status, :description, :borrow_date)
   end
 
   def handle_approved_status
@@ -133,5 +143,30 @@ class RequestsController < ApplicationController
   def handle_banned_account
     flash[:danger] = t("noti.banned_message")
     redirect_to new_request_path
+  end
+
+  def decrement_available_quantity
+    @request.borrow_books.each do |borrow_book|
+      book_inventory = BookInventory.find_by(book_id: borrow_book.book_id)
+      if book_inventory.present?
+        book_inventory.decrement!(:available_quantity, 1)
+      else
+        flash[:danger] = t "noti.book_inventory_not_found"
+      end
+    end
+  end
+
+  def filter_by_status requests
+    return requests if params[:status].blank?
+
+    requests.filter_by_status(params[:status])
+  end
+
+  def search_requests requests
+    if params[:search].present?
+      pagy(requests.search_by_book(params[:search]), items: Settings.number_5)
+    else
+      pagy(requests, items: Settings.number_5)
+    end
   end
 end

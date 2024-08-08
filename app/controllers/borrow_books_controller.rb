@@ -1,6 +1,9 @@
 class BorrowBooksController < ApplicationController
   def index
-    @borrowed_books = fetch_filtered_books(params[:status], params[:search])
+    @borrowed_pagy, @borrowed_books = pagy(
+      fetch_filtered_books(params[:status],
+                           params[:search]), items: Settings.number_5
+    )
   end
 
   private

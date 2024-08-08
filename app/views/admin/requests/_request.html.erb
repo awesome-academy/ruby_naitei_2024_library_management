@@ -1,66 +1,76 @@
-<div class="flex items-center justify-between py-2 border-b shadow-md rounded-lg px-4 border">
-  <div class="flex flex-col gap-4">
-    <h2 class="text-primary font-semibold"><%= t "request.request_id" %>: <%= request.id %></h2>
-    <% if request.description.present? %>
-      <div class="flex items-center gap-2 text-gray-500">
-        <span><%= t("request.description") %>:</span>
-        <span><%= request.description %></span>
+<%= render_accordion do %>
+  <%= accordion_title do %>
+    <div class="flex items-center justify-between py-2 rounded-lg px-4  w-full">
+      <div class="flex flex-col gap-4">
+        <h2 class="text-primary font-semibold"><%= t "requests.request.request_id" %>: <%= request.id %></h2>
+        <% if request.description.present? %>
+          <div class="flex items-center gap-2 text-gray-500">
+            <span><%= t("requests.request.description") %>:</span>
+            <span><%= request.description %></span>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-  <div class="flex items-center gap-4">
-    <div class="py-2 px-4 rounded-lg border <%= status_class(request.status) %>">
-      <%= t("request.statuses.#{request.status}") %>
-    </div>
-    <% if request.pending? %>
-      <%= render_alert_dialog do %>
-        <%= alert_dialog_trigger do %>
-          <button class="bg-primary rounded-xl text-white py-2 px-4">
-            <%= t "request.reject"%>
-          </button>
-        <% end %>
-        <%= alert_dialog_content do %>
-          <div class="flex flex-col space-y-2 text-center sm:text-left">
-            <h2 class="text-lg font-semibold"><%= t("noti.confirm_to_cancel_request") %></h2>
-            <p class="text-sm text-muted-foreground">
-              <%= t("noti.description_cancel_request") %>
-            </p>
-            <%= render_input name: "sample_input", id: "sample_input", placeholder: t("book_details.write_review") %>
-          </div>
-        <% end %>
-        <%= alert_dialog_cancel do %>
-          <%= render_button(t("books_page.cancel"), variant: :outline) %>
-        <% end %>
-        <%= alert_dialog_continue do %>
-          <%= button_tag(t("books_page.confirm"), type: :button, class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border", data: { action: "rejected", request_id: request.id }) %>
-        <% end %>
-      <% end %>
+      <div class="flex items-center gap-4">
+        <div class="py-2 px-4 rounded-lg border ml-8 <%= status_class(request.status) %>">
+          <%= t("requests.request.#{request.status}") %>
+        </div>
+        <% if request.pending? %>
+        <div class="border-r mx-4 w-1 border-gray-800 h-[30px]"></div>
+          <%= render_alert_dialog do %>
+            <%= alert_dialog_trigger do %>
+              <button class="bg-primary rounded-xl text-white py-2 px-4">
+                <%= t "requests.request.reject"%>
+              </button>
+            <% end %>
+            <%= alert_dialog_content do %>
+              <div class="flex flex-col space-y-2 text-center sm:text-left">
+                <h2 class="text-lg font-semibold"><%= t("noti.confirm_to_reject_request") %></h2>
+                <p class="text-sm text-muted-foreground">
+                  <%= t("noti.description_reject_request") %>
+                </p>
+                <%= render_input name: "sample_input", id: "sample_input_rejected", placeholder: t("book_details.write_review") %>
+              </div>
+            <% end %>
+            <%= alert_dialog_cancel do %>
+              <%= render_button(t("books_page.cancel"), variant: :outline) %>
+            <% end %>
+            <%= alert_dialog_continue do %>
+              <%= button_tag(t("books_page.confirm"), type: :button, class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border", data: { action: "rejected", request_id: request.id }) %>
+            <% end %>
+          <% end %>
 
-      <%= render_alert_dialog do %>
-        <%= alert_dialog_trigger do %>
-          <button class="bg-primary rounded-xl text-white py-2 px-4">
-            <%= t "request.approve"%>
-          </button>
+          <%= render_alert_dialog do %>
+            <%= alert_dialog_trigger do %>
+              <button class="bg-primary rounded-xl text-white py-2 px-4">
+                <%= t "request.approve"%>
+              </button>
+            <% end %>
+            <%= alert_dialog_content do %>
+              <div class="flex flex-col space-y-2 text-center sm:text-left">
+                <h2 class="text-lg font-semibold"><%= t("noti.confirm_to_approve_request") %></h2>
+                <p class="text-sm text-muted-foreground">
+                  <%= t("noti.description_approve_request") %>
+                </p>
+                <%= render_input name: "sample_input", id: "sample_input_approved", placeholder: t("book_details.write_review") %>
+              </div>
+            <% end %>
+            <%= alert_dialog_cancel do %>
+              <%= render_button(t("books_page.cancel"), variant: :outline) %>
+            <% end %>
+            <%= alert_dialog_continue do %>
+              <%= button_tag(t("books_page.confirm"), type: :button, class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border", data: { action: "approved", request_id: request.id }) %>
+            <% end %>
+          <% end %>
         <% end %>
-        <%= alert_dialog_content do %>
-          <div class="flex flex-col space-y-2 text-center sm:text-left">
-            <h2 class="text-lg font-semibold"><%= t("noti.confirm_to_cancel_request") %></h2>
-            <p class="text-sm text-muted-foreground">
-              <%= t("noti.description_cancel_request") %>
-            </p>
-            <%= render_input name: "sample_input", id: "sample_input", placeholder: t("book_details.write_review") %>
-          </div>
-        <% end %>
-        <%= alert_dialog_cancel do %>
-          <%= render_button(t("books_page.cancel"), variant: :outline) %>
-        <% end %>
-        <%= alert_dialog_continue do %>
-          <%= button_tag(t("books_page.confirm"), type: :button, class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border", data: { action: "approved", request_id: request.id }) %>
-        <% end %>
-      <% end %>
+      </div>
+    </div>
+  <% end %>
+  <%= accordion_description do %>
+    <% if request.borrow_books.empty? %>
+      <%= render "shared/no_data" %>
     <% end %>
-  </div>
-</div>
-<div class="py-2 px-4 my-4 mb-10">
-  <%= render partial: "book", collection: request.borrow_books.map(&:book), as: :book, locals: { show_trash_icon: false } %>
-</div>
+    <div class="py-2 px-4 my-4 mb-10">
+      <%= render partial: "book", collection: request.borrow_books.map(&:book), as: :book, locals: { show_trash_icon: false } %>
+    </div>
+  <% end %>
+<% end %>

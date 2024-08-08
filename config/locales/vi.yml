@@ -19,7 +19,7 @@ vi:
   goal: "Mục tiêu dự án: Học Ruby on Rails"
   design: "Thiết kế và phát triển bởi"
   mark_as_returned: "Đánh dấu trả sách"
-  borrow_books: "Danh sách mượn sách"
+  borrow_books_title: "Danh sách mượn sách"
   title: "Tiêu đề"
   ban_message: "Bạn cần phải trả sách đúng hạn, sau khi trả sách bạn có thể tiếp tục mượn sách."
   favourite_books: "Sách yêu thích"
@@ -28,6 +28,9 @@ vi:
   book_return_confirm: "Xác nhận trả sách"
   edit: "Chỉnh sửa"
   delete: "Xóa"
+  link: "Liên kết"
+  header:
+    sign_out: "Đăng xuất"
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"
@@ -126,6 +129,12 @@ vi:
     remove_book_from_cart_success: "Xóa sách khỏi giỏ hàng thành công."
     remove_book_from_cart_fail: "Xóa sách khỏi giỏ hàng thất bại."
     banned_message: "Tài khoản của bạn đã bị chặn."
+    confirm_to_cancel_request: "Bạn có chắc muốn hủy yêu cầu này ?"
+    description_cancel_request: "Vui lòng nhập lý do huỷ yêu cầu."
+    confirm_to_approve_request: "Bạn có chắc muốn duyệt yêu cầu này ?"
+    description_approve_request: "Vui lòng nhập lý do duyệt yêu cầu."
+    confirm_to_reject_request: "Bạn có chắc muốn từ chối yêu cầu này ?"
+    description_reject_request: "Vui lòng nhập lý do từ chối yêu cầu."
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"
@@ -184,7 +193,7 @@ vi:
       authors: "Tác giả"
       book_request_list: "Danh sách yêu cầu mượn sách"
       book_list: "Danh sách sách"
-      request_list: "Danh sách yêu cầu"
+      request_list_title: "Danh sách yêu cầu"
       user_list: "Danh sách người dùng"
       user_ban_list: "Danh sách người dùng bị cấm"
       author_list: "Danh sách tác giả"
@@ -259,6 +268,12 @@ vi:
       description: "Mô tả"
       reject: "Từ chối"
       approve: "Duyệt"
+      rejected: "Đã từ chối"
+      approved: "Đã duyệt"
+      cancel: "Đã hủy"
+      pending: "Chờ duyệt"
+      cancel_button: "Hủy"
+      confirm: "Xác nhận"
   home_page:
     start_reading: "Bắt đầu khám phá =>"
   authors_page:
@@ -284,5 +299,7 @@ vi:
       user_name: "Tên người dùng"
       borrow_date: "Ngày mượn"
       return_date: "Ngày trả"
+  shared:
+    data_empty: "Không có dữ liệu"
   favourites:
     title: "Sách yêu thích - Librarails"

@@ -42,10 +42,11 @@ class Admin::BooksController < Admin::ApplicationController
   end
 
   def borrowed_books
-    @pagy, @borrowed_books = pagy(
+    @borrowed_pagy, @borrowed_books = pagy(
       BorrowBook
         .borrowed
-        .with_details
+        .with_details,
+      items: Settings.books_per_page
     )
   end
 
