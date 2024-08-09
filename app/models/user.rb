@@ -22,7 +22,9 @@ class User < ApplicationRecord
 uniqueness: true
   validates :name, presence: true, length: {maximum: Settings.digit_50}
   validates :birth, presence: true
-  validates :phone, presence: true
+  validates :phone, presence: true,
+                 numericality: true,
+                 length: {minimum: 10, maximum: 15}
   validates :address, presence: true, length: {maximum: Settings.digit_255}
   validate :restrict_age
   scope :for_account, ->(account_id){where(account_id:)}

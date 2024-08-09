@@ -2,6 +2,6 @@
 <p><%= t "request_mailer.failure.hello", name: @request.user.name %></p>
 <p><%= t "request_mailer.failure.message", description: @request.description %></p>
 <p>
-  <%= link_to request_url(@request) %>
+  <%= link_to t("request_mailer.view_request"), requests_url %>
 </p>
 <p><%= t "request_mailer.failure.thanks" %></p>

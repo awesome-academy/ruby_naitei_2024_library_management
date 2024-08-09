@@ -231,6 +231,7 @@ vi:
       message: "Đây là lời nhắc nhở rằng bạn cần trả lại sách đã mượn trước ngày %{due_date}."
       thanks: "Cảm ơn bạn!"
   request_mailer:
+    view_request: "Xem chi tiết yêu cầu tại đây"
     success:
       subject: "Yêu Cầu Mượn Sách"
       hello: "Gửi %{name},"
