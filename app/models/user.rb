@@ -49,6 +49,10 @@ uniqueness: true
   end
 
   class << self
+    def due_reminder
+      neardue.each(&:send_due_reminder)
+    end
+
     def with_status status
       if status.present? && respond_to?(status)
         public_send(status)
