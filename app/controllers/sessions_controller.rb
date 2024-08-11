@@ -1,53 +1,7 @@
-class SessionsController < ApplicationController
-  before_action :find_account_by_email, only: [:create]
+class SessionsController < Devise::SessionsController
+  def after_sign_in_path_for _resource
+    return admin_users_path if current_account.is_admin
 
-  def new; end
-
-  def create
-    if @account.authenticate params.dig(:session, :password)
-      log_in_account @account
-    else
-      handle_invalid_login
-    end
-  end
-
-  def destroy
-    log_out
-    redirect_to root_path
-  end
-
-  private
-  def find_account_by_email
-    @account = Account.find_by(email: params.dig(:session, :email)&.downcase)
-    return handle_invalid_login if @account.nil?
-
-    return unless @account.user.nil? && !@account.is_admin
-
-    flash[:warning] = t "noti.user_infor_404"
-    redirect_to new_user_path and return
-  end
-
-  def log_in_account account
-    forwarding_url = session[:forwarding_url]
-    reset_session
-    log_in account
-    remember_or_forget account
-    redirect_to admin_users_path and return if account.is_admin
-
-    session[:forwarding_url] = forwarding_url
-    redirect_back_or root_path
-  end
-
-  def remember_or_forget account
-    if params.dig(:session, :remember_me) == "1"
-      remember account
-    else
-      forget account
-    end
-  end
-
-  def handle_invalid_login
-    flash[:danger] = t "sign_up.invalid"
-    redirect_to login_path
+    root_path
   end
 end

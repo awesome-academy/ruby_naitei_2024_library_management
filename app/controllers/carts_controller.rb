@@ -13,7 +13,7 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    @cart = current_user.carts.find_by(book_id: params[:id])
+    @cart = @current_user.carts.find_by(book_id: params[:id])
 
     if @cart&.destroy
       flash[:success] = t "noti.remove_book_from_cart_success"
@@ -30,11 +30,11 @@ class CartsController < ApplicationController
   private
 
   def book_already_in_cart?
-    current_user.carts.exists?(book_id: params[:book_id])
+    @current_user.carts.exists?(book_id: params[:book_id])
   end
 
   def add_book_to_cart
-    @cart = current_user.carts.new(book_id: params[:book_id])
+    @cart = @current_user.carts.new(book_id: params[:book_id])
 
     if @cart.save
       flash[:success] = t "noti.add_book_to_cart_success"

@@ -1,5 +1,6 @@
 module ApplicationHelper
   include Pagy::Frontend
+
   def full_title page_title
     base_title = t("base_title")
     page_title.blank? ? base_title : "#{page_title} | #{base_title}"
@@ -7,7 +8,7 @@ module ApplicationHelper
 
   def exclude_footer?
     excluded_paths = [
-      login_path, new_account_path,
+      new_account_session_path,
       new_user_path, admin_root_path,
       admin_users_path, admin_accounts_path,
       admin_books_path

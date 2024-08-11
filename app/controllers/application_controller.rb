@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   before_action :set_locale
   before_action :set_categories
+  before_action :set_current_user
 
   def is_admin_role?
     return if current_account.is_admin
@@ -23,5 +24,9 @@ class ApplicationController < ActionController::Base
   def set_categories
     @categories = Category.includes(:subcategories).no_parent_category
     @current_category = Category.find_by(id: params[:category])
+  end
+
+  def set_current_user
+    @current_user = current_account&.user if current_account
   end
 end
