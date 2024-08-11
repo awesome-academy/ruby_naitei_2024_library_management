@@ -40,6 +40,6 @@ class CommentsController < ApplicationController
   end
 
   def sort_comments
-    @book.comments.sorted_by params[:sort]
+    @book.comments.includes(:user).sorted_by params[:sort]
   end
 end

@@ -21,7 +21,7 @@
         <% end %>
         <%= render_dropdown_menu do %>
           <%= dropdown_menu_trigger do %>
-            <%= image_tag "avatar.jpeg", alt: "sample app avatar", class: "w-14 border cursor-pointer border-primary h-14 rounded-full" %>
+            <%= image_tag current_user&.profile_image.attached? ? current_user.profile_image : "avatar.jpeg", alt: "sample app avatar", class: "w-14 border cursor-pointer border-primary h-14 rounded-full" %>
           <% end %>
           <%= dropdown_menu_content do %>
             <%= dropdown_menu_label  current_user.name %>
