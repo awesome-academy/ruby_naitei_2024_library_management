@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  include SessionsHelper
+  load_and_authorize_resource
+
   include Pagy::Backend
   before_action :find_book
-  before_action :authenticate_user, only: %i(create)
 
   def create
     @comment = @book.comments

@@ -1,7 +1,5 @@
 class RequestsController < ApplicationController
-  include SessionsHelper
-  before_action :authenticate_account
-  before_action :authenticate_user, only: %i(index)
+  load_and_authorize_resource
   protect_from_forgery with: :null_session
 
   def new
@@ -17,9 +15,9 @@ class RequestsController < ApplicationController
 
     @request = build_request
     selected_books = fetch_selected_books
-
+    borrow_date = params[:request][:borrow_date]
     if handle_errors(selected_books)
-      process_request(selected_books, request_params["borrow_date"])
+      process_request(selected_books, borrow_date)
     else
       redirect_to new_request_path
     end
@@ -120,7 +118,7 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:status, :description, :borrow_date)
+    params.require(:request).permit(:status, :description)
   end
 
   def handle_approved_status

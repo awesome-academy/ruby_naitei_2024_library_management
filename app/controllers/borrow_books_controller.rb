@@ -1,4 +1,5 @@
 class BorrowBooksController < ApplicationController
+  load_and_authorize_resource
   def index
     @borrowed_pagy, @borrowed_books = pagy(
       fetch_filtered_books(params[:status],

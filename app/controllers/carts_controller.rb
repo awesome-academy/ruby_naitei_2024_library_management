@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
-  include SessionsHelper
-  before_action :authenticate_user
+  load_and_authorize_resource
 
   def create
     if book_already_in_cart?

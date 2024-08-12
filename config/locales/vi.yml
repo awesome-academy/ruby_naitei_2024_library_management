@@ -137,6 +137,7 @@ vi:
     description_reject_request: "Vui lòng nhập lý do từ chối yêu cầu."
     rating_authorization: "Bạn cần phải mượn sách và trả sách đúng hạn để có thể đánh giá sách."
     pass_regex: "Phải chứa ít nhất một chữ cái, một số và một ký tự đặc biệt"
+    permission_err: "Bạn không có quyền thực hiện thao tác này."
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"

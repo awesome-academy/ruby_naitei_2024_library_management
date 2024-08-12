@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   layout "application"
   include SessionsHelper
   include Pagy::Backend
+  include CanCan::ControllerAdditions
+
   before_action :set_locale
   before_action :set_categories
   before_action :set_current_user
@@ -12,6 +14,22 @@ class ApplicationController < ActionController::Base
     flash[:error] = t "noti.permission_err"
     redirect_to root_path
   end
+
+  def current_ability
+    @current_ability ||= Ability.new current_account
+  end
+
+  rescue_from CanCan::AccessDenied do |_exception|
+    if current_account.nil?
+      store_location
+      flash[:danger] = t "noti.sign_in_first"
+      redirect_to login_path
+    else
+      flash[:danger] = t "noti.permission_err"
+      redirect_to request.referer
+    end
+  end
+
   private
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
