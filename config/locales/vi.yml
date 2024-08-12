@@ -60,6 +60,9 @@ vi:
         phone: "Số điện thoại"
         gender: "Giới tính"
         profile_image: "Ảnh đại diện"
+        borrowed: "Đã mượn"
+        borrowing: "Đang mượn"
+        detail: "Chi tiết"
       book:
         id: "Mã"
         title: "Tiêu đề"
@@ -150,6 +153,7 @@ vi:
     index:
       title: "Danh sách người dùng"
       new: "Người dùng mới"
+      action: "Hành động"
     show:
       title: "Thông tin người dùng"
       edit: "Chỉnh sửa"

@@ -45,4 +45,24 @@ module UsersHelper
   def user_button_active?
     params[:status].present?
   end
+
+  def account_status_button user
+    if user.account.ban?
+      button_to t("user.banned.activate"),
+                update_status_admin_account_path(user.account),
+                data: {"turbo-method": :post},
+                class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-green-700
+                  text-green-700 font-semibold hover:text-white border
+                  border-green-700 hover:border-transparent rounded-md
+                  font-medium"
+    elsif user.account.active?
+      button_to t("user.overdue.ban"),
+                update_status_admin_account_path(user.account),
+                data: {"turbo-method": :post},
+                class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-red-700
+                  text-red-700 font-semibold hover:text-white border
+                  border-red-700 hover:border-transparent rounded-md
+                  font-medium"
+    end
+  end
 end

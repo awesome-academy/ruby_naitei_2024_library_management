@@ -1,0 +1,40 @@
+<%= dialog_content do %>
+  <h2 class="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0"><%= user.name %></h2>
+  <div class="flex w-full py-10 gap-10 relative ">
+    <div  class="border-2 flex-1 h-fit sticky top-32">
+      <%= image_tag user.profile_image.attached? ? user.profile_image : "default_avatar.png", alt: "cover", class: "w-full" %>
+    </div>
+    <div class=" flex-[2] space-y-4">
+      <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.name" %> :</strong>
+          <%= user.name %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.account.email" %> :</strong>
+          <%= user.email %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.citizen_id" %> :</strong>
+          <%= user.citizen_id %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.birth" %> :</strong>
+          <%= user.birth %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.gender" %> :</strong>
+          <%= user.gender %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.address" %> :</strong>
+          <%= user.address %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "activerecord.attributes.user.phone" %> :</strong>
+          <%= user.phone %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>

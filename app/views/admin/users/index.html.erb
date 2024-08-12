@@ -1,9 +1,20 @@
 <% provide :page_title, t("user.index.title") %>
-<%= form_with url: admin_users_path, method: :get, local: true, class: "your-form-class" do %>
-  <%= select_tag :status, options_for_select(status_options_for_select, params[:status]), class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
-  <%= submit_tag t("user.filter"), class: "mr-24 h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary-500/90 rounded-md text-sm font-medium" %>
+<div class="flex justify-between items-center">
+  <h1 class="text-xl font-semibold"><%= t "user.index.title" %></h1>
+</div>
+<%= render_table do %>
+  <%= table_head do %>
+    <%= table_header t "author.index.stt" %>
+    <%= table_header t "activerecord.attributes.user.name" %>
+    <%= table_header t "activerecord.attributes.user.borrowing" %>
+    <%= table_header t "activerecord.attributes.user.borrowed" %>
+    <%= table_header t "user.index.action" %>
+    <%= table_header t "activerecord.attributes.user.detail" %>
+  <% end %>
+  <%= table_body do %>
+    <% render @users %>
+  <% end %>
 <% end %>
-<%= render partial: "user", collection: @users, as: :user %>
 <div class="w-full items-center justify-center flex py-5">
   <%== pagy_nav(@pagy) %>
 </div>
