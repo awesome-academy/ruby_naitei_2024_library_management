@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :set_categories
   before_action :set_current_user
+  before_action :set_search_params
 
   def is_admin_role?
     return if current_account&.is_admin
@@ -23,7 +24,7 @@ class ApplicationController < ActionController::Base
     if current_account.nil?
       store_location
       flash[:danger] = t "noti.sign_in_first"
-      redirect_to login_path
+      redirect_to new_account_session_path
     else
       flash[:danger] = t "noti.permission_err"
       redirect_to request.referer
@@ -37,6 +38,10 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     {locale: I18n.locale}
+  end
+
+  def set_search_params
+    @q = Book.ransack(params[:q], auth_object: current_account)
   end
 
   def set_categories
