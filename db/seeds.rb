@@ -161,3 +161,24 @@ request4 = Request.create!(user_id: 8, status: 1)
 # BorrowBook.create!(user_id: 6, book_id: 2, request_id: request2.id, borrow_date: 15.days.ago, return_date: nil, is_borrow: true)
 # BorrowBook.create!(user_id: 7, book_id: 3, request_id: request3.id, borrow_date: 20.days.ago, return_date: nil, is_borrow: true)
 # BorrowBook.create!(user_id: 8, book_id: 4, request_id: request3.id, borrow_date: 6.days.ago, return_date: nil, is_borrow: true)
+
+user_ids = (1..50).to_a
+book_ids = (1..90).to_a
+ratings = (1..5).to_a
+
+book_ids.each do |book_id|
+  # Shuffle the user IDs to ensure random selection of users for each book
+  shuffled_user_ids = user_ids.shuffle
+
+  # Each book will have 5 ratings from different users
+  5.times do
+    user_id = shuffled_user_ids.pop
+    rating_value = ratings.sample
+
+    Rating.create!(
+      user_id: user_id,
+      book_id: book_id,
+      rating: rating_value
+    )
+  end
+end

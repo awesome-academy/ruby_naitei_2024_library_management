@@ -11,5 +11,5 @@
 <% end %>
 <%= turbo_stream.update "rating-avg", class: "text-xl" do %>
   <i class="bi bi-star-fill text-yellow-400"></i>
-  <%="#{@book.ratings.average(:rating)} (#{@book.ratings.count})" || t("no_ratings") %>
+  <%="#{@book.ratings.average(:rating).round(1)} (#{@book.ratings.count})" || t("no_ratings") %>
 <% end %>
