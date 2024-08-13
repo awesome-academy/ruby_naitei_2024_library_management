@@ -1,0 +1,16 @@
+<div id="<%= dom_id(comment, :reply_form) %>" class="flex gap-x-2 py-2">
+  <div class="w-[52px] ">
+    <%= image_tag @current_user.profile_image.attached? ? @current_user.profile_image : "avatar.jpeg", alt: "cover", class: "w-12 h-12 rounded-full border border-primary" %>
+  </div>
+  <div class="w-full space-y-2">
+    <div class="flex w-full justify-between">
+      <p class="font-bold"><%= @current_user.name %></p>
+    </div>
+    <%= form_with(model: [book, Comment.new(parent_id: comment.id)], local: false, html: {id: dom_id(@comment, :form)}) do |form| %>
+      <%= form.hidden_field :parent_id, value: comment.id %>
+      <%= form.hidden_field :book_id, value: book.id %>
+      <%= form.text_area :comment_text, id: "comment_input", placeholder: t("book_details.write_review"), class: "flex !bg-background min-h-[80px] w-full rounded-md border-none border-input px-3 py-2 text-sm  placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  disabled:cursor-not-allowed disabled:opacity-50" %>
+      <%= form.submit t("reply"), class: "bg-primary text-primary-foreground font-semibold py-1 px-2 mt-2 rounded-lg" %>
+    <% end %>
+  </div>
+</div>

@@ -1,11 +1,33 @@
-<div class="flex gap-x-2 py-2">
-  <div class="flex">
+<div id="<%= dom_id(comment, :item) %>" class="flex gap-x-2 py-2">
+  <div class="w-[52px] ">
     <%= image_tag comment.user.profile_image.attached? ? comment.user.profile_image : "avatar.jpeg", alt: "cover", class: "w-12 h-12 rounded-full border border-primary" %>
   </div>
-  <div class="">
-    <p class="flex items-center gap-x-2"><strong><%= comment.user.name %></strong>
-      <p><%= simple_format comment.comment_text %></p>
-      <small class="italic text-muted-foreground"><%= comment.created_at.strftime(Settings.time_format) %></small>
+  <div class="w-full">
+    <div class="flex w-full justify-between">
+      <p class="font-bold"><%= comment.user.name %></p>
+      <p class="italic text-sm text-muted-foreground">
+        <%= comment.created_at.strftime(Settings.time_format) %>
+      </p>
     </div>
+    <%= turbo_frame_tag dom_id(comment) do %>
+      <p class="font-semibold "><%= simple_format comment.comment_text %></p>
+      <div class="flex gap-x-4 my-1  items-center">
+        <% if comment.parent_id.nil? %>
+          <%= link_to reply_book_comment_path(@book, comment),id: dom_id(comment, :reply_btn), data: {turbo_stream: true },  class: "text-sm block text-center text-muted-foreground hover:underline" do %>
+            <% if comment.replies.blank? %>
+              <%= t("reply") %>
+            <% else %>
+              <span class="text-primary"><%=  "#{comment.replies.size} #{t("reply")} " %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if @current_user %>
+          <% if comment.user.id == @current_user.id %>
+            <%= link_to t("edit"), edit_book_comment_path(@book, comment), class: "text-sm block mt-[2px] text-center text-muted-foreground hover:underline"  %>
+            <%= button_to t("delete"), book_comment_path(@book, comment) , method: :delete,  class: "text-sm text-center text-muted-foreground  hover:underline" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

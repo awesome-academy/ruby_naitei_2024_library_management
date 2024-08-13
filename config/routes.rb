@@ -55,9 +55,13 @@ Rails.application.routes.draw do
       end
     end
     resources :books do
-      resources :comments, only: %i(create index)
+      resources :comments do
+        member do
+          get "reply"
+        end
+      end
     end
     get "borrow_books", to: "borrow_books#index", as: :borrow_books
   end
-  Devise.mappings[:account].controllers[:omniauth_callbacks] = 'accounts/omniauth_callbacks'
+  Devise.mappings[:account].controllers[:omniauth_callbacks] = "accounts/omniauth_callbacks"
 end

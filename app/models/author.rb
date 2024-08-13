@@ -20,7 +20,7 @@ class Author < ApplicationRecord
       end
     end
 
-    def ansackable_associations _auth_object = nil
+    def ransackable_associations _auth_object = nil
       %w(books author_followers)
     end
   end
