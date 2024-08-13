@@ -232,6 +232,7 @@ en:
       message: "This is a reminder that you need to return your borrowed book(s) by %{due_date}."
       thanks: "Thank you!"
   request_mailer:
+    view_request: "View detail request here"
     success:
       subject: "Book Borrow Request"
       hello: "Dear %{name},"
