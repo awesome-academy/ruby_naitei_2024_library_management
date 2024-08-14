@@ -1,0 +1,98 @@
+<div>
+  <div class="flex justify-between w-full items-center">
+    <div class="text-xl font-bold my-4 pb-2"><%= t ("requests.request.detail_request")%></div>
+    <div class="flex items-center gap-2" id="<%= dom_id(request, :dialog) %>" >
+      <% if request.pending? %>
+        <%= render_dialog do %>
+          <%= dialog_trigger do %>
+            <button class="bg-[#ca1616] rounded-xl text-white py-2 px-4 text-sm">
+              <%= t "requests.request.reject" %>
+            </button>
+          <% end %>
+          <%= dialog_content do %>
+            <%= turbo_frame_tag "reject", src: edit_admin_request_path(request, format: :html)  %>
+          <% end %>
+        <% end %>
+        <%= render_dialog do %>
+          <%= dialog_trigger do %>
+            <button class="bg-[#0c9d0c] rounded-xl text-white py-2 px-4 text-sm">
+              <%= t "request.approve"%>
+            </button>
+          <% end %>
+          <%= dialog_content do %>
+            <%= turbo_frame_tag "approve", src: edit_admin_request_path(request, format: :html)  %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="text-sm flex flex-col gap-3 mb-4">
+    <div class="flex items-center gap-4">
+      <span class="font-bold w-1/4"><%= t ("activerecord.models.User") %>: </span>
+      <span><%= request.user_name %></span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="font-bold w-1/4"><%= t("activerecord.attributes.book.status") %>: </span>
+      <div id="<%= dom_id(request, :status) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(request.status)%>" >
+        <%= status_icon(request.status) %>
+        <%= request.status %>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <p class="font-bold w-1/4"><%= t "requests.request.request_date" %>: </span>
+      <p><%= request.borrow_date %></span>
+    </div>
+    <div class="flex items-center gap-4">
+      <p class="font-bold w-1/4"><%= t "requests.request.description" %>: </span>
+      <p class="truncate text-wrap w-3/4"><%= request.description ? request.description : "No data"  %></span>
+    </div>
+    <div class="flex flex-col gap-2">
+      <p class="font-bold mt-2"><%= t "requests.request.borrowed_books_list" %></p>
+      <div class="request-details">
+        <%= render_table do %>
+          <%= table_head do %>
+            <%= table_header t "author.index.stt", class: "w-1/10" %>
+            <%= table_header class: "1/3" do %>
+              <%= t "title" %>
+            <% end %>
+            <%= table_header t "activerecord.attributes.book.status", class: "w-[150px]" %>
+            <%= table_header t "requests.request.returned_date", class: "w-1/5"  %>
+            <%= table_header t "requests.request.action", class: "w-1/5" %>
+          <% end %>
+          <%= table_body do %>
+            <% request.books.each.with_index do |book, i| %>
+              <%= table_row do %>
+                <%= table_column do %>
+                  <%= i + 1 %>
+                <% end %>
+                <%= table_column do %>
+                  <%= book.title %>
+                <% end %>
+                <%= table_column do %>
+                  <div id="<%= dom_id(request, book.id) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(request.status)%>" >
+                    <%= book_status_icon(request, book) %>
+                    <%= status_title(request, book) %>
+                  </div>
+                <% end %>
+                <%= table_column do %>
+                  <div id="<%= dom_id(request, book.id) %>_rdate" ><%= book.borrowed_for_request(request.id)[:returned_date] %></div> 
+                <% end %>
+                <%= table_column do %>
+                  <% if mark_returned_available(request, book) %>
+                    <%= form_with model: @borrow_book, url: mark_as_returned_admin_borrow_books_path, method: :patch, data: { turbo_stream: true }  do %>
+                      <%= hidden_field_tag :book_id, book.id %>
+                      <%= hidden_field_tag :request_id, request.id %>
+                      <%= submit_tag t("mark_as_returned"), class: "btn btn-primary inline-block rounded-lg px-4 py-2 border bg-primary text-white" %>
+                    <% end %>
+                  <% else %>
+                    <%= t "none" %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,6 +29,8 @@ en:
   edit: "Edit"
   delete: "Delete"
   link: "Link"
+  none: "None"
+  quit: "Quit"
   header:
     sign_out: "Sign out"
   profile_menu:
@@ -271,6 +273,7 @@ en:
     request:
       request_id: "Request ID"
       description: "Description"
+      action: "Action"
       reject: "Reject"
       approve: "Approve"
       rejected: "Rejected"
@@ -279,6 +282,11 @@ en:
       pending: "Pending"
       cancel_button: "Cancel"
       confirm: "confirm"
+      view_detail: "View Detail"
+      detail_request: "Detail Request"
+      request_date: "Request Date"
+      borrowed_books_list: "Borrowed Books List"
+      returned_date: "Returned Date"
   home_page:
     start_reading: "Start Exploring =>"
   authors_page:
