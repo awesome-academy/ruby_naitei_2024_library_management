@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_account!, only: :new
   before_action :check_account_and_redirect, only: :new
   before_action :load_user, :correct_user, only: %i(show edit update)
   def index
@@ -38,7 +39,7 @@ class UsersController < ApplicationController
   private
 
   def correct_user
-    return if current_user == @user
+    return if @current_user == @user
 
     flash[:alert] = t "noti.permission_err"
     redirect_to root_path
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def account_present?
-    session[:account_id].present? && Account.exists?(session[:account_id])
+    current_account.present?
   end
 
   def user_params
@@ -87,7 +88,7 @@ class UsersController < ApplicationController
   end
 
   def check_account_and_redirect
-    redirect_to new_account_path unless account_present?
+    redirect_to new_account_registration_path unless account_present?
     return if current_account&.user.blank?
 
     handle_account_already_has_user

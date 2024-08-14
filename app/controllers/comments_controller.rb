@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user, only: %i(create)
 
   def create
-    @comment = @book.comments.new comment_params.merge(user_id: current_user.id)
+    @comment = @book.comments
+                    .new comment_params.merge(user_id: @current_user.id)
     if @comment.save
       respond_to do |format|
         format.turbo_stream

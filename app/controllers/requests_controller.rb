@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
-    @books = current_user.books_in_carts
+    @books = @current_user.books_in_carts
   end
 
   def create
@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = current_user.requests.includes(:borrow_books).newest_first
+    @requests = @current_user.requests.includes(:borrow_books).newest_first
     @requests = filter_by_status(@requests)
     @request_pagy, @requests = search_requests(@requests)
   end
@@ -57,7 +57,7 @@ class RequestsController < ApplicationController
   private
 
   def build_request
-    current_user.requests.build(
+    @current_user.requests.build(
       status: request_params["status"],
       description: request_params["description"]
     )
@@ -68,7 +68,7 @@ class RequestsController < ApplicationController
   end
 
   def fetch_selected_books
-    Book.in_user_cart(current_user)
+    Book.in_user_cart(@current_user)
   end
 
   def handle_errors selected_books
@@ -94,8 +94,8 @@ class RequestsController < ApplicationController
   end
 
   def exceed_borrow_limit? selected_books
-    borrowed_books_count = BorrowBook.borrowed_by_user(current_user).count
-    pending_books = Request.pending_for_user(current_user).count
+    borrowed_books_count = BorrowBook.borrowed_by_user(@current_user).count
+    pending_books = Request.pending_for_user(@current_user).count
     total_books_count = borrowed_books_count + pending_books
 
     total_books_count + selected_books.size > Settings.number_5
@@ -106,13 +106,13 @@ class RequestsController < ApplicationController
       @request.save!
       selected_books.each do |book|
         BorrowBook.create!(
-          user: current_user,
+          user: @current_user,
           book:,
           request: @request,
           borrow_date:,
           is_borrow: false
         )
-        current_user.carts.where(book_id: book.id).destroy_all
+        @current_user.carts.where(book_id: book.id).destroy_all
       end
       flash[:success] = t "noti.request_success_noti"
       redirect_to requests_path
@@ -137,7 +137,7 @@ class RequestsController < ApplicationController
   end
 
   def account_banned?
-    current_user.account.ban?
+    @current_user.account.ban?
   end
 
   def handle_banned_account

@@ -27,11 +27,11 @@ class BooksController < ApplicationController
   end
 
   def find_initial_rating
-    @book.ratings.find_by(user_id: current_user&.id)&.rating || 0
+    @book.ratings.find_by(user_id: @current_user&.id)&.rating || 0
   end
 
   def find_favourite
-    current_user&.favourites&.find_by(book_id: @book.id)
+    @current_user&.favourites&.find_by(book_id: @book.id)
   end
 
   def find_comments

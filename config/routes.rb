@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
-    get "/login", to: "sessions#new"
-    post "/login", to: "sessions#create"
-    delete "/logout", to: "sessions#destroy"
     get "static_pages/home"
     get "requests/new", to: "requests#new", as: "new_request"
     root "static_pages#home"
     resources :book_series, only: %i(show)
-    resources :accounts, only: %i(new create)
     resources :users
     resources :ratings, only: %i(create)
     resources :carts, only: %i(create destroy show)
     resources :authors, only: %i(show index)
     resources :favourites, only: %i(create destroy index)
+    devise_for :accounts, path: "", path_names: {
+      sign_in: "login", sign_out: "logout", registration: "register"
+    },
+    controllers: {
+      registrations: "accounts",
+      sessions: "sessions"
+    }
     namespace :admin do
       root "users#index"
       get "requests/show", to: "requests#show", as: "requests_show"

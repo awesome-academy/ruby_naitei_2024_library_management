@@ -132,6 +132,7 @@ en:
     confirm_to_cancel_request: "Are you sure you want to cancel this request?"
     description_cancel_request: "Please enter the reason for canceling the request."
     rating_authorization: "You must borrow this book and return it on time first."
+    pass_regex: "Must contain at least one letter, one number and one special character"
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."

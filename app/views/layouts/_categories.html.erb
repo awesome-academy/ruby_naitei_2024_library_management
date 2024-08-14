@@ -6,7 +6,9 @@
   <% end %>
   <%= popover_content do %>
     <div class="grid grid-cols-3 gap-y-5 ">
-      <%= render @categories %>
+      <% @categories.each do |category| %>
+        <%= render "categories/category", category: category %>
+      <% end %>
     </div>
   <% end %>
 <% end %>

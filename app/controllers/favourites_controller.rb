@@ -4,12 +4,12 @@ class FavouritesController < ApplicationController
   before_action :find_book, only: %i(create)
 
   def index
-    @pagy, @favourite_books = pagy current_user.favourite_books
+    @pagy, @favourite_books = pagy @current_user.favourite_books
     @total_books = @favourite_books.count
   end
 
   def create
-    @favourite = current_user.favourites.new(book: @book)
+    @favourite = @current_user.favourites.new(book: @book)
 
     if @favourite.save
       respond_to do |format|

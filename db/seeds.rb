@@ -144,7 +144,7 @@ Account.create!(
     name: Faker::Name.name,
     birth: Faker::Date.between(from: "1970-01-01", to: "2007-12-31"),
     gender: [1, 0].sample,
-    phone: Faker::PhoneNumber.unique.cell_phone,
+    phone: Faker::Number.number(digits: 10),
     address: Faker::Address.full_address,
     profile_url: "default_avatar.png",
   )

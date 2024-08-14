@@ -9,9 +9,9 @@ class BorrowBooksController < ApplicationController
   private
 
   def fetch_filtered_books status, search
-    current_user.borrow_books.with_details
-                .filter_by_search(search)
-                .filter_by_status(status)
-                .order(borrow_date: :desc)
+    @current_user.borrow_books.with_details
+                 .filter_by_search(search)
+                 .filter_by_status(status)
+                 .order(borrow_date: :desc)
   end
 end

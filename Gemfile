@@ -5,6 +5,7 @@ gem "active_storage_validations", "0.9.8"
 gem "bcrypt", "3.1.18"
 gem "bootsnap", require: false
 gem "config"
+gem "devise"
 gem "faker", "2.21.0"
 gem "figaro"
 gem "i18n-js", "3.9.2"
