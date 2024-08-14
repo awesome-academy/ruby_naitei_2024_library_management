@@ -94,6 +94,7 @@ vi:
     have_account: "Đăng ký tại đây!!!"
     remember_me: "Nhớ tôi trên máy tính này"
     invalid: "Đăng nhập thất bại"
+    google: "Đăng nhập với Google"
   noti:
     the_form_contains: "Biểu mẫu chứa"
     error: "lỗi"

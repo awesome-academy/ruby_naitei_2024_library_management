@@ -2,7 +2,7 @@ class Account < ApplicationRecord
   enum status: {active: 0, ban: 1}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable
+         :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   VALID_ATTRIBUTES = %i(email password password_confirmation).freeze
   mail_regex = Regexp.new(Settings.VALID_EMAIL_REGEX)
@@ -26,6 +26,17 @@ class Account < ApplicationRecord
   class << self
     def ransackable_attributes _auth_object = nil
       %w(email status)
+    end
+
+    def from_omniauth access_token
+      data = access_token.info
+      account = Account.where(email: data["email"]).first
+      account || Account.create(
+        email: data["email"],
+        password: Devise.friendly_token[0, 20],
+        uid: access_token[:uid],
+        provider: access_token[:provider]
+      )
     end
   end
   private
