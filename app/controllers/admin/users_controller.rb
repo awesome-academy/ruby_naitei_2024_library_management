@@ -1,8 +1,11 @@
 class Admin::UsersController < Admin::ApplicationController
   before_action :load_user, only: :due_reminder
   def index
-    @pagy, @users = pagy User.order_by_name.with_status(params[:status]),
-                         items: Settings.users_per_page
+    @q = User.ransack(params[:q])
+    @pagy, @users = pagy @q.result(distinct: true)
+                           .includes(:account)
+                           .includes(:borrow_books)
+                           .filter_by_status(params[:filter_by_status])
   end
 
   def due_reminder

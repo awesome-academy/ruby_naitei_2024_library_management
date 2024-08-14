@@ -3,9 +3,12 @@ module UsersHelper
     User.genders.map{|key, _| [key.capitalize, key]}
   end
 
+  def account_status_for_select
+    Account.statuses.map{|key, value| [key.humanize, value]}
+  end
+
   def status_options_for_select
-    [[t("user.index.title"), ""], [t("user.banned.title"), "banned"],
-    [t("user.overdue.title"), "overdue"],
+    [[t("user.overdue.title"), "overdue"],
     [t("user.neardue.title"), "neardue"]]
   end
 
@@ -50,7 +53,7 @@ module UsersHelper
     if user.account.ban?
       button_to t("user.banned.activate"),
                 update_status_admin_account_path(user.account),
-                data: {"turbo-method": :post},
+                method: :post, data: {turbo_stream: true},
                 class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-green-700
                   text-green-700 font-semibold hover:text-white border
                   border-green-700 hover:border-transparent rounded-md
@@ -58,7 +61,7 @@ module UsersHelper
     elsif user.account.active?
       button_to t("user.overdue.ban"),
                 update_status_admin_account_path(user.account),
-                data: {"turbo-method": :post},
+                method: :post, data: {turbo_stream: true},
                 class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-red-700
                   text-red-700 font-semibold hover:text-white border
                   border-red-700 hover:border-transparent rounded-md

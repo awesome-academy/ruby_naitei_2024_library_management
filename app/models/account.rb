@@ -22,6 +22,11 @@ class Account < ApplicationRecord
   def forget
     update_column :remember_id, nil
   end
+  class << self
+    def ransackable_attributes _auth_object = nil
+      %w(email status)
+    end
+  end
   private
 
   def downcase_email

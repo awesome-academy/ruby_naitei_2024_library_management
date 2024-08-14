@@ -35,11 +35,21 @@ uniqueness: true
   scope :overdue, (lambda do
     joins(:borrow_books, :account)
     .merge(BorrowBook.overdue)
-    .where(accounts: {status: Settings.status.active})
     .distinct
   end)
   scope :neardue, (lambda do
     joins(:borrow_books).merge(BorrowBook.near_due)
+  end)
+
+  scope :filter_by_status, (lambda do |status|
+    case status
+    when "overdue"
+      overdue
+    when "neardue"
+      neardue
+    else
+      all
+    end
   end)
 
   def send_due_reminder
@@ -61,6 +71,18 @@ uniqueness: true
       else
         all
       end
+    end
+
+    def ransackable_attributes _auth_object = nil
+      %w(name email created_at updated_at)
+    end
+
+    def ransackable_associations _auth_object = nil
+      %w(account)
+    end
+
+    def ransackable_scopes _auth_object = nil
+      %i(overdue neardue)
     end
   end
 
