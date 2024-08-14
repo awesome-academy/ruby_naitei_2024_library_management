@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_14_095849) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_14_133548) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_14_095849) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "provider"
+    t.string "uid"
     t.index ["confirmation_token"], name: "index_accounts_on_confirmation_token"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
