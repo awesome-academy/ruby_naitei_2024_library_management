@@ -27,11 +27,10 @@ class BorrowBook < ApplicationRecord
   scope :borrowed_by_user, lambda {|user|
                              where(user:, is_borrow: true)
                            }
-
   scope :borrowing_by_user, lambda {|user|
                               where(user:, is_borrow: true)
                             }
-  scope :borrowed, ->{where(is_borrow: true)}
+  scope :admin_borrowed, ->{where(is_borrow: true)}
 
   scope :with_details, (lambda do
     joins(:book, :request, :user)

@@ -54,6 +54,14 @@ class Book < ApplicationRecord
   validates :title, :summary, :quantity, :publication_date, :cover_image,
             presence: true
 
+  def borrowed_for_request request_id
+    borrow_book = borrow_books.find_by(request_id:)
+    {
+      is_borrow: borrow_book&.is_borrow,
+      returned_date: borrow_book&.return_date
+    }
+  end
+
   private
 
   def create_or_update_book_inventory

@@ -1,0 +1,10 @@
+<%= turbo_stream.replace dom_id(@request, @book.id) do %>
+ <div id="<%= dom_id(@request, @book.id) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
+<%= status_icon(status_title(@request,  @book)) %>
+<%= status_title(@request,  @book) %>
+</div>
+<% end %>
+
+<%= turbo_stream.update "#{dom_id(@request, @book.id)}_rdate" do %>
+    <%= @borrow_book.return_date %>
+<% end %>

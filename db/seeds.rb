@@ -75,13 +75,6 @@ books.each do |item|
   books_list << book
 end
 
-books_list.each do |book|
-  BookInventory.create(
-    book_id: book.id,
-    available_quantity: rand(1..10)
-  )
-end
-
 # Seed book series
 books_series_list = []
 books_series.each do |series|
@@ -116,12 +109,6 @@ books_series.each do |series|
   end
 end
 
-books_series_list.each do |book|
-  BookInventory.create(
-    book_id: book.id,
-    available_quantity: rand(1..10)
-  )
-end
 Account.create!(
   email: "admin@gmail.com",
   password: "admin123",

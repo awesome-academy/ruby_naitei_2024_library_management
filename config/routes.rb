@@ -20,11 +20,7 @@ Rails.application.routes.draw do
       root "users#index"
       get "requests/show", to: "requests#show", as: "requests_show"
       get "borrowed_books", to: "borrow_books#index", as: :borrowed_books
-      resources :requests, only: %i(index show update) do
-        member do
-          patch :update
-        end
-      end
+      resources :requests, only: %i(index update edit)
       resources :users, only: :index do
         member do
           post "due_reminder"
