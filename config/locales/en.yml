@@ -133,6 +133,7 @@ en:
     description_cancel_request: "Please enter the reason for canceling the request."
     rating_authorization: "You must borrow this book and return it on time first."
     pass_regex: "Must contain at least one letter, one number and one special character"
+    permission_err: "You do not have permission to do this."
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."

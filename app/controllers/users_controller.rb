@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_account!, only: :new
+  load_and_authorize_resource
   before_action :check_account_and_redirect, only: :new
   before_action :load_user, :correct_user, only: %i(show edit update)
   def index

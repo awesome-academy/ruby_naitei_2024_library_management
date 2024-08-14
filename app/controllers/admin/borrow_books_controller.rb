@@ -1,4 +1,5 @@
 class Admin::BorrowBooksController < ApplicationController
+  load_and_authorize_resource
   def mark_as_returned
     @borrow_book = find_borrow_book
 
