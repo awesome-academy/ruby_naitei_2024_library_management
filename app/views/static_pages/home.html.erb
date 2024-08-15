@@ -5,7 +5,7 @@
     <%= link_to t("home_page.start_reading"), books_path, class: "absolute bottom-20 left-[10vw] rounded-full bg-card text-primary hover:text-white hover:bg-primary duration-300 border-2 border-primary font-semibold text-2xl p-2 px-4" %>
   </div>
   <section class="container space-y-10 mx-auto px-24">
-    <% if current_user&.account&.ban? %>
+    <% if @current_user&.account&.ban? %>
       <div class="py-2 px-4 text-lg rounded-lg bg-red-500 text-white mb-5">
         <%= t "ban_message" %>
       </div>
