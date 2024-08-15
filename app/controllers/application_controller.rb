@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :set_current_user
 
   def is_admin_role?
-    return if current_account.is_admin
+    return if current_account&.is_admin
 
     flash[:error] = t "noti.permission_err"
     redirect_to root_path

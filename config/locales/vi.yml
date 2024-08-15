@@ -29,6 +29,8 @@ vi:
   edit: "Chỉnh sửa"
   delete: "Xóa"
   link: "Liên kết"
+  quit: "Thoát"
+  none: "Không có"
   header:
     sign_out: "Đăng xuất"
   profile_menu:
@@ -281,6 +283,7 @@ vi:
     request:
       request_id: "Mã yêu cầu"
       description: "Mô tả"
+      action: "Hành động"
       reject: "Từ chối"
       approve: "Duyệt"
       rejected: "Đã từ chối"
@@ -289,6 +292,11 @@ vi:
       pending: "Chờ duyệt"
       cancel_button: "Hủy"
       confirm: "Xác nhận"
+      view_detail: "Xem chi tiết"
+      detail_request: "Chi tiết yêu cầu"
+      request_date: "Ngày yêu cầu"
+      borrowed_books_list: "Danh sách sách mượn"
+      returned_date: "Ngày trả"
   home_page:
     start_reading: "Bắt đầu khám phá =>"
   authors_page:
