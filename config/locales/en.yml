@@ -238,6 +238,11 @@ en:
       hello: "Dear %{name},"
       message: "This is a reminder that you need to return your borrowed book(s) by %{due_date}."
       thanks: "Thank you!"
+    confirmation_instructions:
+      greeting: "Hello %{email},"
+      welcome_message: "Welcome! You can confirm your account email through the link below:"
+      confirm_account: "Confirm my account"
+      ignore_message: "If you did not sign up for this account, please ignore this email."
   request_mailer:
     view_request: "View detail request here"
     success:

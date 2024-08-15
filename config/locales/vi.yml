@@ -237,6 +237,11 @@ vi:
       hello: "Xin chào %{name},"
       message: "Đây là lời nhắc nhở rằng bạn cần trả lại sách đã mượn trước ngày %{due_date}."
       thanks: "Cảm ơn bạn!"
+    confirmation_instructions:
+      greeting: "Xin chào %{email},"
+      welcome_message: "Chào mừng! Bạn có thể xác nhận email tài khoản của mình qua liên kết bên dưới:"
+      confirm_account: "Xác nhận tài khoản của tôi"
+      ignore_message: "Nếu bạn không đăng ký tài khoản này, vui lòng bỏ qua email này."
   request_mailer:
     view_request: "Xem chi tiết yêu cầu tại đây"
     success:
