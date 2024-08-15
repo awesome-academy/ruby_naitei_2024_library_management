@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :requests, only: %i(new create index update show edit)
+    resources :requests
     resources :books do
       resources :comments do
         member do

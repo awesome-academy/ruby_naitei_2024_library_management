@@ -8,6 +8,7 @@ vi:
   update: "Cập nhật"
   reply: "Trả lời"
   no_ratings: "Chưa có đánh giá"
+  here: "tại đây"
   published_date: "Ngày xuất bản"
   home: "Trang chủ"
   search2: "Tìm kiếm"
@@ -33,6 +34,10 @@ vi:
   link: "Liên kết"
   quit: "Thoát"
   none: "Không có"
+  not_available: "Không có sẵn"
+  time:
+    formats:
+      default: "%B %d, %Y %H:%M"
   header:
     sign_out: "Đăng xuất"
   profile_menu:
@@ -99,6 +104,22 @@ vi:
     remember_me: "Nhớ tôi trên máy tính này"
     invalid: "Đăng nhập thất bại"
     google: "Đăng nhập với Google"
+  unlock:
+    title: "Mở khóa tài khoản"
+    submit: "Gửi yêu cầu"
+    invalid: "Mở khóa thất bại"
+    description: "Nhập email của bạn và chúng tôi sẽ gửi cho bạn một email để mở khóa tài khoản."
+  forgot_password:
+    title: "Quên mật khẩu"
+    submit: "Gửi yêu cầu"
+    back: "Quay lại"
+    invalid: "Gửi thất bại"
+    description: "Nhập email của bạn và chúng tôi sẽ gửi cho bạn một email để khôi phục mật khẩu."
+  edit_password:
+    title: "Cập nhật mật khẩu"
+    submit: "Cập nhật"
+    invalid: "Cập nhật thất bại"
+    description: "Nhập mật khẩu mới của bạn và xác nhận lại."
   noti:
     the_form_contains: "Biểu mẫu chứa"
     error: "lỗi"
@@ -157,6 +178,12 @@ vi:
       delete_success: "Xóa tác giả thành công"
       delete_fail: "Xóa tác giả thất bại"
       not_found: "Không tìm thấy tác giả"
+  account:
+    last_sign_in_at: "Lần đăng nhập cuối"
+    current_sign_in_at: "Lần đăng nhập hiện tại"
+    sign_in_count: "Số lần đăng nhập"
+    last_sign_in_ip: "Địa chỉ IP đăng nhập cuối"
+    unlock_instruction: "Tài khoản của bạn đã bị khóa do nhập sai mật khẩu quá nhiều lần. Hãy đợi 1 tiếng sau để tiếp tục hoặc mở khóa với email "
   user:
     filter: "Lọc"
     index:
@@ -241,6 +268,18 @@ vi:
     related_books: "Sách liên quan"
     view_more: "Xem thêm =>"
     author: "Tác giả"
+  mailer:
+    password_reset:
+      greeting: "Xin chào %{email}!"
+      request: "Ai đó đã yêu cầu một liên kết để thay đổi mật khẩu của bạn. Bạn có thể thực hiện điều này qua liên kết dưới đây."
+      change_password: "Đổi mật khẩu của tôi"
+      ignore: "Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này."
+      no_change: "Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập liên kết trên và tạo mật khẩu mới."
+    unlock:
+      greeting: "Xin chào %{email}!"
+      account_locked: "Tài khoản của bạn đã bị khóa do số lần đăng nhập không thành công quá nhiều."
+      instructions: "Nhấp vào liên kết dưới đây để mở khóa tài khoản của bạn:"
+      link_text: "Mở khóa tài khoản của tôi"
   user_mailer:
     due_reminder:
       subject: "Nhắc nhở về thời gian trả sách"

@@ -8,6 +8,7 @@ en:
   update: "Update"
   reply: "Reply"
   no_ratings: "No ratings"
+  here: "here"
   published_date: "Published Date"
   home: "Home"
   search2: "Search"
@@ -33,6 +34,10 @@ en:
   link: "Link"
   none: "None"
   quit: "Quit"
+  not_available: "Not available"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
   header:
     sign_out: "Sign out"
   profile_menu:
@@ -99,6 +104,22 @@ en:
     remember_me: "Remember me on this computer"
     invalid: "Sign in fail"
     google: "Sign in with Google"
+  unlock:
+    title: "Unlock Account"
+    submit: "Submit Request"
+    invalid: "Unlock fail"
+    description: "Enter your email address and we'll send you a link to unlock your account."
+  forgot_password:
+    title: "Forgot Password"
+    submit: "Submit Request"
+    back: "Back"
+    invalid: "Forgot password fail"
+    description: "Enter your email address and we'll send you a link to reset your password."
+  edit_password:
+    title: "Change Password"
+    submit: "Submit"
+    invalid: "Change password fail"
+    description: "Enter your new password and confirm it."
   noti:
     the_form_contains: "The form contains"
     error: "error"
@@ -153,6 +174,12 @@ en:
       deleted_success: "Author deleted successfully."
       deleted_fail: "Failed to delete author."
       not_found: "Author not found"
+  account:
+    last_sign_in_at: "Last signed in at"
+    current_sign_in_at: "Current sign in at"
+    sign_in_count: "Sign in count"
+    last_sign_in_ip: "Last sign in IP"
+    unlock_instruction: "Your account has been locked due to multiple failed login attempts. Please wait for an hour or unlock with your email "
   user:
     filter: "Filter"
     index:
@@ -242,6 +269,18 @@ en:
     related_books: "Related Books"
     view_more: "View more =>"
     author: "Author"
+  mailer:
+    password_reset:
+      greeting: "Hello %{email}!"
+      request: "Someone has requested a link to change your password. You can do this through the link below."
+      change_password: "Change my password"
+      ignore: "If you didn't request this, please ignore this email."
+      no_change: "Your password won't change until you access the link above and create a new one."
+    unlock:
+      greeting: "Hello %{email}!"
+      account_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+      instructions: "Click the link below to unlock your account:"
+      link_text: "Unlock my account"
   user_mailer:
     due_reminder:
       subject: "Book Return Reminder"

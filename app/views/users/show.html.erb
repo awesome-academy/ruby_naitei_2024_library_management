@@ -11,7 +11,6 @@
           <%= link_to t("user.show.edit"), edit_user_path(@user), class: "mr-2 p-3 py-1 bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
         </div>
       </div>
-
       <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
         <p class="text-xl">
           <strong><%= t "activerecord.attributes.user.name" %> :</strong>
@@ -40,6 +39,22 @@
         <p class="text-xl">
           <strong><%= t "activerecord.attributes.user.phone" %> :</strong>
           <%= @user.phone %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "account.last_sign_in_at" %>:</strong>
+          <%= current_account.last_sign_in_at ? l(current_account.last_sign_in_at) : t("not_available") %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "account.current_sign_in_at" %>:</strong>
+          <%= current_account.current_sign_in_at ? l(current_account.current_sign_in_at) : t("not_available") %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "account.sign_in_count" %>:</strong>
+          <%= current_account.sign_in_count %>
+        </p>
+        <p class="text-xl">
+          <strong><%= t "account.last_sign_in_ip" %>:</strong>
+          <%= current_account.last_sign_in_ip || t("not_available") %>
         </p>
       </div>
     </div>

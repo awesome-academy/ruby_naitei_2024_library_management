@@ -1,6 +1,11 @@
 <% provide :page_title, t("sign_in.title") %>
 <main class="container relative mx-auto mt-[84px] px-5">
-  <div class="flex items-center justify-center pt-36">
+  <div class="flex flex-col items-center relative justify-center pt-36">
+    <% if flash[:alert] == t("devise.failure.locked") %>
+      <div class="bg-red-500 absolute top-10 max-w-md p-4 text-white font-bold ">
+        <p><%= t "account.unlock_instruction" %> <%= link_to t("here"), new_account_unlock_path, class: "text-teal-400 hover:underline" %></p>
+      </div>
+    <% end %>
     <div class="w-full max-w-md bg-white p-8 shadow-xl rounded-xl">
       <h1 class="text-3xl font-bold mb-14 text-center"><%= t("sign_in.title") %></h1>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
@@ -12,10 +17,13 @@
           <%= form.label :password, t("activerecord.attributes.Account.password"), class: "text-left mr-4 text-lg font-medium" %>
           <%= form.password_field :password, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
         </div>
-        <%= form.label :remember_me do %>
-          <%= form.check_box :remember_me, class: "rounded-md mb-1" %>
-          <span class="mt-4 text-sm"><%= t "sign_in.remember_me" %></span>
-        <% end %>
+        <div class="flex justify-between items-center">
+          <%= form.label :remember_me do %>
+            <%= form.check_box :remember_me, class: "rounded-md mb-1" %>
+            <span class="mt-4 text-sm"><%= t "sign_in.remember_me" %></span>
+          <% end %>
+          <%= link_to t("forgot_password.title"), new_account_password_path, class: "text-blue-500 hover:underline text-sm" %>
+        </div>
         <div class="flex justify-center mt-8">
           <%= form.submit t("sign_in.submit"),
               class: " h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md text-sm font-medium "%>
