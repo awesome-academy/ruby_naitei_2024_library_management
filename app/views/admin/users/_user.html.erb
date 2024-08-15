@@ -1,14 +1,29 @@
-<li class="flex items-center space-x-4 p-4 border-b border-gray-200 mb-3">
-  <div>
-    <%= user_avatar(user) %>
-  </div>
-  <div>
-    <%= link_to user.name, "#", class: "text-lg font-semibold text-gray-900" %>
-    <p class="text-gray-500"><%= user.account.email %></p>
-  </div>
-  <% if user_button_active? %>
-    <div class="!ml-auto">
-      <%= button_to user_button_name, user_button_path(user), data: { "turbo-method": :post }, class: "mr-24 h-10 px-4 py-2 bg-lime-500 text-primary-foreground hover:bg-lime-500/90 rounded-md text-sm font-medium" %>
-    </div>
+<%= table_body do %>
+  <%= table_row do %>
+    <%= table_column do %>
+      <%= user_counter + @pagy.offset + Settings.number_1 %>
+    <% end %>
+    <%= table_column do %>
+      <%= user.name %>
+    <% end %>
+    <%= table_column do %>
+      <%= BorrowBook.count_for_user user.id %>
+    <% end %>
+    <%= table_column do %>
+      <%= user.borrow_books.count_borrowed %>
+    <% end %>
+    <%= table_column do %>
+      <div class="flex gap-2">
+        <%= account_status_button user %>
+      </div>
+    <% end %>
+    <%= table_column do %>
+      <%= render_dialog do %>
+        <%= dialog_trigger do %>
+          <%= render_button(t("profile_menu.profile"), class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium") %>
+        <% end %>
+        <%= render "user_profile", user: user %>
+      <% end %>
+    <% end %>
   <% end %>
-</li>
+<% end %>

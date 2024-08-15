@@ -62,6 +62,9 @@ en:
         phone: "Phone"
         gender: "Gender"
         profile_image: "Profile Image"
+        borrowed: "Borrowed"
+        borrowing: "Borrowing"
+        detail: "Detail"
       book:
         id: "ID"
         title: "Title"
@@ -149,6 +152,7 @@ en:
     index:
       title: "User List"
       new: "New User"
+      action: "Action"
     show:
       title: "User Information"
       edit: "Edit"
