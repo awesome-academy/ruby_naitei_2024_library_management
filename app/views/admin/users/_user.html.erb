@@ -13,14 +13,14 @@
       <%= user.borrow_books.count_borrowed %>
     <% end %>
     <%= table_column do %>
-      <div class="flex gap-2">
+      <div class="flex gap-2" id="<%= dom_id(user.account, :btn) %>" >
         <%= account_status_button user %>
       </div>
     <% end %>
     <%= table_column do %>
       <%= render_dialog do %>
         <%= dialog_trigger do %>
-          <%= render_button(t("profile_menu.profile"), class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium") %>
+          <%= link_to t("profile_menu.profile"),{}, class: "text-sky-600" %>
         <% end %>
         <%= render "user_profile", user: user %>
       <% end %>

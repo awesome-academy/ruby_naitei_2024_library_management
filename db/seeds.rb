@@ -150,7 +150,7 @@ Account.create!(
   )
 end
 
-# Tạo dữ liệu cho requests
+# # Tạo dữ liệu cho requests
 request1 = Request.create!(user_id: 5, status: 1)
 request2 = Request.create!(user_id: 6, status: 1)
 request3 = Request.create!(user_id: 7, status: 1)

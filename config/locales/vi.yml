@@ -8,7 +8,7 @@ vi:
   no_ratings: "Chưa có đánh giá"
   published_date: "Ngày xuất bản"
   home: "Trang chủ"
-  search: "Tìm kiếm"
+  search2: "Tìm kiếm"
   loading: "Đang tải ..."
   male: "Nam"
   female: "Nữ"
@@ -154,7 +154,9 @@ vi:
     index:
       title: "Danh sách người dùng"
       new: "Người dùng mới"
-      action: "Hành động"
+      search: "Tìm kiếm"
+      action: "Hành động"
+      due_status: "Trạng thái trả sách"
     show:
       title: "Thông tin người dùng"
       edit: "Chỉnh sửa"
@@ -165,10 +167,10 @@ vi:
       title: "Danh sách người dùng bị chặn"
       activate: "Kích hoạt"
     overdue:
-      title: "Danh sách người dùng quá hạn trả sách"
+      title: "Quá hạn"
       ban: "Chặn"
     neardue:
-      title: "Danh sách người dùng gần hết hạn trả sách"
+      title: "Gần đến hạn"
       sent: "Gửi mail"
   book:
     index:

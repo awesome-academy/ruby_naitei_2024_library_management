@@ -3,11 +3,11 @@ class Admin::AccountsController < Admin::ApplicationController
 
   def update_status
     if @account.toggle_status
-      flash[:success] = t "noti.update_success"
+      flash.now[:success] = t "noti.update_success"
     else
-      flash[:danger] = t "noti.update_fail"
+      flash.now[:danger] = t "noti.update_fail"
     end
-    redirect_to admin_users_path status: "banned"
+    turbo_stream
   end
 
   private

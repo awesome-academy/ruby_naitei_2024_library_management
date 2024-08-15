@@ -8,7 +8,7 @@ en:
   no_ratings: "No ratings"
   published_date: "Published Date"
   home: "Home"
-  search: "Search"
+  search2: "Search"
   loading: "Loading ..."
   male: "Male"
   female: "Female"
@@ -150,7 +150,9 @@ en:
     index:
       title: "User List"
       new: "New User"
+      search: "Search"
       action: "Action"
+      due_status: "Due Status"
     show:
       title: "User Information"
       edit: "Edit"
