@@ -96,6 +96,7 @@ en:
     have_account: "Sign up here!!!"
     remember_me: "Remember me on this computer"
     invalid: "Sign in fail"
+    google: "Sign in with Google"
   noti:
     the_form_contains: "The form contains"
     error: "error"

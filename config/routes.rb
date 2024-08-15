@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :accounts, controllers: {
+    omniauth_callbacks: "accounts/omniauth_callbacks"
+  }
   scope "(:locale)", locale: /en|vi/ do
     get "static_pages/home"
     get "requests/new", to: "requests#new", as: "new_request"
@@ -9,13 +12,15 @@ Rails.application.routes.draw do
     resources :carts, only: %i(create destroy show)
     resources :authors, only: %i(show index)
     resources :favourites, only: %i(create destroy index)
-    devise_for :accounts, path: "", path_names: {
-      sign_in: "login", sign_out: "logout", registration: "register"
-    },
-    controllers: {
-      registrations: "accounts",
-      sessions: "sessions"
-    }
+    as :account do 
+      path_names = {
+        sign_in: "login", sign_out: "logout", registration: "register"
+      },
+      controllers = {
+        registrations: "accounts",
+        sessions: "sessions"
+      }
+    end
     namespace :admin do
       root "users#index"
       get "requests/show", to: "requests#show", as: "requests_show"
