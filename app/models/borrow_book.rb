@@ -24,6 +24,11 @@ class BorrowBook < ApplicationRecord
            requests: {status: Request.statuses[:approved]})
     .count
   end)
+  scope :count_borrowing, (lambda do
+    joins(:request)
+    .where(is_borrow: true)
+    .count
+  end)
   scope :borrowed_by_user, lambda {|user|
                              where(user:, is_borrow: true)
                            }

@@ -60,6 +60,23 @@ uniqueness: true
     books
   end
 
+  ransacker :borrowing_count do
+    Arel.sql(
+      "(SELECT COUNT(*) FROM borrow_books WHERE borrow_books.user_id = users.id
+      AND borrow_books.return_date IS NULL)"
+    )
+  end
+
+  ransacker :borrowed_count do
+    Arel.sql(
+      "(SELECT COUNT(*) FROM borrow_books
+        INNER JOIN requests ON borrow_books.request_id = requests.id
+        WHERE borrow_books.user_id = users.id
+        AND borrow_books.is_borrow = false
+        AND requests.status = #{Request.statuses[:approved]})"
+    )
+  end
+
   class << self
     def due_reminder
       neardue.each(&:send_due_reminder)
@@ -74,7 +91,7 @@ uniqueness: true
     end
 
     def ransackable_attributes _auth_object = nil
-      %w(name email created_at updated_at)
+      %w(name email created_at updated_at borrowing_count borrowed_count)
     end
 
     def ransackable_associations _auth_object = nil

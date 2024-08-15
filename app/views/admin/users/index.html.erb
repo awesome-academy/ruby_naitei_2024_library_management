@@ -31,9 +31,9 @@
   <%= render_table do %>
     <%= table_head do %>
       <%= table_header t("author.index.stt") %>
-      <%= table_header t("activerecord.attributes.user.name") %>
-      <%= table_header t("activerecord.attributes.user.borrowing") %>
-      <%= table_header t("activerecord.attributes.user.borrowed") %>
+      <%= table_header sort_link @q, :name, t("activerecord.attributes.user.name") %>
+      <%= table_header sort_link @q, :borrowing_count, t("activerecord.attributes.user.borrowing") %>
+      <%= table_header sort_link @q, :borrowed_count, t("activerecord.attributes.user.borrowed") %>
       <%= table_header t("user.index.action")%>
       <%= table_header t("activerecord.attributes.user.detail") %>
     <% end %>

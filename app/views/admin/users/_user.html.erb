@@ -7,7 +7,7 @@
       <%= user.name %>
     <% end %>
     <%= table_column do %>
-      <%= BorrowBook.count_for_user user.id %>
+      <%= user.borrow_books.count_borrowing %>
     <% end %>
     <%= table_column do %>
       <%= user.borrow_books.count_borrowed %>
