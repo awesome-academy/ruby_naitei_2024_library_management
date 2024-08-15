@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     if current_account.nil?
       store_location
       flash[:danger] = t "noti.sign_in_first"
-      redirect_to login_path
+      redirect_to new_account_session_path
     else
       flash[:danger] = t "noti.permission_err"
       redirect_to request.referer

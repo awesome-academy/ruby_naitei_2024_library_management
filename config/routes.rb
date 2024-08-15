@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :accounts, controllers: {
+  devise_for :accounts, only: :omniauth_callbacks, controllers: {
     omniauth_callbacks: "accounts/omniauth_callbacks"
   }
   scope "(:locale)", locale: /en|vi/ do
@@ -12,15 +12,15 @@ Rails.application.routes.draw do
     resources :carts, only: %i(create destroy show)
     resources :authors, only: %i(show index)
     resources :favourites, only: %i(create destroy index)
-    as :account do 
-      path_names = {
-        sign_in: "login", sign_out: "logout", registration: "register"
-      },
-      controllers = {
-        registrations: "accounts",
-        sessions: "sessions"
-      }
-    end
+    devise_for :accounts, skip: :omniauth_callbacks , controllers: {
+      registrations: "accounts",
+      sessions: "sessions",
+      omniauth_callbacks: "accounts/omniauth_callbacks"
+    }, path_names: {
+      sign_in: "login",
+      sign_out: "logout",
+      registration: "register"
+    }
     namespace :admin do
       root "users#index"
       get "requests/show", to: "requests#show", as: "requests_show"
@@ -59,4 +59,5 @@ Rails.application.routes.draw do
     end
     get "borrow_books", to: "borrow_books#index", as: :borrow_books
   end
+  Devise.mappings[:account].controllers[:omniauth_callbacks] = 'accounts/omniauth_callbacks'
 end
