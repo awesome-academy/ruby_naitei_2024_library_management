@@ -1,17 +1,40 @@
 <% provide :page_title, t("author.index.title") %>
 <div class="flex justify-between items-center">
-  <h1 class="text-xl font-semibold"><%= t("author.index.title") %></h1>
+  <h1 class="text-2xl font-semibold mb-4"><%= t("author.index.title") %></h1>
   <%= link_to t("author.index.add"), new_admin_author_path, class: "mr-8 h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium" %>
 </div>
+<div class="flex flex-col items-center lg:flex-row  mb-4">
+  <%= search_form_for @q, url: admin_authors_path, method: :get, class: "flex flex-wrap gap-4 lg:gap-6 w-full lg:w-auto" do |f| %>
+    <div class="flex flex-col w-full lg:w-auto">
+      <%= f.label :name_cont, t("activerecord.attributes.user.name"), class: "text-sm font-medium mb-1" %>
+      <%= f.text_field :name_cont, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+    <div class="flex flex-col w-full lg:w-auto">
+      <%= f.label :gender_eq,  t("activerecord.attributes.author.gender"), class: "text-sm font-medium mb-1" %>
+      <%= f.select :gender_eq, options_for_select(gender_options_for_author_select, params.dig(:q, :gender_eq)), {include_blank: true}, {class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8"} %>
+    </div>
+    <div class="flex flex-col w-full lg:w-auto">
+      <%= f.label :nationality_cont,  t("activerecord.attributes.author.nationality"), class: "text-sm font-medium mb-1" %>
+      <%= f.text_field :nationality_cont, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+    <div class="flex items-center w-full lg:w-auto mt-[23px] ">
+      <%= f.submit t("user.index.search"), class: "px-4 py-[6px] bg-primary text-white rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary" %>
+    </div>
+  <% end %>
+</div>
+<P class="text-lg italic  mb-4">
+  <%= t("total", count: @pagy.count) %>
+</P>
 <%= render_table do %>
   <%= table_head do %>
     <%= table_header t("author.index.stt") %>
-    <%= table_header t("activerecord.attributes.author.id") %>
-    <%= table_header t("activerecord.attributes.author.name") %>
-    <%= table_header t("activerecord.attributes.author.gender") %>
-    <%= table_header t("activerecord.attributes.author.nationality") %>
-    <%= table_header t("activerecord.attributes.author.book_quantity") %>
-    <%= table_header %>
+    <%= table_header sort_link @q, :name, t("activerecord.attributes.author.name"), class: "hover:text-primary  duration-200" %>
+    <%= table_header sort_link @q, :gender, t("activerecord.attributes.author.gender"), class: "hover:text-primary  duration-200" %>
+    <%= table_header sort_link @q, :nationality, t("activerecord.attributes.author.nationality"), class: "hover:text-primary  duration-200" %>
+    <%= table_header sort_link @q, :books_sum, t("activerecord.attributes.author.book_quantity"), class: "hover:text-primary  duration-200" %>
+    <%= table_header sort_link @q, :borrowing_quantity, t("activerecord.attributes.author.borrowing_quantity"), class: "hover:text-primary  duration-200" %>
+    <%= table_header t("edit") %>
+    <%= table_header t("delete") %>
   <% end %>
   <%= table_body do %>
     <% render @authors %>
