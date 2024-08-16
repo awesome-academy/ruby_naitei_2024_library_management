@@ -54,6 +54,8 @@ class Book < ApplicationRecord
   validates :title, :summary, :quantity, :publication_date, :cover_image,
             presence: true
 
+  ransack_alias :search_by, :title_or_summary_cont
+
   def borrowed_for_request request_id
     borrow_book = borrow_books.find_by(request_id:)
     {
@@ -62,6 +64,22 @@ class Book < ApplicationRecord
     }
   end
 
+  class << self
+    def ransackable_attributes auth_object = nil
+      if auth_object&.is_admin
+        %w(author_id book_series_id category_id cover_url created_at
+description id publication_date quantity summary title updated_at)
+      else
+        %w(summary title)
+      end
+    end
+
+    def ransackable_associations _auth_object = nil
+      %w(author book_inventory book_series borrow_books carts
+         category comments cover_image_attachment cover_image_blob
+         favourites ratings users)
+    end
+  end
   private
 
   def create_or_update_book_inventory

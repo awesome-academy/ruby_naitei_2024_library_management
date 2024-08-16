@@ -3,10 +3,13 @@ class BooksController < ApplicationController
   before_action :load_book, only: :show
   def index
     @category = Category.find_by id: params[:category]
-    @total_books = filtered_books.to_a.size
-    @keywords = params[:search]
-    @pagy, @books = pagy(filtered_books)
+    @keywords = params.dig(:q, :title_or_summary_cont)
+    @books = filtered_books
 
+    handle_search
+
+    @total_books = @books.to_a.size
+    @pagy, @books = pagy @books
     respond_to do |format|
       format.html
       format.turbo_stream
@@ -21,10 +24,17 @@ class BooksController < ApplicationController
   end
 
   private
+  def handle_search
+    return if @keywords.blank?
+
+    author_search = Author.ransack(name_cont: @keywords)
+    @pagy2, @authors = pagy author_search.result
+    @total_authors = @authors.to_a.size
+  end
+
   def filtered_books
-    Book.filter_by_category(@category)
-        .filter_by_search(params[:search])
-        .sorted_by(params[:sort])
+    @q.result.includes(:author).filter_by_category(@category)
+      .sorted_by(params[:sort])
   end
 
   def find_initial_rating

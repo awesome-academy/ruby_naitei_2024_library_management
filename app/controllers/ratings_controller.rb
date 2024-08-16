@@ -3,7 +3,7 @@ class RatingsController < ApplicationController
   before_action :load_book
   before_action :authorize_rating
   def create
-    @rating = Rating.find_or_initialize_by(user_id: current_user.id,
+    @rating = Rating.find_or_initialize_by(user_id: @current_user.id,
                                            book_id: @book.id)
     @rating.rating = rating_params[:rating]
 
@@ -34,8 +34,8 @@ class RatingsController < ApplicationController
   end
 
   def authorize_rating
-    return unless current_user.borrow_books
-                              .find_by(book_id: @book.id)&.return_date.nil?
+    return unless @current_user.borrow_books
+                               .find_by(book_id: @book.id)&.return_date.nil?
 
     flash[:warning] = t "noti.rating_authorization"
     redirect_to request.referer
