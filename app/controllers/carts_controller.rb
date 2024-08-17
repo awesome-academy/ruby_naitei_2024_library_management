@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
 
   def create
     if book_already_in_cart?

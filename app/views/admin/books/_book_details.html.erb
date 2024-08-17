@@ -1,0 +1,42 @@
+<%= dialog_content do %>
+  <div class="flex justify-between items-center">
+    <h2 class=" border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0"><%= t "details" %></h2>
+    <%= link_to t("edit"), edit_admin_book_path(book), class: "mr-2 p-3 text-xl py-1 h-fit  bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
+  </div>
+  <div class="flex w-full py-10 gap-10 relative ">
+    <div  class="border-2 flex-1 h-fit sticky top-32">
+      <%= image_tag book.cover_image.attached? ? book.cover_image : "default_cover_image.png", alt: "cover", class: "w-full" %>
+    </div>
+    <div class=" flex-[2] space-y-4">
+      <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
+        <p class="text-lg">
+          <strong><%= t "activerecord.attributes.book.id" %> :</strong>
+          <%= book.id %>
+        </p>
+        <p class="text-lg">
+          <strong><%= t "activerecord.attributes.book.title" %> :</strong>
+          <%= book.title %>
+        </p>
+        <p class="text-lg">
+          <strong><%= t "activerecord.attributes.book.description" %> :</strong>
+          <%= book.description %>
+        </p>
+        <p class="text-lg">
+          <strong><%= t "activerecord.attributes.book.category" %> :</strong>
+          <%= book.category.name %>
+        </p>
+        <p class="text-lg">
+          <strong><%= t "activerecord.attributes.book.author" %> :</strong>
+          <%= book.author.name %>
+        </p>
+        <p class="text-lg">
+          <strong><%= t "activerecord.attributes.book.published_date" %> :</strong>
+          <%= book.publication_date %>
+        </p>
+        <p class="text-lg">
+          <strong><%= t "activerecord.attributes.book.series" %> :</strong>
+          <%= book.book_series ?  book.book_series.title :  t("none") %>
+        </p>
+      </div>
+    </div>
+  <% end %>

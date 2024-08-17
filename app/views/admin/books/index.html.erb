@@ -1,14 +1,58 @@
 <% provide :page_title, t("book.index.title") %>
 <div class="flex justify-between items-center">
-  <h1 class="text-xl font-semibold"><%= t("book.index.title") %></h1>
+  <h1 class="text-2xl font-semibold mb-4"><%= t("book.index.title") %></h1>
   <%= link_to t("book.index.add"), new_admin_book_path, class: "mr-8 h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium" %>
 </div>
+<div class="flex flex-wrap items-center   mb-4">
+  <%= search_form_for @q, url: admin_books_path, method: :get, class: "flex flex-wrap gap-5 w-full lg:w-auto" do |f| %>
+    <div class="flex flex-col w-full lg:w-auto">
+      <%= f.label :title_cont, t("activerecord.attributes.book.title"), class: "text-sm font-medium mb-1" %>
+      <%= f.text_field :title_cont, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+    <div class="flex flex-col w-full lg:w-auto">
+      <%= f.label :category_id_eq, t("activerecord.attributes.book.category"), class: "text-sm font-medium mb-1" %>
+      <%= f.select :category_id_eq, options_for_select(@categories, params.dig(:q, :category_id_eq)), {include_blank: true}, {class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8"} %>
+    </div>
+    <div class="flex flex-col w-full lg:w-auto">
+      <%= f.label :author_name_cont, t("activerecord.attributes.book.author"), class: "text-sm font-medium mb-1" %>
+      <%= f.text_field :author_name_cont, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+    <div class="flex flex-col w-full lg:w-auto">
+      <%= f.label :book_series_title_cont, t("activerecord.attributes.book.series"), class: "text-sm font-medium mb-1" %>
+      <%= f.text_field :book_series_title_cont, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+    <div class="flex gap-x-5 w-full lg:w-auto">
+      <div class="flex flex-col w-full lg:w-auto">
+        <%= f.label :publication_date_gteq, t("activerecord.attributes.book.from_year"), class: "text-sm font-medium mb-1" %>
+        <%= f.select :publication_date_gteq, options_for_select(year_options_for_select, params.dig(:q, :publication_date_gteq)), { include_blank: true }, { id: "from_year", class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8" } %>
+      </div>
+      <div class="flex flex-col w-full lg:w-auto">
+        <%= f.label :publication_date_lteq, t("activerecord.attributes.book.to_year"), class: "text-sm font-medium mb-1" %>
+        <%= f.select :publication_date_lteq, options_for_select(year_options_for_select, params.dig(:q, :publication_date_lteq)), { include_blank: true }, { id: "to_year", class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8" } %>
+      </div>
+    </div>
+    <div class="flex flex-col w-full lg:w-auto">
+      <%= f.label :ratings_eq, t("activerecord.attributes.book.rating"), class: "text-sm font-medium mb-1" %>
+      <%= f.select :ratings_eq, options_for_select(rating_options_for_select, params.dig(:q, :ratings_eq)), { include_blank: true }, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8" %>
+    </div>
+    <div class="flex items-center w-full lg:w-auto mt-[23px] ">
+      <%= f.submit t("user.index.search"), class: "px-4 py-[6px] bg-primary text-white rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary" %>
+    </div>
+  <% end %>
+</div>
+<P class="text-lg italic  mb-4">
+  <%= t("total", count: @pagy.count) %>
+</P>
 <%= render_table do %>
   <%= table_head do %>
-    <%= table_header t("activerecord.attributes.book.id") %>
-    <%= table_header t("activerecord.attributes.book.title") %>
-    <%= table_header t("activerecord.attributes.book.quantity") %>
-    <%= table_header %>
+    <%= table_header t("author.index.stt") %>
+    <%= table_header sort_link @q, :title, t("activerecord.attributes.book.title") %>
+    <%= table_header sort_link @q, :ratings, t("activerecord.attributes.book.rating") %>
+    <%= table_header sort_link @q, :comments, t("activerecord.attributes.book.comments") %>
+    <%= table_header sort_link @q, :quantity, t("activerecord.attributes.book.quantity") %>
+    <%= table_header sort_link @q, :borrowing, t("activerecord.attributes.user.borrowing") %>
+    <%= table_header t("activerecord.attributes.user.detail") %>
+    <%= table_header t("delete") %>
   <% end %>
   <%= table_body do %>
     <% render @books %>

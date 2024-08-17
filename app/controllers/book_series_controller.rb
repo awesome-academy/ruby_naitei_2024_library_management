@@ -1,5 +1,5 @@
 class BookSeriesController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
   def show
     @book_series = BookSeries.find_by id: params[:id]
     return if @book_series

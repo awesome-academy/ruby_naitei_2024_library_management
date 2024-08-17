@@ -70,11 +70,31 @@ class Book < ApplicationRecord
     }
   end
 
+  ransacker :borrowing do
+    Arel.sql("(SELECT COUNT(borrow_books.id)
+               FROM borrow_books
+               WHERE books.id = borrow_books.book_id
+               AND borrow_books.is_borrow = true)")
+  end
+
+  ransacker :ratings do
+    Arel.sql("(SELECT AVG(ratings.rating)
+               FROM ratings
+               WHERE ratings.book_id = books.id)")
+  end
+
+  ransacker :comments do
+    Arel.sql("(SELECT COUNT(comments.id)
+               FROM comments
+               WHERE comments.book_id = books.id)")
+  end
+
   class << self
     def ransackable_attributes auth_object = nil
       if auth_object&.is_admin
-        %w(author_id book_series_id category_id cover_url created_at
-description id publication_date quantity summary title updated_at)
+        %w(author_id book_series_id borrowing comments ratings category_id
+          created_at description publication_date quantity summary title
+          updated_at)
       else
         %w(summary title)
       end

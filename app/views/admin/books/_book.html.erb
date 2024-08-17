@@ -1,7 +1,7 @@
 <%= table_body do %>
   <%= table_row do %>
     <%= table_column do %>
-      <%= book.id %>
+      <%= book_counter + @pagy.offset + 1 %>
     <% end %>
     <%= table_column do %>
       <div class="w-96 overflow-hidden whitespace-nowrap text-ellipsis">
@@ -9,13 +9,33 @@
       </div>
     <% end %>
     <%= table_column do %>
+      <%= book.ratings.average(:rating) ? "#{book.ratings.average(:rating).round(1)} (#{book.ratings.count})" : "0 (0)" %> <i class="bi bi-star-fill text-yellow-400 mr-2"></i>
+    <% end %>
+    <%= table_column do %>
+      <%= book.comments.count %>
+    <% end %>
+    <%= table_column do %>
       <%= book.quantity %>
     <% end %>
     <%= table_column do %>
-      <div class="flex gap-2">
-        <%= link_to t("edit"), edit_admin_book_path(book), class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
-        <%= button_to t("delete"), admin_book_path(book), method: :delete, class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-red-700 text-red-700 font-semibold hover:text-white border border-red-700 hover:border-transparent rounded-md font-medium" %>
-      </div>
+      <%= book.borrow_books.count_borrowing %>
+    <% end %>
+    <%= table_column do %>
+      <%= render_dialog do %>
+        <%= dialog_trigger do %>
+          <%= link_to t("profile_menu.profile"),{}, class: "text-sky-600" %>
+        <% end %>
+        <%= render "book_details", book: book %>
+      <% end %>
+    <% end %>
+    <%= table_column do %>
+      <%= button_to t("delete"),
+                  admin_book_path(book),
+                  method: :delete,
+                  class: "p-3 py-1 font-semibold border rounded-md font-medium text-white " +
+                         (book.borrow_books.count_borrowing > 0 ? "bg-gray-300 text-gray-500 cursor-not-allowed border-gray-300" : "bg-red-500 hover:opacity-[70%] cursor-pointer border-red-700 hover:border-transparent"),
+                  disabled: book.borrow_books.count_borrowing > 0,
+                  form: { data: { turbo_confirm: "Are you sure you want to delete this book?" } } %>
     <% end %>
   <% end %>
 <% end %>
