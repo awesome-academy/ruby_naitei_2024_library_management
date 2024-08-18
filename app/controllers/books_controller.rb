@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :load_book, only: :show
   def index
     @category = Category.find_by id: params[:category]
-    @keywords = params.dig(:q, :title_or_summary_cont)
+    @keywords = params.dig(:header_search, :title_or_summary_cont)
     @books = filtered_books
 
     handle_search
@@ -33,8 +33,8 @@ class BooksController < ApplicationController
   end
 
   def filtered_books
-    @q.result.includes(:author).filter_by_category(@category)
-      .sorted_by(params[:sort])
+    @header_search.result.includes(:author).filter_by_category(@category)
+                  .sorted_by(params[:sort])
   end
 
   def find_initial_rating

@@ -30,4 +30,7 @@
       <% end %>
     <% end %>
   <% end %>
+  <% if book.borrowed_for_request(@request.id)[:returned_date].present? %>
+    <i class="bi bi-check-circle-fill text-green-400"></i>
+  <% end %>
 </div>

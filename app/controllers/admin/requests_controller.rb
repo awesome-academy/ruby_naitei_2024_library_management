@@ -2,9 +2,10 @@ class Admin::RequestsController < Admin::ApplicationController
   before_action :set_request, only: %i(update edit)
 
   def index
-    @requests = load_requests
-    @request_pagy, @requests = paginate_requests(@requests)
+    @q = load_requests.ransack(params[:q] || {})
+    @requests = @q.result(distinct: true)
     @requests = @requests.includes(:books)
+    @request_pagy, @requests = paginate_requests(@requests)
     @requests.map do |request|
       request.as_json.merge(
         books: request.books.map do |book|
@@ -19,11 +20,13 @@ class Admin::RequestsController < Admin::ApplicationController
   def edit; end
 
   def update
-    if @request.update request_params
+    selected_books = fetch_selected_books
+    return if check_out_of_stock(selected_books)
+
+    if @request.update(request_params)
       handle_approved_status
       decrement_available_quantity
-      @request.send_email if %w(approved rejected)
-                             .include?(params[:status])
+      send_notification_email if %w(approved rejected).include?(params[:status])
     end
     respond_to do |format|
       format.turbo_stream
@@ -66,6 +69,9 @@ class Admin::RequestsController < Admin::ApplicationController
     if params[:status].present?
       requests = requests.filter_by_status(params[:status])
     end
+    if params[:q].blank? || !params[:q][:s]
+      requests = requests.order(created_at: :desc)
+    end
     requests
   end
 
@@ -75,5 +81,23 @@ class Admin::RequestsController < Admin::ApplicationController
     else
       pagy(requests, items: Settings.number_20)
     end
+  end
+
+  def check_out_of_stock? selected_books
+    out_of_stock_books = Book.available?(selected_books)
+    return false if out_of_stock_books.blank?
+
+    flash[:warning] =
+      "#{out_of_stock_books.join(', ')} #{t('noti.books_out_of_stock')}"
+    @is_error = true
+    true
+  end
+
+  def send_notification_email
+    @request.send_email
+  end
+
+  def fetch_selected_books
+    @request.borrow_books.includes(:book).map(&:book)
   end
 end

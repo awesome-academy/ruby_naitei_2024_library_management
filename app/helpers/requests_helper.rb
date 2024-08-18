@@ -1,40 +1,61 @@
 module RequestsHelper
   def status_request_options_for_select
-    options = Request.statuses.keys.map do |status|
-      [t("requests.#{status}"), status]
+    options = Request.statuses.map do |status, value|
+      [t("requests.#{status}"), value]
     end
     [[t("requests.all"), ""]] + options
   end
 
   def status_class status
-    case status
-    when "pending"
+    case status.to_sym
+    when :pending
       "bg-blue-500 text-white"
-    when "approved"
+    when :approved
       "bg-green-500 text-white"
-    when "cancelled"
-      "bg-purple-500 text-white"
-    when "rejected"
+    when :cancel
+      "bg-orange-400 text-white"
+    when :rejected
       "bg-red-500 text-white"
+    when :all_returned
+      "bg-pink-400 text-white"
     else
       "bg-orange-400 text-white"
     end
   end
 
   def status_icon status
-    icon_class = case status
-                 when "pending"
+    icon_class = case status.to_sym
+                 when :pending
                    "bi bi-arrow-clockwise animate-spin"
-                 when "approved"
+                 when :approved
                    "bi bi-check2-circle"
-                 when "cancelled"
+                 when :cancel
                    "bi bi-person-dash"
-                 when "rejected"
+                 when :rejected
                    "bi bi-x-circle"
+                 when :all_returned
+                   "bi bi-check-all"
                  else
                    "bi bi-exclamation-circle"
                  end
     content_tag(:i, "", class: icon_class)
+  end
+
+  def status_request_title status
+    case status.to_sym
+    when :pending
+      t "requests.pending"
+    when :approved
+      t "requests.approved"
+    when :cancel
+      t "requests.cancel"
+    when :rejected
+      t "requests.rejected"
+    when :all_returned
+      t "requests.all_returned"
+    else
+      t "requests.unknown"
+    end
   end
 
   def mark_returned_available request, book

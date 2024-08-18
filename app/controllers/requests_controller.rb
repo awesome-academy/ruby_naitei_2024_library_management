@@ -21,21 +21,21 @@ class RequestsController < ApplicationController
     @request = build_request
     selected_books = fetch_selected_books
 
-    if handle_errors(selected_books)
-      if request_params["borrow_date"] >= Time.current
-        process_request(selected_books, request_params["borrow_date"])
-      else
-        flash[:warning] = t "noti.date_invalid"
-        redirect_to new_request_path
-      end
+    unless handle_errors(selected_books)
+      return handle_errors_and_redirect(selected_books)
+    end
+
+    if request_params["borrow_date"].to_date >= Time.current.to_date
+      process_request(selected_books, request_params["borrow_date"])
     else
+      flash[:warning] = t "noti.date_invalid"
       redirect_to new_request_path
     end
   end
 
   def index
-    @requests = @current_user.requests.with_user_name.with_borrow_info
-                             .newest_first
+    @q = initialize_ransack
+    @requests = @q.result(distinct: true)
     @requests = filter_by_status(@requests)
     @request_pagy, @requests = search_requests(@requests)
     @requests.map do |request|
@@ -82,6 +82,14 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  def initialize_ransack
+    @current_user.requests
+                 .with_user_name
+                 .with_borrow_info
+                 .newest_first
+                 .ransack(params[:q] || {})
+  end
 
   def set_request
     @request = Request.find_by(id: params[:id])
@@ -199,5 +207,15 @@ class RequestsController < ApplicationController
     else
       pagy(requests, items: Settings.number_20)
     end
+  end
+
+  def handle_errors_and_redirect selected_books
+    out_of_stock_books = Book.available?(selected_books)
+
+    return if out_of_stock_books.empty?
+
+    flash[:warning] =
+      "#{out_of_stock_books.join(', ')} #{t('noti.books_out_of_stock')}"
+    redirect_to new_request_path
   end
 end

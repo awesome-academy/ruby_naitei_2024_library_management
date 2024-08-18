@@ -171,6 +171,7 @@ en:
     permission_err: "You do not have permission to do this."
     not_found: "Not found"
     date_invalid: "Please select a date in the future"
+    books_out_of_stock: "temporarily out of stock"
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."
@@ -315,6 +316,8 @@ en:
     rejected: "Rejected"
     pending: "Pending"
     cancel: "Canceled"
+    all_returned: "All returned"
+    search_placeholder: "Search by request ID, user name, book name"
     new:
       back: "Back"
       send_request: "Send Request"
@@ -337,6 +340,7 @@ en:
       action: "Action"
       reject: "Reject"
       approve: "Approve"
+      all_returned: "All returned"
       rejected: "Rejected"
       approved: "Approved"
       cancel: "Canceled"

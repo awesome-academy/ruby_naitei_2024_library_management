@@ -175,6 +175,7 @@ vi:
     permission_err: "Bạn không có quyền thực hiện thao tác này."
     not_found: "Không tìm thấy"
     date_invalid: "Vui lòng chọn ngày trong tương lai."
+    books_out_of_stock: " tạm thời hết"
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"
@@ -314,6 +315,8 @@ vi:
     rejected: "Đã từ chối"
     pending: "Chờ duyệt"
     cancel: "Đã hủy"
+    all_returned: "Đã trả tất cả"
+    search_placeholder: "Nhập mã yêu cầu hoặc tên người dùng hoặc tên sách"
     new:
       back: "Quay lại"
       send_request: "Gửi yêu cầu"
@@ -336,6 +339,7 @@ vi:
       action: "Hành động"
       reject: "Từ chối"
       approve: "Duyệt"
+      all_returned: "Đã trả tất cả"
       rejected: "Đã từ chối"
       approved: "Đã duyệt"
       cancel: "Đã hủy"

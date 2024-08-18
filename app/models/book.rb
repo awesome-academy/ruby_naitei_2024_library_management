@@ -85,6 +85,15 @@ description id publication_date quantity summary title updated_at)
          category comments cover_image_attachment cover_image_blob
          favourites ratings users)
     end
+
+    def available? selected_books
+      out_of_stock_books = selected_books.map do |book|
+        inventory = book.book_inventory
+        book.title if inventory.blank? || inventory.available_quantity <= 0
+      end
+
+      out_of_stock_books.compact
+    end
   end
   private
 

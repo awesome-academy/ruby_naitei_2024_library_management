@@ -31,6 +31,7 @@ class Admin::BorrowBooksController < ApplicationController
         format.html
       end
       flash.now[:success] = t "noti.book_returned_success"
+      check_and_update_request_status
     else
       respond_to do |format|
         format.turbo_stream
@@ -46,6 +47,17 @@ class Admin::BorrowBooksController < ApplicationController
       book_inventory.increment!(:available_quantity, quantity_change)
     else
       flash[:danger] = t "noti.book_inventory_not_found"
+    end
+  end
+
+  def check_and_update_request_status
+    return unless @request.borrow_books.where(return_date: nil).empty?
+
+    return unless @request.update(status: "all_returned")
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html
     end
   end
 end

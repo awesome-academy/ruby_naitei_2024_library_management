@@ -25,6 +25,8 @@ module BooksHelper
       else
         t "borrow_books.book.returned"
       end
+    elsif request.all_returned?
+      t "borrow_books.book.returned"
     else
       t "requests.#{request.status}"
     end
