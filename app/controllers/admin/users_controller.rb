@@ -6,7 +6,6 @@ class Admin::UsersController < Admin::ApplicationController
                            .includes(:account)
                            .includes(:borrow_books)
                            .filter_by_status(params[:filter_by_status])
-                           .order(Arel.sql(order_clause))
   end
 
   def due_reminder
@@ -16,20 +15,6 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   private
-  def order_clause
-    if params.dig(:q, :s).present?
-      allowed_sorts = %w(name borrowing_count borrowed_count)
-      sort_param = params.dig(:q, :s)
-
-      if allowed_sorts.include?(sort_param)
-        "#{sort_param} ASC NULLS LAST"
-      else
-        "created_at DESC"
-      end
-    else
-      "created_at DESC"
-    end
-  end
 
   def load_user
     @user = User.find_by id: params[:id]

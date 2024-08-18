@@ -28,6 +28,9 @@
       </div>
     <% end %>
   </div>
+  <div class="flex justify-end mt-4 text-sm text-gray-600 ml-auto pt-6 pr-3">
+    <%= t("user.index.showing_users", count: @users.size, total: @pagy.count) %>
+  </div>
   <%= render_table do %>
     <%= table_head do %>
       <%= table_header t("author.index.stt") %>

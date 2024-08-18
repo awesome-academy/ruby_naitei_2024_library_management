@@ -160,6 +160,7 @@ vi:
       search: "Tìm kiếm"
       action: "Hành động"
       due_status: "Trạng thái trả sách"
+      showing_users: "Hiển thị %{count} trên tổng số %{total} người dùng"
     show:
       title: "Thông tin người dùng"
       edit: "Chỉnh sửa"

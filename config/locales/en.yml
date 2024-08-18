@@ -156,6 +156,7 @@ en:
       search: "Search"
       action: "Action"
       due_status: "Due Status"
+      showing_users: "Showing %{count} of %{total} users"
     show:
       title: "User Information"
       edit: "Edit"
