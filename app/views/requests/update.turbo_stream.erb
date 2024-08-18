@@ -1,0 +1,7 @@
+<%= turbo_stream.replace dom_id(@request, :status_detail) do %>
+  <div id="<%= dom_id(@request, :status) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
+    <%= status_icon(@request.status) %>
+    <%= @request.status %>
+  </div>
+<% end %>
+<%= turbo_stream.remove dom_id(@request, :cancel_button) %>

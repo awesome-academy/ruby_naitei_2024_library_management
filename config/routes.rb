@@ -49,11 +49,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :requests, only: %i(new create index update) do
-      member do
-        patch :update
-      end
-    end
+    resources :requests, only: %i(new create index update show edit)
     resources :books do
       resources :comments do
         member do

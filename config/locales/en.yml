@@ -144,6 +144,7 @@ en:
     pass_regex: "Must contain at least one letter, one number and one special character"
     permission_err: "You do not have permission to do this."
     not_found: "Not found"
+    date_invalid: "Please select a date in the future"
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."
@@ -303,6 +304,7 @@ en:
       request_date: "Request Date"
       borrowed_books_list: "Borrowed Books List"
       returned_date: "Returned Date"
+      view_to_detail: "View to detail"
   home_page:
     start_reading: "Start Exploring =>"
   authors_page:
