@@ -25,6 +25,8 @@ gem "rails-i18n"
 gem "ransack"
 gem "sanitize"
 gem "shadcn-ui"
+gem "simplecov"
+gem "simplecov-rcov"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
@@ -34,6 +36,9 @@ gem "whenever"
 
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
+  gem "factory_bot_rails"
+  gem "rails-controller-testing"
+  gem "rspec-rails", "~> 4.0.1"
   gem "rubocop", "~> 1.26", require: false
   gem "rubocop-checkstyle_formatter", require: false
   gem "rubocop-rails", "~> 2.14.0", require: false
