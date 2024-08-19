@@ -1,0 +1,13 @@
+<%= turbo_stream.append dom_id(@comment) do %>
+  <div id="<%= dom_id(@comment, :reply) %>" class="w-full">
+    <% if @current_user %>
+      <%= render "comments/reply_form", comment: @comment, book: @book %>
+    <% end%>
+    <% @comment.replies.latest.each do |reply| %>
+      <%= render "comment", comment: reply, book: @book %>
+    <% end %>
+  </div>
+<% end %>
+<%= turbo_stream.replace dom_id(@comment, :reply_btn) do %>
+  <%= link_to t("reply"), book_comments_path(@book),  id: dom_id(@comment, :reply_btn),data: {turbo_stream: true },  class: "text-sm block text-center text-muted-foreground hover:underline" %>
+<% end %>

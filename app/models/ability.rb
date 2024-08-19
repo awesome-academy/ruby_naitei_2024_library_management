@@ -17,8 +17,10 @@ class Ability
 
   def define_account_permissions account
     can :read,
-        [Book, Author, Rating, Comment, Category, BookSeries, BookInventory]
+        [Book, Author, Rating, Category, BookSeries, BookInventory]
     can :create, Account
+    can %i(reply read), Comment
+
     return unless account
 
     if account.user
@@ -33,7 +35,7 @@ class Ability
 
     can(:manage, User, id: user_id)
     can(:manage, Cart, user_id:)
-    can(:manage, Comment, user_id:)
+    can(:manage, Comment)
     can(:manage, Favourite, user_id:)
     can(%i(create update), Rating, user_id:)
     can(:manage, Request, user_id:)

@@ -1,3 +1,12 @@
-<%= turbo_stream.prepend "comment_section" do %>
-  <%= render "comment", comment: @comment %>
+<% if @comment.parent_id.nil? %>
+  <%= turbo_stream.prepend "comment_section" do %>
+    <%= render "comment", comment: @comment %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update dom_id(@comment.parent_comment, :reply) do %>
+    <%= render "comments/reply_form", comment: @comment.parent_comment, book: @book %>
+    <% @comment.parent_comment.replies.latest.each do |reply| %>
+      <%= render "comment", comment: reply, book: @book %>
+    <% end %>
+  <% end %>
 <% end %>
