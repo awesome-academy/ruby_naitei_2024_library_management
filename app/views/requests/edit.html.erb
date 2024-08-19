@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "canceled" do %>
+  <%= form_with model: @request, url: request_path(@request), method: :patch, data: { turbo_stream: true } do |f| %>
+  <%= @request.inspect %>
+    <div class="flex flex-col space-y-2 text-center sm:text-left">
+      <h2 class="text-lg font-semibold"><%= t("noti.confirm_to_cancel_request") %></h2>
+      <p class="text-sm text-muted-foreground">
+        <%= t("noti.description_cancel_request") %>
+      </p>
+      <%= f.hidden_field :status, value: "cancel" %>
+      <%= f.text_field :description, id: "reason", placeholder: t("book_details.write_review"), class: "flex !bg-background w-full rounded-md border-none border-input px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  disabled:cursor-not-allowed disabled:opacity-50" %>
+      <%= f.submit t("requests.request.confirm"), class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border cusor-pointer" %>
+    </div>
+  <% end %>
+<% end %>

@@ -13,6 +13,10 @@ module BooksHelper
     end
   end
 
+  def is_returned? request, book
+    status_title(request, book) == t("borrow_books.book.returned")
+  end
+
   def status_title request, book
     if request.approved?
       borrow_info = book.borrowed_for_request(request.id)

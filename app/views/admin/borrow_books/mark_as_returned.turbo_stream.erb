@@ -1,10 +1,20 @@
 <%= turbo_stream.replace dom_id(@request, @book.id) do %>
- <div id="<%= dom_id(@request, @book.id) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
-<%= status_icon(status_title(@request,  @book)) %>
-<%= status_title(@request,  @book) %>
-</div>
+  <div id="<%= dom_id(@request, @book.id) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
+    <%= status_icon(status_title(@request,  @book)) %>
+    <%= status_title(@request,  @book) %>
+  </div>
+<% end %>
+<%= turbo_stream.update "#{dom_id(@request, @book.id)}_rdate" do %>
+  <%= @borrow_book.return_date %>
 <% end %>
 
-<%= turbo_stream.update "#{dom_id(@request, @book.id)}_rdate" do %>
-    <%= @borrow_book.return_date %>
+<%= turbo_stream.update "#{dom_id(@request, @book.id)}_btn" do %>
+  <%= form_with model: @borrow_book, url: mark_as_returned_admin_borrow_books_path, method: :patch, data: { turbo_stream: true } do %>
+    <%= hidden_field_tag :book_id, @book.id %>
+    <%= hidden_field_tag :request_id, @request.id %>
+    <%= submit_tag t("mark_as_returned"), 
+      class: "btn inline-block rounded-lg px-4 py-2 border text-white " + 
+        ( !mark_returned_available(@request, @book) ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-primary"), 
+      disabled:  !mark_returned_available(@request, @book)  %>
+  <% end %>
 <% end %>

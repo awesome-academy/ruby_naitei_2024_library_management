@@ -27,3 +27,4 @@ time_format: "%Y-%m-%d %H:%M:%S"
 favourite_books_home: 4
 number_1: 1
 number_20: 20
+created_time_format: "%Y-%m-%d"

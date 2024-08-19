@@ -7,7 +7,7 @@
       </p>
       <%= f.hidden_field :status, value: "approved" %>
       <%= f.text_field :description, id: "reason", placeholder: t("book_details.write_review"), class: "flex !bg-background w-full rounded-md border-none border-input px-3 py-2 text-sm  placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  disabled:cursor-not-allowed disabled:opacity-50" %>
-      <%= f.submit "Confirm", class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border" %>
+      <%= f.submit t("requests.request.confirm"), class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg bordercursor-pointer" %>
     </div>
   <% end %>
 <% end %>
@@ -20,7 +20,7 @@
       </p>
       <%= f.hidden_field :status, value: "rejected" %>
       <%= f.text_field :description, id: "reason", placeholder: t("book_details.write_review"), class: "flex !bg-background w-full rounded-md border-none border-input px-3 py-2 text-sm  placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  disabled:cursor-not-allowed disabled:opacity-50" %>
-      <%= f.submit "Confirm", class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border" %>
+      <%= f.submit t("requests.request.confirm"), class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border cursor-pointer" %>
     </div>
   <% end %>
 <% end %>

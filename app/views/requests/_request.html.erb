@@ -45,7 +45,7 @@
   <% end %>
   <% end %>
   <%= accordion_description do %>
-    <% if request.borrow_books.empty? %>
+    <% if request.borrow_books.blank? %>
       <%= render "shared/no_data" %>
     <% end %>
     <div class="py-2 px-4 my-4 mb-10">

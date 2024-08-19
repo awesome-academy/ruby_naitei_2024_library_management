@@ -19,38 +19,26 @@ class Admin::RequestsController < Admin::ApplicationController
   def edit; end
 
   def update
-    if @request.nil?
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            "flash",
-            partial: "shared/flash",
-            locals: {
-              message: "Request not found"
-            }
-          )
-        end
-        format.html{redirect_to requests_path, alert: "Request not found"}
-      end
-    elsif @request.update request_params
+    if @request.update request_params
       handle_approved_status
       decrement_available_quantity
-      respond_to do |format|
-        format.turbo_stream
-        format.html
-      end
-    else
-      respond_to do |format|
-        format.turbo_stream
-        format.html
-      end
+      @request.send_email if %w(approved rejected)
+                             .include?(params[:status])
+    end
+    respond_to do |format|
+      format.turbo_stream
+      format.html
     end
   end
 
   private
 
   def set_request
-    @request = Request.find(params[:id])
+    @request = Request.find_by(id: params[:id])
+    return if @request
+
+    flash[:danger] = t "noti.request_not_found"
+    redirect_to requests_path
   end
 
   def request_params

@@ -4,7 +4,7 @@
   <%= table_head do %>
     <%= table_header t "author.index.stt", class: "w-1/12" %>
     <%= table_header class: "w-1/6" do %>
-      User name
+      <%= t "borrow_books.book.user_name" %>
     <% end %>
     <%= table_header t "activerecord.attributes.book.quantity", class: "w-1/12" %>
     <%= table_header t "borrow_books.book.borrow_date", class: "w-1/6" %>
@@ -33,22 +33,22 @@
           <%= request.borrow_date %>
         <% end %>
         <%= table_column do%>
-          <%= request.created_at.strftime('%Y-%m-%d') %>
+          <%= request.created_at.strftime(Settings.created_time_format) %>
         <% end %>
         <%= table_column do %>
-          <div id="<%= dom_id(request, :out_status)%>" class="p-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(request.status)%>" >
+          <div id="<%= dom_id(request, :out_status)%>" class="p-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(request.status) %>" >
             <%= status_icon(request.status) %>
             <%= request.status %>
           </div>
         <% end %>
         <%= table_column class:"truncate w-[300px]" do %>
-       <p id="<%= dom_id(request, :desc) %>" class="truncate w-[300px]" ><%= request.description%> </p>
+          <p id="<%= dom_id(request, :desc) %>" class="truncate w-[300px]" ><%= request.description %> </p>
         <% end %>
         <%= table_column class: "text-lg cursor-pointer" do%>
           <div>
             <%= render_alert_dialog do %>
               <%= alert_dialog_trigger do %>
-                <%= render_button("View to detail", class: "text-sm py-1 px-2 bg-primary text-white rounded-lg text-center", variant: :outline) %>
+                <%= render_button(t("requests.request.view_to_detail"), class: "text-sm py-1 px-2 bg-primary text-white rounded-lg text-center", variant: :outline) %>
               <% end %>
               <%= alert_dialog_content do %>
                 <%= render "admin/requests/detail", request: request %>
@@ -63,7 +63,7 @@
     <% end %>
   <% end %>
 <% end %>
-<% if @requests.empty? %>
+<% if @requests.blank? %>
   <%= render "shared/no_data" %>
 <% else %>
   <div class="w-full items-center justify-center flex py-5 my-4">

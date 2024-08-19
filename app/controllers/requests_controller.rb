@@ -1,11 +1,16 @@
 class RequestsController < ApplicationController
-  load_and_authorize_resource
+  include SessionsHelper
+  before_action :authenticate_account
+  before_action :authenticate_user, only: %i(index)
+  before_action :set_request, only: %i(edit update)
   protect_from_forgery with: :null_session
 
   def new
     @request = Request.new
     @books = @current_user.books_in_carts
   end
+
+  def edit; end
 
   def create
     if account_banned?
@@ -15,18 +20,33 @@ class RequestsController < ApplicationController
 
     @request = build_request
     selected_books = fetch_selected_books
-    borrow_date = params[:request][:borrow_date]
+
     if handle_errors(selected_books)
-      process_request(selected_books, borrow_date)
+      if request_params["borrow_date"] >= Time.current
+        process_request(selected_books, request_params["borrow_date"])
+      else
+        flash[:warning] = t "noti.date_invalid"
+        redirect_to new_request_path
+      end
     else
       redirect_to new_request_path
     end
   end
 
   def index
-    @requests = @current_user.requests.includes(:borrow_books).newest_first
+    @requests = @current_user.requests.with_user_name.with_borrow_info
+                             .newest_first
     @requests = filter_by_status(@requests)
     @request_pagy, @requests = search_requests(@requests)
+    @requests.map do |request|
+      request.as_json.merge(
+        books: request.books.map do |book|
+          book.as_json.merge(
+            book.borrowed_for_request(request.id)
+          )
+        end
+      )
+    end
   end
 
   def borrowed _books
@@ -37,22 +57,35 @@ class RequestsController < ApplicationController
   end
 
   def update
-    @request = Request.find_by(id: params[:id])
+    if @request.update(request_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html
+      end
+    else
+      flash[:danger] = t "noti.update_fail"
+      redirect_to request_path(@request)
+    end
+  end
+
+  def show
+    @request = Request.with_user_name.with_borrow_info.find_by(id: params[:id])
 
     if @request.nil?
-      render_not_found
-    elsif @request.update(request_params)
-      if params[:status] == "approved"
-        handle_approved_status
-        decrement_available_quantity
-      end
-      @request.send_email if %w(approved rejected).include?(params[:status])
-    else
-      render_update_error
+      flash[:error] = t "noti.request_not_found"
+      redirect_to requests_path and return
+    end
+
+    @books = @request.books.map do |book|
+      book.as_json.merge(book.borrowed_for_request(@request.id))
     end
   end
 
   private
+
+  def set_request
+    @request = Request.find_by(id: params[:id])
+  end
 
   def build_request
     @current_user.requests.build(
@@ -118,7 +151,7 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:status, :description)
+    params.require(:request).permit(:status, :description, :borrow_date)
   end
 
   def handle_approved_status
@@ -162,9 +195,9 @@ class RequestsController < ApplicationController
 
   def search_requests requests
     if params[:search].present?
-      pagy(requests.search_by_book(params[:search]), items: Settings.number_5)
+      pagy(requests.search_by_book(params[:search]), items: Settings.number_20)
     else
-      pagy(requests, items: Settings.number_5)
+      pagy(requests, items: Settings.number_20)
     end
   end
 end

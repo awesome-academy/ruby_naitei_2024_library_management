@@ -20,7 +20,7 @@
             </button>
           <% end %>
           <%= dialog_content do %>
-            <%= turbo_frame_tag "approve", src: edit_admin_request_path(request, format: :html)  %>
+            <%= turbo_frame_tag "approve", src: edit_admin_request_path(request, format: :html) %>
           <% end %>
         <% end %>
       <% end %>
@@ -42,10 +42,12 @@
       <p class="font-bold w-1/4"><%= t "requests.request.request_date" %>: </span>
       <p><%= request.borrow_date %></span>
     </div>
-    <div class="flex items-center gap-4">
-      <p class="font-bold w-1/4"><%= t "requests.request.description" %>: </span>
-      <p class="truncate text-wrap w-3/4"><%= request.description ? request.description : "No data"  %></span>
-    </div>
+    <% if !request.description.nil? %>
+      <div class="flex items-center gap-4">
+        <p class="font-bold w-1/4"><%= t "requests.request.description" %>: </span>
+        <p class="truncate text-wrap w-3/4"><%= request.description ? request.description : "No data"  %></span>
+      </div>
+    <% end %>
     <div class="flex flex-col gap-2">
       <p class="font-bold mt-2"><%= t "requests.request.borrowed_books_list" %></p>
       <div class="request-details">
@@ -78,15 +80,16 @@
                   <div id="<%= dom_id(request, book.id) %>_rdate" ><%= book.borrowed_for_request(request.id)[:returned_date] %></div> 
                 <% end %>
                 <%= table_column do %>
-                  <% if mark_returned_available(request, book) %>
-                    <%= form_with model: @borrow_book, url: mark_as_returned_admin_borrow_books_path, method: :patch, data: { turbo_stream: true }  do %>
+                  <div id="<%= dom_id(request, book.id) %>_btn">
+                    <%= form_with model: @borrow_book, url: mark_as_returned_admin_borrow_books_path, method: :patch, data: { turbo_stream: true } do %>
                       <%= hidden_field_tag :book_id, book.id %>
                       <%= hidden_field_tag :request_id, request.id %>
-                      <%= submit_tag t("mark_as_returned"), class: "btn btn-primary inline-block rounded-lg px-4 py-2 border bg-primary text-white" %>
+                      <%= submit_tag t("mark_as_returned"), 
+                          class: "btn inline-block rounded-lg px-4 cursor-pointer py-2 border text-white " + 
+                                ( !mark_returned_available(request, book) ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-primary"), 
+                          disabled:  !mark_returned_available(request, book)  %>
                     <% end %>
-                  <% else %>
-                    <%= t "none" %>
-                  <% end %>
+                  </div>
                 <% end %>
               <% end %>
             <% end %>

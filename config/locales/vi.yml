@@ -148,6 +148,7 @@ vi:
     pass_regex: "Phải chứa ít nhất một chữ cái, một số và một ký tự đặc biệt"
     permission_err: "Bạn không có quyền thực hiện thao tác này."
     not_found: "Không tìm thấy"
+    date_invalid: "Vui lòng chọn ngày trong tương lai."
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"
@@ -302,6 +303,7 @@ vi:
       request_date: "Ngày yêu cầu"
       borrowed_books_list: "Danh sách sách mượn"
       returned_date: "Ngày trả"
+      view_to_detail: "Xem chi tiết"
   home_page:
     start_reading: "Bắt đầu khám phá =>"
   authors_page:

@@ -1,16 +1,69 @@
 <% provide :page_title, t("layouts.application.request_list_title") %>
-<div class="relative container mt-[84px]">
+
+<div class="relative container mt-[100px]">
   <h1 class="mt-4 text-3xl font-semibold py-6"><%= t "layouts.application.request_list_title" %></h1>
   <%= form_with url: requests_path, method: :get, local: true, class: "your-form-class flex justify-end gap-4 items-center mb-8" do %>
     <%= select_tag :status, options_for_select(status_request_options_for_select, params[:status]), class: "col-span-2 rounded-md border border-input bg-background" %>
     <%= text_field_tag :search, params[:search], placeholder: t("search"), class: "col-span-2 rounded-md border border-input bg-background" %>
     <%= submit_tag t("user.filter"), class: "cursor-pointer h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary-500/90 rounded-md text-sm font-medium" %>
   <% end %>
-  <% if @requests.empty? %>
+
+  <% if @requests.blank? %>
     <%= render "shared/no_data" %>
   <% else %>
-    <div class="space-y-10">
-      <%= render partial: "request", collection: @requests, as: :request %>
+    <%= render_table do %>
+      <%= table_head do %>
+        <%= table_header t "author.index.stt", class: "w-1/12" %>
+        <%= table_header class: "w-1/6" do %>
+          <%= t "borrow_books.book.user_name" %>
+        <% end %>
+        <%= table_header t "activerecord.attributes.book.quantity", class: "w-1/12" %>
+        <%= table_header t "borrow_books.book.borrow_date", class: "w-1/6" %>
+        <%= table_header t "borrow_books.book.created_date", class: "w-1/6" %>
+        <%= table_header class: "w-1/12" do %>
+          <%= t "activerecord.attributes.book.status" %>
+        <% end %>
+        <%= table_header class: "w-[300px]" do %>
+          <%= t "requests.request.description" %>
+        <% end %>
+        <%= table_header t "requests.request.action", class: "w-1/12" %>
+      <% end %>
+      <%= table_body do %>
+        <% @requests.each.with_index do |request, i| %>
+          <%= table_row do %>
+            <%= table_column do %>
+              <%= (@request_pagy.page - 1) * @request_pagy.vars[:items] + i + 1 %>
+            <% end %>
+            <%= table_column do %>
+              <%= request.user_name %>
+            <% end %>
+            <%= table_column do%>
+              <%= request.book_quantity %>
+            <% end %>
+            <%= table_column do%>
+              <%= request.borrow_date %>
+            <% end %>
+            <%= table_column do%>
+              <%= request.created_at.strftime(Settings.created_time_format) %>
+            <% end %>
+            <%= table_column do %>
+              <div id="<%= dom_id(request, :out_status)%>" class="p-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(request.status) %>" >
+                <%= status_icon(request.status) %>
+                <%= request.status %>
+              </div>
+            <% end %>
+            <%= table_column class:"truncate w-[300px]" do %>
+              <p id="<%= dom_id(request, :desc) %>" class="truncate w-[300px]" ><%= request.description %> </p>
+            <% end %>
+            <%= table_column class: "text-lg cursor-pointer flex gap-2 items-center" do%>
+              <%= link_to t("requests.request.view_to_detail"), request_path(request), class: "border border-primary text-sm py-1 px-2 text-primary rounded-lg text-center", data: { turbo: false } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <div class="w-full items-center justify-center flex py-5 my-4">
+      <%== pagy_nav(@request_pagy) %>
     </div>
   <% end %>
 </div>

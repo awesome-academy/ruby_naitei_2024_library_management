@@ -1,0 +1,56 @@
+<main class="container relative mt-[8rem] px-5">
+  <div class="flex gap-4 w-full">
+    <div class="flex flex-col gap-2 w-1/3 sticky top-32 border rounded-2xl p-4 h-fit bg-card">
+      <div class="flex justify-between items-center">
+        <div class="text-2xl font-semibold text-primary"><%= t ("requests.request.detail_request")%></div>
+        <div id="<%= dom_id(@request, :cancel_button) %>">
+          <% if @request.pending? %>
+            <%= render_dialog do %>
+              <%= dialog_trigger do %>
+                <button class="bg-primary rounded-xl text-white py-2 px-4 text-sm">
+                  <%= t "requests.request.cancel_button"%>
+                </button>
+              <% end %>
+              <%= dialog_content do %>
+                <%= turbo_frame_tag "canceled", src: edit_request_path(@request, format: :html)  %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <%= render_separator %>
+      <div class="flex flex-col gap-2 w-full justify-start py-3">
+        <div class="flex items-center gap-4 w-full">
+          <span class="text-sm w-1/3"><%= t("activerecord.models.User") %>: </span>
+          <span><%= @request[:user_name] %></span>
+        </div>
+        <div class="flex items-center gap-4 w-full">
+          <span class="text-sm w-1/3"><%= t("activerecord.attributes.book.status") %>: </span>
+          <div  id="<%= dom_id(@request, :status_detail) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request[:status]) %>">
+            <%= status_icon(@request[:status]) %>
+            <%= @request[:status] %>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 w-full">
+          <p class="text-sm w-1/3"><%= t("requests.request.request_date") %>: </p>
+          <p><%= @request[:borrow_date] %></p>
+        </div>
+        <div class="flex items-center gap-4 w-full">
+          <p class="text-sm w-1/3"><%= t("borrow_books.book.created_date") %>: </p>
+          <p><%= @request[:created_at].strftime(Settings.created_time_format) %></p>
+        </div>
+        <% if @request[:description].present? %>
+          <div class="flex items-center gap-4 w-full">
+            <p class="text-sm w-1/4"><%= t("requests.request.description") %>: </p>
+            <p class="truncate text-wrap w-3/4"><%= @request[:description] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2 w-2/3 p-4 border rounded-2xl bg-card">
+      <p class="mt-2 text-lg font-semibold text-primary"><%= t "requests.request.borrowed_books_list" %></p>
+      <%= render_separator class:"my-2" %>
+      <%= render partial: "book", collection: @request.books, as: :book, locals: { show_trash_icon: false } %>
+    </div>
+  </div>
+</main>
