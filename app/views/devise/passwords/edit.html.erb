@@ -1,0 +1,23 @@
+<% provide :page_title, t("edit_password.title") %>
+<main class="container relative mx-auto mt-[84px] px-5">
+  <div class="flex w-full items-center justify-center pt-36">
+    <div class="w-full max-w-lg bg-white border-2 p-8 shadow-xl rounded-xl">
+      <h1 class="text-3xl font-bold text-center"><%= t("edit_password.title") %></h1>
+      <p class=" italic my-6 text-center"><%= t("edit_password.description") %></p>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= f.label :password, t("activerecord.attributes.Account.password"), class: "text-left mr-4 text-lg font-medium" %>
+          <%= f.password_field :password, class: "col-span-2 mb-2 rounded-md border border-input bg-background"%>
+        </div>
+        <div class="grid grid-cols-1 items-baseline">
+          <%= f.label :password_confirmation, t("activerecord.attributes.Account.password_confirmation"), class: "text-left mr-4 text-lg font-medium" %>
+          <%= f.password_field :password_confirmation, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+        </div>
+        <div class="flex justify-center">
+          <%= f.submit t("edit_password.submit"), class: " h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md text-sm font-medium "  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

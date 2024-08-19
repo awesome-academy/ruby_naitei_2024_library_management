@@ -1,0 +1,23 @@
+<% provide :page_title, t("forgot_password.title") %>
+<main class="container relative mx-auto mt-[84px] px-5">
+  <div class="flex items-center justify-center pt-36">
+    <div class="w-full max-w-md bg-white p-8 shadow-xl rounded-xl">
+      <h1 class="text-3xl font-bold  text-center"><%= t("forgot_password.title") %></h1>
+      <p class=" italic my-6 text-center"><%= t("forgot_password.description") %></p>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="grid grid-cols-1 items-baseline mb-4">
+          <%= f.label :email, t("activerecord.attributes.Account.email"), class: "text-left mr-4 text-lg font-medium" %>
+          <%= f.text_field :email, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+        </div>
+        <div class="flex justify-center mt-8">
+          <%= f.submit t("forgot_password.submit"),
+              class: " h-10 px-4 py-2 bg-primary cursor-pointer text-primary-foreground hover:bg-primary/90 rounded-md text-sm font-medium "%>
+        </div>
+        <div class="my-6 flex items-center text-sm">
+          <p class="mr-2"><%= t("sign_up.have_account") %></p>
+          <%= link_to t("sign_in.title"), new_account_session_path, class: "text-blue-500 hover:text-blue-700" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

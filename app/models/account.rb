@@ -2,7 +2,8 @@ class Account < ApplicationRecord
   enum status: {active: 0, ban: 1}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
+         :confirmable, :omniauthable, :trackable, :timeoutable,
+         :lockable, :recoverable, omniauth_providers: [:google_oauth2]
 
   VALID_ATTRIBUTES = %i(email password password_confirmation).freeze
   mail_regex = Regexp.new(Settings.VALID_EMAIL_REGEX)
