@@ -36,6 +36,7 @@ en:
   none: "None"
   quit: "Quit"
   not_available: "Not available"
+  showing_records: "Showing %{count} of %{total} records"
   time:
     formats:
       default: "%d/%m/%Y %H:%M"

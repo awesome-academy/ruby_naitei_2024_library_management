@@ -36,6 +36,7 @@ vi:
   quit: "Thoát"
   none: "Không có"
   not_available: "Không có sẵn"
+  showing_records: "Hiển thị %{count} trên tổng số %{total} bản ghi"
   time:
     formats:
       default: "%B %d, %Y %H:%M"
