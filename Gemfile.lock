@@ -336,6 +336,8 @@ GEM
       websocket (~> 1.0)
     shadcn-ui (0.0.15)
       tailwind_merge (~> 0.12)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -432,6 +434,7 @@ DEPENDENCIES
   sanitize
   selenium-webdriver
   shadcn-ui
+  shoulda-matchers (~> 5.0)
   simplecov
   simplecov-rcov
   sprockets-rails
