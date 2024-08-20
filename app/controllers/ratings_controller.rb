@@ -2,6 +2,7 @@ class RatingsController < ApplicationController
   authorize_resource
   before_action :load_book
   before_action :authorize_rating
+
   def create
     @rating = Rating.find_or_initialize_by(user_id: @current_user.id,
                                            book_id: @book.id)

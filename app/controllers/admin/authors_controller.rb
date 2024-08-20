@@ -1,4 +1,5 @@
 class Admin::AuthorsController < Admin::ApplicationController
+  authorize_resource
   before_action :load_author, only: %i(edit update destroy)
 
   def index

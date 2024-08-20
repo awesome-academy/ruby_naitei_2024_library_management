@@ -42,6 +42,9 @@ class ApplicationController < ActionController::Base
 
   def set_search_params
     @header_search = Book.ransack(params[:header_search])
+  rescue StandardError
+    flash[:danger] = t "noti.search_error"
+    redirect_to root_path
   end
 
   def set_categories

@@ -46,7 +46,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "redirects to new account registration path" do
-        expect(response).to redirect_to(new_account_registration_path)
+        expect(response).to redirect_to(new_account_session_path)
       end
     end
   end
@@ -108,7 +108,7 @@ RSpec.describe UsersController, type: :controller do
         expect(flash[:danger]).to eq(I18n.t("noti.user_not_found"))
       end
     end
-    
+
   end
 
   describe "GET #edit" do
@@ -148,11 +148,11 @@ RSpec.describe UsersController, type: :controller do
         account_with_user.reload
         expect(account_with_user.user.name).to eq("New Name")
       end
-    
+
       it "redirects to the show page" do
         expect(response).to redirect_to(account_with_user.user)
       end
-    
+
       it "sets a success flash message" do
         expect(flash[:success]).to eq(I18n.t("noti.user_update_success"))
       end
@@ -162,25 +162,25 @@ RSpec.describe UsersController, type: :controller do
       before do
         patch :update, params:{id: account_with_user.user.id, user:{birth: "2022-10-10"}}
       end
-    
+
       it "does not update the user" do
         account_with_user.reload
-        expect(account_with_user.user.birth).not_to eq("2022-10-10") 
+        expect(account_with_user.user.birth).not_to eq("2022-10-10")
       end
-    
+
       it "re-renders the edit template" do
         expect(response).to render_template(:edit)
       end
-    end    
+    end
 
     context "when user does not exist" do
       before do
         patch :update, params:{id: -1, user:{name: "New Name"}}
       end
-    
+
       it "redirects to the root path" do
         expect(response).to redirect_to(root_path)
       end
-    end    
+    end
   end
 end

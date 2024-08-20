@@ -1,5 +1,5 @@
 class Admin::BorrowBooksController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
   before_action :find_borrow_book
 
   def mark_as_returned

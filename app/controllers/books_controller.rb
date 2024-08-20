@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   authorize_resource
   before_action :load_book, only: :show
+
   def index
     @category = Category.find_by id: params[:category]
     @keywords = params.dig(:header_search, :title_or_summary_cont)
@@ -58,7 +59,7 @@ class BooksController < ApplicationController
   end
 
   def load_book
-    @book = Book.find_by(id: params[:id])
+    @book = Book.find_by id: params[:id]
     return if @book
 
     flash[:danger] = t "noti.book_not_found"

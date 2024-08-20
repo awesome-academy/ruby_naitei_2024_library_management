@@ -1,4 +1,5 @@
 class Admin::RequestsController < Admin::ApplicationController
+  authorize_resource
   before_action :set_request, only: %i(update edit)
 
   def index
