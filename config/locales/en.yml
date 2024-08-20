@@ -31,6 +31,7 @@ en:
   book_return_confirm: "Borrow return confirmations"
   edit: "Edit"
   delete: "Delete"
+  total: "Total: %{count} records"
   link: "Link"
   none: "None"
   quit: "Quit"
@@ -92,6 +93,8 @@ en:
         nationality: "Nationality"
         profile_image: "Profile Image"
         book_quantity: "Book Quantity"
+        borrowing_quantity: "Borrowing Quantity"
+        delete_confirm: "Are you sure you want to delete this author?"
   sign_up:
     title: "Create Account"
     submit: "Next"

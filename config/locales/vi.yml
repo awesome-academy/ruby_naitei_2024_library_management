@@ -31,6 +31,7 @@ vi:
   book_return_confirm: "Xác nhận trả sách"
   edit: "Chỉnh sửa"
   delete: "Xóa"
+  total: "Tổng cộng: %{count} bản ghi"
   link: "Liên kết"
   quit: "Thoát"
   none: "Không có"
@@ -92,6 +93,8 @@ vi:
         nationality: "Quốc tịch"
         profile_image: "Ảnh đại diện"
         book_quantity: "Số lượng sách"
+        borrowing_quantity: "Số sách đang mượn"
+        delete_confirm: "Bạn có chắc muốn xóa tác giả này ?"
   sign_up:
     title: "Tạo tài khoản"
     submit: "Tiếp theo"

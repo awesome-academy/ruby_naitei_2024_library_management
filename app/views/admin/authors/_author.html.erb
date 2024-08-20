@@ -4,26 +4,41 @@
       <%= author_counter + @pagy.offset + 1 %>
     <% end %>
     <%= table_column do %>
-      <%= author.id %>
-    <% end %>
-    <%= table_column do %>
-      <div class="w-96 overflow-hidden whitespace-nowrap text-ellipsis">
-        <%= author.name %>
+      <div class="w-40 overflow-hidden whitespace-nowrap text-ellipsis">
+        <%= link_to author.name, author_path(author), class: "hover:underline hover:text-blue-500" %>
       </div>
     <% end %>
     <%= table_column do %>
-      <%= author.gender %>
+      <% if author.gender == "male" %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi text-blue-500 text-xl bi-gender-male" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8"/>
+        </svg>
+      <% else %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi text-red-500 text-xl bi-gender-female" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8M3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5"/>
+        </svg>
+      <% end %>
     <% end %>
     <%= table_column do %>
       <%= author.nationality %>
     <% end %>
     <%= table_column do %>
-      <%= author.books.count %>
+      <%= author.books.sum(:quantity) %>
     <% end %>
     <%= table_column do %>
-      <div class="flex gap-2">
-        <%= link_to t(".edit"), edit_admin_author_path(author), class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
-      </div>
+      <%= author.books.borrowing_count %>
+    <% end %>
+    <%= table_column do %>
+      <%= link_to t(".edit"), edit_admin_author_path(author), class: " p-3 py-1  bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
+    <% end %>
+    <%= table_column do %>
+      <%= button_to t("delete"),
+              admin_author_path(author),
+              method: :delete,
+              class: "p-3 py-1  font-semibold border rounded-md font-medium text-white " +
+                     (author.books.borrowing_count > 0 ? "bg-gray-300 text-gray-500 cursor-not-allowed border-gray-300" : "bg-red-500 hover:opacity-[70%] cursor-pointer border-red-700 hover:border-transparent"),
+              disabled: author.books.borrowing_count > 0,
+               form: {data: { turbo_confirm: t("activerecord.attributes.author.delete_confirm") }} %>
     <% end %>
   <% end %>
 <% end %>

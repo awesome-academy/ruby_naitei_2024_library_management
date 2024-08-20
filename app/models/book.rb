@@ -12,9 +12,10 @@ class Book < ApplicationRecord
   has_many :favourites, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :carts, dependent: :destroy
   has_many :users, through: :favourites, dependent: :destroy
   has_many :users, through: :carts, dependent: :destroy
-  has_many :carts, dependent: :destroy
+
   has_one_attached :cover_image
 
   scope :latest, ->{order(publication_date: :desc)}
@@ -47,6 +48,11 @@ class Book < ApplicationRecord
     end
   }
 
+  scope :borrowing_count, (lambda do
+    joins(:borrow_books)
+    .where(borrow_books: {is_borrow: true})
+    .count
+  end)
   scope :filter_related_books, lambda {|category_ids, bid|
     where(category_id: category_ids).where.not(id: bid).limit(4)
   }

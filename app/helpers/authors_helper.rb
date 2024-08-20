@@ -1,5 +1,5 @@
 module AuthorsHelper
-  def gender_options_for_select
-    User.genders.map{|key, _| [key.capitalize, key]}
+  def gender_options_for_author_select
+    Author.genders.map{|key, value| [key.humanize, value]}
   end
 end
