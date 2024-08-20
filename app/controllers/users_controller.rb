@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
   before_action :check_account_and_redirect, only: :new
   before_action :load_user, :correct_user, only: %i(show edit update)
 
@@ -45,7 +44,7 @@ class UsersController < ApplicationController
     @user = User.find_by id: params[:id]
     return if @user
 
-    flash[:danger] = t "noti.not_found"
+    flash[:danger] = t "noti.user_not_found"
     redirect_to root_path
   end
 

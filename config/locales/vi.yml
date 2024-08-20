@@ -128,6 +128,7 @@ vi:
     error: "lỗi"
     account_already_has_user: "Tài khoản đã có thông tin người dùng"
     account_not_found: "Không tìm thấy tài khoản. Vui lòng thử lại."
+    user_not_found: "Không tìm thấy người dùng. Vui lòng thử lại."
     successful_creation: "Đăng kí thành công."
     user_infor_404: "Thông tin người dùng chưa được đăng ký."
     permission_err: "Bạn không có quyền truy cập trang này"
