@@ -29,10 +29,6 @@
           <%= form.label :address, t("activerecord.attributes.user.address"), class: "text-left mr-4 text-lg" %>
           <%= form.text_field :address, class: "col-span-2 mb-4" %>
         </div>
-        <div class="grid grid-cols-1 items-baseline">
-          <%= form.label :profile_image, t("activerecord.attributes.user.profile_image"), class: "text-left mr-4 text-lg" %>
-          <%= form.file_field :profile_image, class: "block mb-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
-        </div>
         <div class="flex justify-center">
           <%= form.submit t(".") %>
         </div>

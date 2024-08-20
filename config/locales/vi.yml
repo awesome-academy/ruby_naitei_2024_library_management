@@ -37,6 +37,7 @@ vi:
   none: "Không có"
   not_available: "Không có sẵn"
   showing_records: "Hiển thị %{count} trên tổng số %{total} bản ghi"
+  click_to_upload: "Nhấp để tải lên"
   time:
     formats:
       default: "%B %d, %Y %H:%M"
@@ -200,6 +201,7 @@ vi:
     show:
       title: "Thông tin người dùng"
       edit: "Chỉnh sửa"
+      update_avatar: "Cập nhập ảnh đại diện"
     edit:
       title: "Cập nhật thông tin người dùng"
       submit: "Cập nhật"

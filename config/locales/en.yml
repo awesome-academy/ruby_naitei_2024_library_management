@@ -37,6 +37,7 @@ en:
   quit: "Quit"
   not_available: "Not available"
   showing_records: "Showing %{count} of %{total} records"
+  click_to_upload: "Click to upload"
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
@@ -196,6 +197,7 @@ en:
     show:
       title: "User Information"
       edit: "Edit"
+      update_avatar: "Update avatar"
     edit:
       title: "Update User Information"
       submit: "Submit"
