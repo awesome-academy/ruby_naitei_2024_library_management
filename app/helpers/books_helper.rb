@@ -17,6 +17,23 @@ module BooksHelper
     status_title(request, book) == t("borrow_books.book.returned")
   end
 
+  def year_options_for_select
+    years = (1900..Date.current.year).to_a.reverse.map do |year|
+      [year.to_s, Date.new(year, 1, 1)]
+    end
+    years.to_h
+  end
+
+  def rating_options_for_select
+    [
+      ["5 ⭐", "4.5-5.0"],
+      ["4 ⭐", "3.5-4.49"],
+      ["3 ⭐", "2.5-3.49"],
+      ["2 ⭐", "1.5-2.49"],
+      ["1 ⭐", "0.09-1.49"]
+    ]
+  end
+
   def status_title request, book
     if request.approved?
       borrow_info = book.borrowed_for_request(request.id)

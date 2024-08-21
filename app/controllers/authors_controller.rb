@@ -1,5 +1,5 @@
 class AuthorsController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
   def index
     all_authors = Author.order_by_name
     @pagy, @authors = pagy all_authors.order_by_name

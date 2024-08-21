@@ -1,7 +1,15 @@
 class Admin::BooksController < Admin::ApplicationController
   before_action :load_book, only: %i(destroy edit update)
   def index
-    @pagy, @books = pagy Book.order_by_title, items: Settings.books_per_page
+    @q = Book.ransack params[:q], auth_object: current_account
+
+    validate_publication_date
+    validate_rating
+
+    @pagy, @books = pagy @q.result(distinct: true)
+                           .includes(:borrow_books, :category, :author,
+                                     :book_series, :ratings)
+    @categories = Category.pluck(:name, :id)
   end
 
   def destroy
@@ -51,6 +59,37 @@ class Admin::BooksController < Admin::ApplicationController
   end
 
   private
+
+  def validate_publication_date
+    if params.dig(:q, :publication_date_gteq).present? &&
+       params.dig(:q, :publication_date_lteq).present?
+      from_year = params[:q][:publication_date_gteq].to_i
+      to_year = params[:q][:publication_date_lteq].to_i
+
+      handle_wrong_publication_date from_year, to_year
+    end
+  end
+
+  def handle_wrong_publication_date from_year, to_year
+    return unless from_year > to_year
+
+    flash[:alert] = t "noti.validate_year"
+
+    params[:q][:publication_date_gteq] = ""
+    params[:q][:publication_date_lteq] = ""
+  end
+
+  def validate_rating
+    return if params.dig(:q, :ratings_eq).blank?
+
+    rating_range = params[:q][:ratings_eq].split("-").map(&:to_f)
+
+    @q = Book.ransack(params[:q].except(:ratings_eq).merge(
+                        ratings_gteq: rating_range.first,
+                        ratings_lteq: rating_range.last
+                      ),
+                      auth_object: current_account)
+  end
 
   def load_book
     @book = Book.find_by(id: params[:id])

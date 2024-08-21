@@ -40,6 +40,7 @@ en:
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
+  details: "Details"
   header:
     sign_out: "Sign out"
   profile_menu:
@@ -85,6 +86,11 @@ en:
         published_date: "Published Date"
         quantity: "Quantity"
         cover: "Cover"
+        description: "Description"
+        series: "Series"
+        comments: "Comments"
+        from_year: "From Year"
+        to_year: "To Year"
       author:
         id: "ID"
         name: "Name"
@@ -172,6 +178,7 @@ en:
     not_found: "Not found"
     date_invalid: "Please select a date in the future"
     books_out_of_stock: "temporarily out of stock"
+    validate_year: "To year must be greater than from year"
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."

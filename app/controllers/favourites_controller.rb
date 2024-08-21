@@ -1,5 +1,5 @@
 class FavouritesController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
   include SessionsHelper
   before_action :find_book, only: %i(create)
 

@@ -29,7 +29,7 @@
       <%= author.books.borrowing_count %>
     <% end %>
     <%= table_column do %>
-      <%= link_to t(".edit"), edit_admin_author_path(author), class: " p-3 py-1  bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
+      <%= link_to t("edit"), edit_admin_author_path(author), class: " p-3 py-1  bg-transparent hover:bg-primary text-primary font-semibold hover:text-white border border-primary hover:border-transparent rounded-md font-medium" %>
     <% end %>
     <%= table_column do %>
       <%= button_to t("delete"),

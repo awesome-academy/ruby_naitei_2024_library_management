@@ -1,7 +1,6 @@
 class RequestsController < ApplicationController
+  authorize_resource
   include SessionsHelper
-  before_action :authenticate_account
-  before_action :authenticate_user, only: %i(index)
   before_action :set_request, only: %i(edit update)
   protect_from_forgery with: :null_session
 

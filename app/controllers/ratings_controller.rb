@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
   before_action :load_book
   before_action :authorize_rating
   def create

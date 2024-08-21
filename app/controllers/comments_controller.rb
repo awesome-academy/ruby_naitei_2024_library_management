@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
 
   include Pagy::Backend
   before_action :find_book
