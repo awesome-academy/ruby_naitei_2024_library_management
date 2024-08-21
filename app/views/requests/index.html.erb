@@ -2,11 +2,25 @@
 
 <div class="relative container mt-[100px]">
   <h1 class="mt-4 text-3xl font-semibold py-6"><%= t "layouts.application.request_list_title" %></h1>
-  <%= form_with url: requests_path, method: :get, local: true, class: "your-form-class flex justify-end gap-4 items-center mb-8" do %>
-    <%= select_tag :status, options_for_select(status_request_options_for_select, params[:status]), class: "col-span-2 rounded-md border border-input bg-background" %>
-    <%= text_field_tag :search, params[:search], placeholder: t("search"), class: "col-span-2 rounded-md border border-input bg-background" %>
-    <%= submit_tag t("user.filter"), class: "cursor-pointer h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary-500/90 rounded-md text-sm font-medium" %>
-  <% end %>
+  <div class="flex flex-col lg:flex-row lg:justify-start lg:items-start mb-6">
+    <%= search_form_for @q, url: requests_path, method: :get, class: "flex flex-wrap gap-4 lg:gap-6 w-full lg:w-auto" do |f| %>
+      <div class="flex flex-col w-full lg:w-auto">
+        <%= f.label :id_or_books_title_or_user_name_cont, t("search2"), class: "text-sm font-medium mb-1" %>
+        <%= f.text_field :id_or_books_title_or_user_name_cont, placeholder: t("requests.search_placeholder"), class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+      <div class="flex flex-col w-full lg:w-auto">
+        <%= f.label :status_eq,  t("activerecord.attributes.book.status"), class: "text-sm font-medium mb-1" %>
+        <%= f.select :status_eq, options_for_select(status_request_options_for_select, params.dig(:q, :status_eq)), {include_blank: true}, {class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8"} %>
+      </div>
+      <div class="flex flex-col w-full lg:w-auto">
+        <%= f.label :borrow_date_eq, t("borrow_books.book.borrow_date"), class: "text-sm font-medium mb-1" %>
+        <%= f.date_field :borrow_date_eq, value: params.dig(:q, :borrow_date_eq).present? ? Date.parse(params[:q][:borrow_date_eq]).strftime(Settings.created_time_format) : nil, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8" %>
+      </div>
+      <div class="flex items-center w-full lg:w-auto mt-[23px] ">
+        <%= f.submit t("user.index.search"), class: "px-4 py-[6px] bg-primary text-white rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary" %>
+      </div>
+    <% end %>
+  </div>
 
   <% if @requests.blank? %>
     <%= render "shared/no_data" %>
@@ -14,19 +28,16 @@
     <%= render_table do %>
       <%= table_head do %>
         <%= table_header t "author.index.stt", class: "w-1/12" %>
-        <%= table_header class: "w-1/6" do %>
-          <%= t "borrow_books.book.user_name" %>
-        <% end %>
-        <%= table_header t "activerecord.attributes.book.quantity", class: "w-1/12" %>
-        <%= table_header t "borrow_books.book.borrow_date", class: "w-1/6" %>
-        <%= table_header t "borrow_books.book.created_date", class: "w-1/6" %>
-        <%= table_header class: "w-1/12" do %>
+        <%= table_header t "borrow_books.book.request_id", class: "w-[80px]" %>
+        <%= table_header sort_link(@q, :book_quantity, t("activerecord.attributes.book.quantity")), class: "w-1/12" %>
+        <%= table_header sort_link(@q, :borrow_date, t("borrow_books.book.borrow_date")), class: "w-1/6"  %>
+        <%= table_header class: "flex-1" do %>
           <%= t "activerecord.attributes.book.status" %>
         <% end %>
-        <%= table_header class: "w-[300px]" do %>
+        <%= table_header class: "w-max-[250px]" do %>
           <%= t "requests.request.description" %>
         <% end %>
-        <%= table_header t "requests.request.action", class: "w-1/12" %>
+        <%= table_header t "requests.request.action" %>
       <% end %>
       <%= table_body do %>
         <% @requests.each.with_index do |request, i| %>
@@ -34,8 +45,8 @@
             <%= table_column do %>
               <%= (@request_pagy.page - 1) * @request_pagy.vars[:items] + i + 1 %>
             <% end %>
-            <%= table_column do %>
-              <%= request.user_name %>
+            <%= table_column class: "w-[80px]" do %>
+              <div class="w-[80px]">#<%= request.id %></div>
             <% end %>
             <%= table_column do%>
               <%= request.book_quantity %>
@@ -43,20 +54,17 @@
             <%= table_column do%>
               <%= request.borrow_date %>
             <% end %>
-            <%= table_column do%>
-              <%= request.created_at.strftime(Settings.created_time_format) %>
-            <% end %>
-            <%= table_column do %>
-              <div id="<%= dom_id(request, :out_status)%>" class="p-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(request.status) %>" >
+            <%= table_column class: "w-[130px]" do %>
+              <div id="<%= dom_id(request, :out_status)%>" class="p-2 rounded-lg text-center flex items-center justify-center gap-2 w-[130px] <%= status_class(request.status) %>" >
                 <%= status_icon(request.status) %>
-                <%= request.status %>
+                <%= status_request_title(request.status) %>
               </div>
             <% end %>
-            <%= table_column class:"truncate w-[300px]" do %>
-              <p id="<%= dom_id(request, :desc) %>" class="truncate w-[300px]" ><%= request.description %> </p>
+            <%= table_column class:"truncate w-[25vw]" do %>
+              <p id="<%= dom_id(request, :desc) %>" class="truncate w-[25vw]" ><%= request.description%> </p>
             <% end %>
             <%= table_column class: "text-lg cursor-pointer flex gap-2 items-center" do%>
-              <%= link_to t("requests.request.view_to_detail"), request_path(request), class: "border border-primary text-sm py-1 px-2 text-primary rounded-lg text-center", data: { turbo: false } %>
+              <%= link_to t("requests.request.view_to_detail"), request_path(request), class: "border border-primary text-sm py-1 px-2 text-primary rounded-lg text-center w-[120px] justify-center", data: { turbo: false } %>
             <% end %>
           <% end %>
         <% end %>

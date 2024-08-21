@@ -1,36 +1,42 @@
-<%= turbo_stream.replace dom_id(@request, :status) do %>
-  <div id="<%= dom_id(@request, :status) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
-    <%= status_icon(@request.status) %>
-    <%= @request.status %>
-  </div>
-<% end %>
-<%= turbo_stream.remove dom_id(@request, :dialog) %>
-<%= turbo_stream.replace dom_id(@request, :out_status) do %>
-  <div id="<%= dom_id(@request, :out_status)%>" class="p-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
-    <%= status_icon(@request.status) %>
-    <%= @request.status %>
-  </div>
-<% end %>
-
-<%= turbo_stream.update dom_id(@request, :desc) do %>
-  <%= @request.description%>
-<% end %>
-
-<% @request.books.each do |book| %>
-  <%= turbo_stream.replace dom_id(@request, book.id) do %>
-    <div id="<%= dom_id(@request, book.id) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
-      <%= status_icon(status_title(@request, book)) %>
-      <%= status_title(@request, book) %>
+<% if @is_error %>
+  <%= turbo_stream.update "approve" do %>
+    <p id="<%= dom_id(@request, :error) %>" class="px-2 my-5 py-1 w-full text-primary">
+      <%= "#{t("activerecord.models.Book")} #{t("noti.books_out_of_stock")}"  %>
+    </p>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove dom_id(@request, :dialog) %>
+  <%= turbo_stream.replace dom_id(@request, :status) do %>
+    <div id="<%= dom_id(@request, :status) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
+      <%= status_icon(@request.status) %>
+      <%= status_request_title(@request.status) %>
     </div>
   <% end %>
-  <%= turbo_stream.update "#{dom_id(@request, book.id)}_btn" do %>
-    <%= form_with model: @borrow_book, url: mark_as_returned_admin_borrow_books_path, method: :patch, data: { turbo_stream: true } do %>
-      <%= hidden_field_tag :book_id, book.id %>
-      <%= hidden_field_tag :request_id, @request.id %>
-      <%= submit_tag t("mark_as_returned"), 
+  <%= turbo_stream.replace dom_id(@request, :out_status) do %>
+    <div id="<%= dom_id(@request, :out_status)%>" class="p-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
+      <%= status_icon(@request.status) %>
+      <%= status_request_title(@request.status) %>
+    </div>
+  <% end %>
+  <%= turbo_stream.update dom_id(@request, :desc) do %>
+    <%= @request.description%>
+  <% end %>
+  <% @request.books.each do |book| %>
+    <%= turbo_stream.replace dom_id(@request, book.id) do %>
+      <div id="<%= dom_id(@request, book.id) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(@request.status)%>" >
+        <%= status_icon(status_title(@request, book)) %>
+        <%= status_title(@request, book) %>
+      </div>
+    <% end %>
+    <%= turbo_stream.update "#{dom_id(@request, book.id)}_btn" do %>
+      <%= form_with model: @borrow_book, url: mark_as_returned_admin_borrow_books_path, method: :patch, data: { turbo_stream: true } do %>
+        <%= hidden_field_tag :book_id, book.id %>
+        <%= hidden_field_tag :request_id, @request.id %>
+        <%= submit_tag t("mark_as_returned"), 
           class: "btn inline-block rounded-lg px-4 py-2 border text-white " + 
-              ( !mark_returned_available(@request, book) ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-primary"), 
-          disabled:  !mark_returned_available(@request, book)  %>
+            ( !mark_returned_available(@request, book) ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-primary"), 
+          disabled: !mark_returned_available(@request, book) %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

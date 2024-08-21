@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_search_params
-    @q = Book.ransack(params[:q], auth_object: current_account)
+    @header_search = Book.ransack(params[:header_search])
   end
 
   def set_categories

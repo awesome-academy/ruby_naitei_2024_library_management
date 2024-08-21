@@ -26,6 +26,8 @@
       <% end %>
     </div>
   </div>
+ <p id="<%= dom_id(request, :error) %>" class="hidden"></p>
+
   <div class="text-sm flex flex-col gap-3 mb-4">
     <div class="flex items-center gap-4">
       <span class="font-bold w-1/4"><%= t ("activerecord.models.User") %>: </span>

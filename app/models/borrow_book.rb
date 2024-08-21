@@ -56,4 +56,9 @@ class BorrowBook < ApplicationRecord
 
     where(is_borrow: status)
   }
+  class << self
+    def ransackable_attributes _auth_object = nil
+      %w(return_date)
+    end
+  end
 end

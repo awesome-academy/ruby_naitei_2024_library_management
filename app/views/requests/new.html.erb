@@ -11,7 +11,7 @@
   <%= form_with model: @request, method: :create, url: requests_path, local: true do |form| %>
     <div>
       <%= form.label :borrow_date, t("borrow_books.book.borrow_date"), class: "text-left mr-4 text-lg" %>
-      <%= form.date_field :borrow_date, value: Time.current.strftime("%Y-%m-%d"), class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+      <%= form.date_field :borrow_date, value: Time.current.strftime(Settings.created_time_format), class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
     </div>
     <div id="books-container" class="flex flex-col gap-4 p-6 border shadow-lg rounded-xl">
       <% if @books.blank? %>

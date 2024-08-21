@@ -7,7 +7,7 @@
       <%= link_to t("books"), books_path, class: "hover:text-foreground/50 text-lg duration-500" %>
       <%= link_to t("authors"), authors_path, class: "hover:text-foreground/50 text-lg duration-500" %>
       <%= render "layouts/categories" %>
-      <%= search_form_for @q, url: books_path, method: :get do |f| %>
+      <%= search_form_for @header_search, url: books_path, method: :get, as: :header_search do |f| %>
         <div class="rounded-3xl w-[400px] h-12 border bg-background px-5 py-2 flex items-center relative">
           <i class="bi bi-search mr-4 text-xl"></i>
           <%= f.search_field :title_or_summary_cont, placeholder: t("search"), class: "!p-0 pr-4 rounded-md border-none bg-background py-2 placeholder:text-muted-foreground focus:outline-none !focus:ring-none focus:ring-transparent disabled:cursor-not-allowed disabled:opacity-50", onchange: "this.form.submit();" %>
