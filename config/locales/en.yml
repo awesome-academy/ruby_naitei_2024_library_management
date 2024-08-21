@@ -148,6 +148,8 @@ en:
     empty_request_noti: "Please select at least one book."
     over_limit_request_noti: "The number of requested books must not exceed 5."
     request_success_noti: "Request successfully."
+    update_success_noti: "Update successfully."
+    update_fail_noti: "Update failed."
     request_failure_noti: "Request failed."
     book_delete_success: "Book was successfully deleted."
     book_delete_fail: "Failed to delete the book."

@@ -25,7 +25,7 @@ class Admin::BorrowBooksController < ApplicationController
 
   def process_returned_book
     if @borrow_book.update(is_borrow: false, return_date: Time.current)
-      update_available_quantity(@borrow_book.book_id, 1)
+      UpdateAvailableQuantityJob.perform_later(@borrow_book.book_id, 1)
       respond_to do |format|
         format.turbo_stream
         format.html
