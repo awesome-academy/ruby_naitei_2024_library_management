@@ -63,6 +63,8 @@ module BooksHelper
                    "bi bi-person-dash"
                  when "rejected"
                    "bi bi-x-circle"
+                 when "all_returned"
+                   "bi bi-check-all"
                  else
                    "bi bi-exclamation-circle"
                  end

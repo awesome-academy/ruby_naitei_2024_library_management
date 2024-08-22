@@ -1,6 +1,5 @@
 <%= turbo_frame_tag "canceled" do %>
   <%= form_with model: @request, url: request_path(@request), method: :patch, data: { turbo_stream: true } do |f| %>
-  <%= @request.inspect %>
     <div class="flex flex-col space-y-2 text-center sm:text-left">
       <h2 class="text-lg font-semibold"><%= t("noti.confirm_to_cancel_request") %></h2>
       <p class="text-sm text-muted-foreground">

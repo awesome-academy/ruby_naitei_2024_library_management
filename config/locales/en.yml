@@ -184,6 +184,7 @@ en:
     date_invalid: "Please select a date in the future"
     books_out_of_stock: "temporarily out of stock"
     validate_year: "To year must be greater than from year"
+    unauthorized: "Unauthorized"
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."

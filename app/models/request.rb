@@ -1,4 +1,5 @@
 class Request < ApplicationRecord
+  REQUEST_PARAMS = %i(status description).freeze
   enum status: {pending: 0, approved: 1, rejected: 2, cancel: 3,
                 all_returned: 4}
   belongs_to :user

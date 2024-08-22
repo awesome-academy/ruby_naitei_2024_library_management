@@ -9,23 +9,27 @@
     </div>
   <% end %>
   <%= form_with model: @request, method: :create, url: requests_path, local: true do |form| %>
-    <div>
-      <%= form.label :borrow_date, t("borrow_books.book.borrow_date"), class: "text-left mr-4 text-lg" %>
-      <%= form.date_field :borrow_date, value: Time.current.strftime(Settings.created_time_format), class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+    <div class="flex justify-between">
+      <div>
+        <%= form.label :borrow_date, t("borrow_books.book.borrow_date"), class: "text-left mr-4 text-lg" %>
+        <%= form.date_field :borrow_date, value: Time.current.strftime(Settings.created_time_format), class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+      </div>
+      <div id="books-container">
+        <% if @books.present? %>
+          <div class="pb-8 flex justify-end items-center gap-2">
+            <%= link_to t(".back"), requests_path, class: "inline-block bg-header text-primary py-2 rounded-full w-32 text-center" %>
+            <%= form.hidden_field :status, value: :pending %>
+            <%= form.submit t(".send_request"), class: "inline-block bg-primary text-primary-foreground py-2 rounded-full w-32 text-center cursor-pointer" %>
+          </div>
+        <% end%>
+      </div>
     </div>
-    <div id="books-container" class="flex flex-col gap-4 p-6 border shadow-lg rounded-xl">
-      <% if @books.blank? %>
-        <%= render "shared/no_data" %>
-      <% else %>
-        <div>
-          <%= render partial: "book", collection: @books, as: :book, locals: { show_trash_icon: true } %>
-        </div>
-        <div class="pb-8 flex justify-between items-center">
-          <%= link_to t(".back"), "#", class: "inline-block bg-header text-primary p-3 rounded-full px-8 w-1/6 text-center" %>
-          <%= form.hidden_field :status, value: :pending %>
-          <%= form.submit t(".send_request"), class: "inline-block bg-primary text-primary-foreground p-3 rounded-full px-8 w-1/6 text-center" %>
-        </div>
-      <% end%>
-    <% end %>
-  </div>
+  <% end %>
+  <% if @books.blank? %>
+    <%= render "shared/no_data" %>
+  <% else %>
+    <div class="flex flex-col gap-4 p-6 border shadow-lg rounded-xl">
+      <%= render partial: "book", collection: @books, as: :book, locals: { show_trash_icon: true } %>
+    </div>
+  <% end %>
 </div>

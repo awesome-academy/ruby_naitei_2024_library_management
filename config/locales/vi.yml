@@ -188,6 +188,7 @@ vi:
     date_invalid: "Vui lòng chọn ngày trong tương lai."
     books_out_of_stock: " tạm thời hết"
     validate_year: "Khoảng thời gian xuất bản không hợp lệ"
+    unauthorized: "Bạn không có quyền truy cập trang này"
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"

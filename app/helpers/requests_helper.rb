@@ -6,7 +6,7 @@ module RequestsHelper
     [[t("requests.all"), ""]] + options
   end
 
-  def status_class status
+  def status_class status, is_book: false
     case status.to_sym
     when :pending
       "bg-blue-500 text-white"
@@ -17,7 +17,11 @@ module RequestsHelper
     when :rejected
       "bg-red-500 text-white"
     when :all_returned
-      "bg-pink-400 text-white"
+      if is_book
+        "bg-green-500 text-white"
+      else
+        "bg-pink-400 text-white"
+      end
     else
       "bg-orange-400 text-white"
     end
