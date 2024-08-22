@@ -23,10 +23,13 @@ gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.8", ">= 7.0.8.4"
 gem "rails-i18n"
 gem "ransack"
+gem "redis"
 gem "sanitize"
 gem "shadcn-ui"
+gem "sidekiq"
 gem "simplecov"
 gem "simplecov-rcov"
+gem "social-share-button"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
@@ -39,10 +42,10 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "rails-controller-testing"
   gem "rspec-rails", "~> 4.0.1"
-  gem "shoulda-matchers", "~> 5.0"
   gem "rubocop", "~> 1.26", require: false
   gem "rubocop-checkstyle_formatter", require: false
   gem "rubocop-rails", "~> 2.14.0", require: false
+  gem "shoulda-matchers", "~> 5.0"
 end
 
 group :development do

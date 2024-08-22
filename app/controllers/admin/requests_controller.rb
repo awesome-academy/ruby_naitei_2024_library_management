@@ -21,12 +21,11 @@ class Admin::RequestsController < Admin::ApplicationController
 
   def update
     selected_books = fetch_selected_books
-    return if check_out_of_stock(selected_books)
+    return if check_out_of_stock?(selected_books)
 
     if @request.update(request_params)
       handle_approved_status
-      decrement_available_quantity
-      send_notification_email if %w(approved rejected).include?(params[:status])
+      @request.send_email
     end
     respond_to do |format|
       format.turbo_stream
@@ -50,17 +49,9 @@ class Admin::RequestsController < Admin::ApplicationController
 
   def handle_approved_status
     @request.borrow_books.update_all(is_borrow: true)
-  end
-
-  def decrement_available_quantity
-    @request.borrow_books.each do |borrow_book|
-      book_inventory = BookInventory.find_by(book_id: borrow_book.book_id)
-      if book_inventory.present?
-        book_inventory.decrement!(:available_quantity, 1)
-      else
-        flash[:danger] = t "noti.book_inventory_not_found"
-      end
-    end
+    UpdateAvailableQuantityJob.perform_later(
+      @request.borrow_books.pluck(:book_id), -1
+    )
   end
 
   def load_requests

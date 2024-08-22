@@ -148,6 +148,8 @@ vi:
     empty_request_noti: "Vui lòng chọn ít nhất một quyển sách."
     over_limit_request_noti: "Số lượng sách yêu cầu không được vượt quá 5 quyển."
     request_success_noti: "Gửi yêu cầu thành công."
+    update_success_noti: "Cập nhật thành công."
+    update_fail_noti: "Cập nhật thất bại."
     request_failure_noti: "Gửi yêu cầu thất bại."
     book_delete_success: "Sách đã được xóa thành công."
     book_delete_fail: "Xóa sách thất bại."

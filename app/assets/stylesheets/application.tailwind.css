@@ -1,3 +1,7 @@
+/*
+*= require social-share-button
+*/
+
 @import "shadcn.css";
 @tailwind base;
 @tailwind components;

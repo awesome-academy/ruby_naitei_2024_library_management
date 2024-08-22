@@ -12,7 +12,7 @@
             <%= tooltip_trigger do %>
               <%= form_with url: carts_path, method: :post, local: false, html: { id: "add-to-cart-form-#{@book.id}", class: "add-to-cart-form" } do %>
                 <%= hidden_field_tag :book_id, @book.id %>
-                <button type="submit" <%= @book.book_inventory.available_quantity <= 0 ? "disabled" : ""%> class="bg-primary border-primary border-2 rounded-md text-primary-foreground hover:bg-primary/80 text-xl p-2 px-4 <%= @book.book_inventory.available_quantity <= 0 ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-primary"%>">
+                <button type="submit" <%= @book.book_inventory.available_quantity <= 0 ? "disabled" : "" %> class="bg-primary border-primary border-2 rounded-md text-primary-foreground hover:bg-primary/80 text-lg p-2 px-4 <%= @book.book_inventory.available_quantity <= 0 ? "bg-gray-400 cursor-not-allowed opacity-50" : "bg-primary"%>">
                   <i class="bi bi-wallet-fill"></i>
                 </button>
               <% end %>
@@ -26,6 +26,14 @@
           <% end %>
           <div id="<%= dom_id(@book, :favourite_button) %>">
             <%= render "favourites/button", book: @book, favourite: @favourite %>
+          </div>
+          <div class="px-4 py-2 rounded-lg border-2 border-primary">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<%= book_url(@book) %>"
+              onclick="javascript:window.open(this.href,'',
+              'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=240,width=600');return false;"
+            >
+              <i class="bi bi-facebook text-[#0d6efd] text-xl"></i>
+            </a>
           </div>
         </div>
       </div>
