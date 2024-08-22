@@ -2,3 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import 'custom/comment'
+import 'custom/image_preview'

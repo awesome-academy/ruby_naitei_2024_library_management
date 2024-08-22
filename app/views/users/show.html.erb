@@ -1,8 +1,36 @@
 <% provide :page_title, t("user.show.title") %>
 <main class="container relative mx-auto mt-[84px] px-5">
   <div class="flex w-full py-10 gap-10 relative ">
-    <div  class="border-2 flex-1 h-fit sticky top-32">
+    <div  class="border-2 flex-1 sticky top-32 h-2/5 w-80 overflow-hidden rounded-lg">
       <%= image_tag @user.profile_image.attached? ? @user.profile_image : "default_avatar.png", alt: "cover", class: "w-full" %>
+      <%= render_dialog do %>
+        <%= dialog_trigger do %>
+          <button class="absolute bottom-2 right-2 p-1 px-2 bg-gray-500 bg-opacity-75 text-white rounded-full text-sm">
+            <i class="bi bi-camera text-2xl"></i>
+          </button>
+        <% end %>
+        <%= dialog_content do %>
+          <h2 class="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0"><%= t "user.show.update_avatar" %></h2>
+          <%= render_form_for(@user, class: "w-full py-5") do |form| %>
+            <label id="dropzone" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                </svg>
+                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold"><%= t "click_to_upload" %></span></p>
+                <p class="text-xs text-gray-500 dark:text-gray-400"><%= Settings.type_img %></p>
+              </div>
+              <%= form.file_field :profile_image, class:"field absolute top-0 right-0 opacity-0" %>
+            </label>
+            <div class="flex justify-center mt-5">
+              <img id="image-preview" src="#" alt="Image Preview" class="hidden max-h-64 rounded-lg"/>
+            </div>
+            <div class="flex justify-center mt-5">
+              <%= form.submit t("update") %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
     <div class=" flex-[2] space-y-4">
       <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2">
