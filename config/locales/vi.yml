@@ -12,6 +12,8 @@ vi:
   published_date: "Ngày xuất bản"
   home: "Trang chủ"
   search2: "Tìm kiếm"
+  search3: "Tìm kiếm (tiêu đề, tác giả, bộ sách)"
+  search4: "Tìm kiếm (tên tác giả, quốc tịch)"
   loading: "Đang tải ..."
   male: "Nam"
   female: "Nữ"
@@ -341,6 +343,9 @@ vi:
       borrowed_list: "Danh sách đã mượn"
       borrowing_list: "Danh sách đang mượn"
       book_list: "Danh sách sách"
+      qr_message:  "Vui lòng quét mã QR này tại quầy mượn sách."
+      dowload: "Tải xuống"
+      created_date: "Ngày tạo"
     request_list:
       pending_requests: "Yêu cầu chờ"
       reject_requests: "Yêu cầu bị từ chối"

@@ -20,9 +20,7 @@ class RequestsController < ApplicationController
     @request = build_request
     selected_books = fetch_selected_books
 
-    unless handle_errors(selected_books)
-      return handle_errors_and_redirect(selected_books)
-    end
+    redirect_on_error
 
     if request_params["borrow_date"].to_date >= Time.current.to_date
       process_request(selected_books, request_params["borrow_date"])
@@ -117,7 +115,6 @@ class RequestsController < ApplicationController
     false
   rescue ActiveRecord::RecordInvalid
     flash[:danger] = t("noti.request_failure_noti")
-    render :new
     false
   end
 
@@ -128,6 +125,9 @@ class RequestsController < ApplicationController
       raise StandardError, t("noti.over_limit_request_noti")
     elsif exceed_borrow_limit?(selected_books)
       raise StandardError, t("noti.over_limit_request_noti")
+    elsif !check_available_quantity(selected_books)
+      raise StandardError,
+            "#{@out_of_stock_books.join(', ')} #{t('noti.books_out_of_stock')}"
     end
   end
 
@@ -208,13 +208,12 @@ class RequestsController < ApplicationController
     end
   end
 
-  def handle_errors_and_redirect selected_books
-    out_of_stock_books = Book.available?(selected_books)
+  def check_available_quantity selected_books
+    @out_of_stock_books = Book.available?(selected_books)
+    @out_of_stock_books.empty?
+  end
 
-    return if out_of_stock_books.empty?
-
-    flash[:warning] =
-      "#{out_of_stock_books.join(', ')} #{t('noti.books_out_of_stock')}"
-    redirect_to new_request_path
+  def redirect_on_error
+    redirect_to new_request_path unless handle_errors(selected_books)
   end
 end

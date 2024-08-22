@@ -64,4 +64,18 @@ module RequestsHelper
     borrow_info = book.borrowed_for_request(request.id)
     borrow_info[:is_borrow]
   end
+
+  def request_qr_url request, is_admin
+    if is_admin
+      request_url(id: request.id)
+    else
+      search_param = {id_or_books_title_or_user_name_cont: request.id}.to_query
+      admin_requests_url + "?q%5B#{search_param}%5D"
+    end
+  end
+
+  def generate_qr_code request, is_admin
+    qr = RQRCode::QRCode.new(request_qr_url(request, is_admin))
+    qr.as_png(size: 300)
+  end
 end
