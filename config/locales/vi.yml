@@ -92,6 +92,7 @@ vi:
         comments: "Bình luận"
         from_year: "Xuất bản từ năm"
         to_year: "Xuất bản đến năm"
+        delete_confirm: "Bạn có chắc muốn xóa quyển sách này ?"
       author:
         id: "Mã"
         name: "Tên"
@@ -134,6 +135,7 @@ vi:
   noti:
     the_form_contains: "Biểu mẫu chứa"
     error: "lỗi"
+    search_error: "Lỗi xảy ra khi tìm kiếm"
     account_already_has_user: "Tài khoản đã có thông tin người dùng"
     account_not_found: "Không tìm thấy tài khoản. Vui lòng thử lại."
     user_not_found: "Không tìm thấy người dùng. Vui lòng thử lại."

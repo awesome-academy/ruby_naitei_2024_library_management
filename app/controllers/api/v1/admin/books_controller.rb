@@ -6,13 +6,12 @@ class Api::V1::Admin::BooksController < ApplicationController
   def index
     @q = Book.ransack params[:q], auth_object: api_admin_user
     @pagy, @books = pagy @q.result(distinct: true)
-                           .includes(:borrow_books, :category, :author,
-                                     :book_series, :ratings)
+                           .includes(Book::BOOK_RELATIONS)
 
     render json: {
       books: @books.as_json(include: [:category, :author, :book_series,
 :ratings]),
-      categories: Category.all.pluck(:name, :id),
+      categories: Category.pluck(:name, :id),
       total_books: @books.count,
       pagy: pagination_metadata(@pagy)
     }, status: :ok

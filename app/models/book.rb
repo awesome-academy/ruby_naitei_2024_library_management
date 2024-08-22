@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   BOOK_PARAMS = %i(title summary quantity publication_date category_id
                    author_id description cover_image).freeze
+  BOOK_RELATIONS = %i(borrow_books category author book_series ratings).freeze
 
   after_save :create_or_update_book_inventory
 

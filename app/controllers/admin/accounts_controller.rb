@@ -1,4 +1,5 @@
 class Admin::AccountsController < Admin::ApplicationController
+  authorize_resource
   before_action :load_account, :is_admin_role?, only: %i(update update_status)
 
   def update_status

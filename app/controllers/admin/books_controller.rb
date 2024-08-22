@@ -1,4 +1,5 @@
 class Admin::BooksController < Admin::ApplicationController
+  authorize_resource
   before_action :load_book, only: %i(destroy edit update)
   def index
     @q = Book.ransack params[:q], auth_object: current_account
@@ -7,8 +8,7 @@ class Admin::BooksController < Admin::ApplicationController
     validate_rating
 
     @pagy, @books = pagy @q.result(distinct: true)
-                           .includes(:borrow_books, :category, :author,
-                                     :book_series, :ratings)
+                           .includes(Book::BOOK_RELATIONS)
     @categories = Category.pluck(:name, :id)
   end
 

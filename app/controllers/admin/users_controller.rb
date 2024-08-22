@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
+  authorize_resource
   before_action :load_user, only: :due_reminder
   def index
     @q = User.ransack(params[:q])

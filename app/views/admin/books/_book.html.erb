@@ -35,7 +35,7 @@
                   class: "p-3 py-1 font-semibold border rounded-md font-medium text-white " +
                          (book.borrow_books.count_borrowing > 0 ? "bg-gray-300 text-gray-500 cursor-not-allowed border-gray-300" : "bg-red-500 hover:opacity-[70%] cursor-pointer border-red-700 hover:border-transparent"),
                   disabled: book.borrow_books.count_borrowing > 0,
-                  form: { data: { turbo_confirm: "Are you sure you want to delete this book?" } } %>
+                  form: { data: { turbo_confirm: t("activerecord.attributes.book.delete_confirm") } } %>
     <% end %>
   <% end %>
 <% end %>
