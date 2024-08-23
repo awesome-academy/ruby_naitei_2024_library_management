@@ -91,7 +91,8 @@ uniqueness: true
     end
 
     def ransackable_attributes _auth_object = nil
-      %w(name email created_at updated_at borrowing_count borrowed_count)
+      %w(name email citizen_id phone created_at updated_at borrowing_count
+      borrowed_count)
     end
 
     def ransackable_associations _auth_object = nil
