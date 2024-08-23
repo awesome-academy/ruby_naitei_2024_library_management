@@ -1,5 +1,5 @@
 <%= t "request_mailer.failure.subject" %>
 <%= t "request_mailer.failure.hello", name: @request.user.name %>
 <%= t "request_mailer.failure.message", description: @request.description %>
-<%= requests_url %>
+<%= request_url(id: @request.id) %>
 <%= t "request_mailer.failure.thanks" %>

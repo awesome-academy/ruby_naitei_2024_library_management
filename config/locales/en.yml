@@ -12,6 +12,8 @@ en:
   published_date: "Published Date"
   home: "Home"
   search2: "Search"
+  search3: "Search by title, author, book series"
+  search4: "Search by author name, nationality"
   loading: "Loading ..."
   male: "Male"
   female: "Female"
@@ -343,6 +345,9 @@ en:
       borrowed_list: "Borrowed List"
       borrowing_list: "Borrowing List"
       book_list: "Book List"
+      qr_message: "Give this QR code to the librarian to borrow the book"
+      dowload: "Download here"
+      created_date: "Created Date"
     request_list:
       pending_requests: "Pending Requests"
       reject_requests: "Reject Requests"

@@ -6,16 +6,12 @@
 <div class="flex flex-col items-center lg:flex-row  mb-4">
   <%= search_form_for @q, url: admin_authors_path, method: :get, class: "flex flex-wrap gap-4 lg:gap-6 w-full lg:w-auto" do |f| %>
     <div class="flex flex-col w-full lg:w-auto">
-      <%= f.label :name_cont, t("activerecord.attributes.user.name"), class: "text-sm font-medium mb-1" %>
-      <%= f.text_field :name_cont, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <%= f.label :name_or_nationality_cont, t("search4"), class: "text-sm font-medium mb-1" %>
+      <%= f.text_field :name_or_nationality_cont, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
     <div class="flex flex-col w-full lg:w-auto">
       <%= f.label :gender_eq,  t("activerecord.attributes.author.gender"), class: "text-sm font-medium mb-1" %>
       <%= f.select :gender_eq, options_for_select(gender_options_for_author_select, params.dig(:q, :gender_eq)), {include_blank: true}, {class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8"} %>
-    </div>
-    <div class="flex flex-col w-full lg:w-auto">
-      <%= f.label :nationality_cont,  t("activerecord.attributes.author.nationality"), class: "text-sm font-medium mb-1" %>
-      <%= f.text_field :nationality_cont, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
     <div class="flex items-center w-full lg:w-auto mt-[23px] ">
       <%= f.submit t("user.index.search"), class: "px-4 py-[6px] bg-primary text-white rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary" %>

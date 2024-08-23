@@ -1,4 +1,5 @@
 class RequestMailer < ApplicationMailer
+  helper RequestsHelper
   def rejection_email
     @request = params[:request]
     mail(

@@ -1,4 +1,4 @@
 <%= t("request_mailer.success.hello", name: @request.user.name) %>
 <%= t("request_mailer.success.message") %>
-<%= requests_url %>
-<%= t("request_mailer.success.thanks") %> 
+<%= request_url(id: @request.id) %>
+<%= t("request_mailer.success.thanks") %>

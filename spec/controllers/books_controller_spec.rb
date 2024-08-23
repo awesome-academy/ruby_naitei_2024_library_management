@@ -33,13 +33,13 @@ RSpec.describe BooksController, type: :controller do
 
     context "with search keywords" do
       it "assigns @keywords and @total_authors" do
-        get :index, params: { q: { title_or_summary_cont: "search_term" } }
+        get :index, params: { header_search: { title_or_summary_cont: "search_term" } }
         expect(assigns(:keywords)).to eq("search_term")
         expect(assigns(:total_authors)).to eq(assigns(:authors).size)
       end
 
       it "paginates the authors" do
-        get :index, params: { q: { title_or_summary_cont: "search_term" } }
+        get :index, params: { header_search: { title_or_summary_cont: "search_term" } }
         expect(assigns(:pagy2)).to be_a(Pagy)
       end
     end

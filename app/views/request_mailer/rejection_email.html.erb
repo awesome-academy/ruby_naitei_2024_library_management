@@ -2,6 +2,7 @@
 <p><%= t "request_mailer.failure.hello", name: @request.user.name %></p>
 <p><%= t "request_mailer.failure.message", description: @request.description %></p>
 <p>
-  <%= link_to t("request_mailer.view_request"), requests_url %>
+  <%= link_to t("request_mailer.view_request"), request_url(id: @request.id) %>
+  <%= image_tag generate_qr_code(@request,true).to_data_url, alt: "Request QR Code" %>
 </p>
 <p><%= t "request_mailer.failure.thanks" %></p>

@@ -1,5 +1,6 @@
 class Api::V1::BooksController < ApplicationController
   include Pagy::Backend
+  before_action :load_search, only: :index
   before_action :load_book, only: :show
   protect_from_forgery unless: ->{request.format.json?}
 
@@ -35,6 +36,10 @@ class Api::V1::BooksController < ApplicationController
   end
 
   private
+
+  def load_search
+    @q = Book.ransack(params[:q])
+  end
 
   def handle_search
     return if @keywords.blank?
