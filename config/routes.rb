@@ -62,8 +62,10 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :users, only: %i(show create update)
+        resources :requests
         resources :books, only: %i(index show)
         namespace :admin do
+          resources :requests, only: %i(index update edit)
           resources :users, only: :index do
             member do
               post "due_reminder"

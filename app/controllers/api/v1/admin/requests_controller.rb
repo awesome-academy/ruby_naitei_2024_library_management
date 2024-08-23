@@ -1,13 +1,14 @@
-class Admin::RequestsController < Admin::ApplicationController
-  authorize_resource
+class Api::V1::Admin::RequestsController < ApplicationController
+  include Pagy::Backend
   before_action :set_request, only: %i(update edit)
+  protect_from_forgery unless: ->{request.format.json?}
 
   def index
     @q = load_requests.ransack(params[:q] || {})
     @requests = @q.result(distinct: true)
     @requests = @requests.includes(:books)
     @request_pagy, @requests = paginate_requests(@requests)
-    @requests.map do |request|
+    result = @requests.map do |request|
       request.as_json.merge(
         books: request.books.map do |book|
           book.as_json.merge(
@@ -16,21 +17,29 @@ class Admin::RequestsController < Admin::ApplicationController
         end
       )
     end
+
+    render json: {
+      requests: result,
+      pagination: pagination_metadata(@request_pagy)
+    }, status: :ok
   end
 
   def edit; end
 
   def update
     selected_books = fetch_selected_books
-    return if check_out_of_stock?(selected_books)
+    if check_out_of_stock?(selected_books)
+      return render json: {error: I18n.t("noti.books_out_of_stock")},
+                    status: :unprocessable_entity
+    end
 
     if @request.update(request_params)
       handle_approved_status
-      @request.send_email
-    end
-    respond_to do |format|
-      format.turbo_stream
-      format.html
+      send_notification_email
+      render json: {message: I18n.t("noti.update_success_noti")}, status: :ok
+    else
+      render json: {errors: @request.errors.full_messages},
+             status: :unprocessable_entity
     end
   end
 
@@ -40,12 +49,12 @@ class Admin::RequestsController < Admin::ApplicationController
     @request = Request.find_by(id: params[:id])
     return if @request
 
-    flash[:danger] = t "noti.request_not_found"
-    redirect_to requests_path
+    render json: {error: I18n.t("noti.request_not_found")},
+           status: :not_found
   end
 
   def request_params
-    params.require(:request).permit(Request::REQUEST_PARAMS)
+    params.require(:request).permit(:status, :description)
   end
 
   def handle_approved_status
@@ -81,9 +90,9 @@ class Admin::RequestsController < Admin::ApplicationController
     out_of_stock_books = Book.available?(selected_books)
     return false if out_of_stock_books.blank?
 
-    flash[:warning] =
-      "#{out_of_stock_books.join(', ')} #{t('noti.books_out_of_stock')}"
-    @is_error = true
+    render json: {warning:
+      "#{out_of_stock_books.join(', ')} #{I18n.t('noti.books_out_of_stock')}"},
+           status: :unprocessable_entity
     true
   end
 
@@ -93,5 +102,14 @@ class Admin::RequestsController < Admin::ApplicationController
 
   def fetch_selected_books
     @request.borrow_books.includes(:book).map(&:book)
+  end
+
+  def pagination_metadata pagy
+    {
+      count: pagy.count,
+      page: pagy.page,
+      items: pagy.vars[:items],
+      pages: pagy.pages
+    }
   end
 end

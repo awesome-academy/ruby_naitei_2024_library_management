@@ -73,7 +73,7 @@
                   <%= book.title %>
                 <% end %>
                 <%= table_column do %>
-                  <div id="<%= dom_id(request, book.id) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(request.status)%>" >
+                  <div id="<%= dom_id(request, book.id) %>" class="py-1 px-2 rounded-lg text-center flex items-center justify-center gap-2 <%= status_class(request.status, is_book: true)%>" >
                     <%= book_status_icon(request, book) %>
                     <%= status_title(request, book) %>
                   </div>
