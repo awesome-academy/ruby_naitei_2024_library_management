@@ -36,7 +36,11 @@
       <% render @users %>
     <% end %>
   <% end %>
-  <div class="w-full items-center justify-center flex py-5">
-    <%== pagy_nav(@pagy) %>
-  </div>
+  <% if @requests.blank? %>
+    <%= render "shared/no_data" %>
+  <% else %>
+    <div class="w-full items-center justify-center flex py-5">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
 </div>

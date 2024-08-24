@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   include Pagy::Backend
   before_action :find_book
-  before_action :find_comment, only: %i(edit update)
+  before_action :find_comment, only: %i(edit update reply destroy)
 
   def create
     @comment = @book.comments

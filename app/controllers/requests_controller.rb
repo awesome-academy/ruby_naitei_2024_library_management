@@ -19,21 +19,15 @@ class RequestsController < ApplicationController
 
     @request = build_request
     selected_books = fetch_selected_books
+    return redirect_to new_request_path unless handle_errors(selected_books)
 
-    redirect_on_error
-
-    if request_params["borrow_date"].to_date >= Time.current.to_date
-      process_request(selected_books, request_params["borrow_date"])
-    else
-      flash[:warning] = t "noti.date_invalid"
-      redirect_to new_request_path
-    end
+    handle_create_request selected_books
   end
 
   def index
+    validate_borrow_date
     @q = initialize_ransack
     @requests = @q.result(distinct: true)
-    @requests = filter_by_status(@requests)
     @request_pagy, @requests = search_requests(@requests)
     @requests.map do |request|
       request.as_json.merge(
@@ -79,6 +73,36 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  def validate_borrow_date
+    if params.dig(:q, :borrow_date_gteq).present? &&
+       params.dig(:q, :borrow_date_lteq).present?
+      borrow_date_form = Date.parse(params[:q][:borrow_date_gteq])
+                             .strftime(Settings.created_time_format)
+      borrow_date_to = Date.parse(params[:q][:borrow_date_lteq])
+                           .strftime(Settings.created_time_format)
+
+      handle_wrong_borrow_date borrow_date_form, borrow_date_to
+    end
+  end
+
+  def handle_wrong_borrow_date borrow_date_form, borrow_date_to
+    return unless borrow_date_form > borrow_date_to
+
+    flash.now[:alert] = t "noti.validate_borrow_date"
+
+    params[:q][:publication_date_gteq] = ""
+    params[:q][:publication_date_lteq] = ""
+  end
+
+  def handle_create_request selected_books
+    if request_params["borrow_date"].to_date >= Time.current.to_date
+      process_request(selected_books, request_params["borrow_date"])
+    else
+      flash[:warning] = t "noti.date_invalid"
+      redirect_to new_request_path
+    end
+  end
 
   def initialize_ransack
     @current_user.requests
@@ -194,12 +218,6 @@ class RequestsController < ApplicationController
     end
   end
 
-  def filter_by_status requests
-    return requests if params[:status].blank?
-
-    requests.filter_by_status(params[:status])
-  end
-
   def search_requests requests
     if params[:search].present?
       pagy(requests.search_by_book(params[:search]), items: Settings.number_20)
@@ -213,7 +231,7 @@ class RequestsController < ApplicationController
     @out_of_stock_books.empty?
   end
 
-  def redirect_on_error
+  def redirect_on_error selected_books
     redirect_to new_request_path unless handle_errors(selected_books)
   end
 end

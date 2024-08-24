@@ -13,15 +13,21 @@
         <%= f.select :status_eq, options_for_select(status_request_options_for_select, params.dig(:q, :status_eq)), {include_blank: true}, {class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8"} %>
       </div>
       <div class="flex flex-col w-full lg:w-auto">
-        <%= f.label :borrow_date_eq, t("borrow_books.book.borrow_date"), class: "text-sm font-medium mb-1" %>
-        <%= f.date_field :borrow_date_eq, value: params.dig(:q, :borrow_date_eq).present? ? Date.parse(params[:q][:borrow_date_eq]).strftime(Settings.created_time_format) : nil, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8" %>
+        <%= f.label :borrow_date_gteq, t("borrow_books.book.borrow_date"), class: "text-sm font-medium mb-1" %>
+        <div class="flex gap-2 items-center">
+          <%= f.date_field :borrow_date_gteq, value: params.dig(:q, :borrow_date_gteq).present? ? Date.parse(params[:q][:borrow_date_gteq]).strftime(Settings.created_time_format) : nil, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8" %>
+          <span> - </span>
+          <%= f.date_field :borrow_date_lteq, value: params.dig(:q, :borrow_date_lteq).present? ? Date.parse(params[:q][:borrow_date_lteq]).strftime(Settings.created_time_format) : nil, class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8" %>
+        </div>
       </div>
       <div class="flex items-center w-full lg:w-auto mt-[23px] ">
         <%= f.submit t("user.index.search"), class: "px-4 py-[6px] bg-primary text-white rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary" %>
       </div>
     <% end %>
   </div>
-
+  <div class="flex justify-end mt-4 text-sm text-gray-600 ml-auto pt-6 pr-3">
+    <%= t("showing_records", count: @requests.size, total: @request_pagy.count) %>
+  </div>
   <% if @requests.blank? %>
     <%= render "shared/no_data" %>
   <% else %>

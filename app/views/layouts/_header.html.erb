@@ -41,14 +41,6 @@
               <% end %>
             <% end %>
             <%= dropdown_menu_item do %>
-              <%= link_to borrow_books_path, class: "flex items-center" do %>
-                <div class="w-6 flex items-center pl-[3px] mr-2">
-                  <i class="bi bi-book text-lg"></i>
-                </div>
-                <span><%= t "profile_menu.my_book" %></span>
-              <% end %>
-            <% end %>
-            <%= dropdown_menu_item do %>
               <% if I18n.locale == :en %>
                 <div class="w-6 flex items-center justify-left mr-2">
                   <%= image_tag "vi.png", class: "w-5" ,alt: "Vietnamese" %>
