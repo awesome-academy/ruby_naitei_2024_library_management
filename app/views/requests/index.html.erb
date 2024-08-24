@@ -6,7 +6,7 @@
     <%= search_form_for @q, url: requests_path, method: :get, class: "flex flex-wrap gap-4 lg:gap-6 w-full lg:w-auto" do |f| %>
       <div class="flex flex-col w-full lg:w-auto">
         <%= f.label :id_or_books_title_or_user_name_cont, t("search2"), class: "text-sm font-medium mb-1" %>
-        <%= f.text_field :id_or_books_title_or_user_name_cont, placeholder: t("requests.search_placeholder"), class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+        <%= f.text_field :id_or_books_title_or_user_name_cont, placeholder: t("requests.user_search_placeholder"), class: "py-1 px-2 border bg-background border-primary rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
       </div>
       <div class="flex flex-col w-full lg:w-auto">
         <%= f.label :status_eq,  t("activerecord.attributes.book.status"), class: "text-sm font-medium mb-1" %>

@@ -4,6 +4,7 @@ vi:
   authors: "Tác giả"
   categories: "Thể loại"
   home: "Trang chủ"
+  sign_in_with_another_account: "Đăng nhập với tài khoản khác"
   search: "Tìm kiếm sách hoặc tác giả"
   update: "Cập nhật"
   reply: "Trả lời"
@@ -15,6 +16,7 @@ vi:
   search2: "Tìm kiếm"
   search3: "Tìm kiếm (tiêu đề, tác giả, bộ sách)"
   search4: "Tìm kiếm (tên tác giả, quốc tịch)"
+  search5: "Tìm kiếm (tên, email, số điện thoại)"
   loading: "Đang tải ..."
   male: "Nam"
   female: "Nữ"
@@ -136,6 +138,7 @@ vi:
     invalid: "Cập nhật thất bại"
     description: "Nhập mật khẩu mới của bạn và xác nhận lại."
   noti:
+    invalid_phone: "phải bắt đầu bằng số 0 và dài 10 hoặc 11 chữ số"
     the_form_contains: "Biểu mẫu chứa"
     error: "lỗi"
     search_error: "Lỗi xảy ra khi tìm kiếm"
@@ -338,6 +341,7 @@ vi:
     cancel: "Đã hủy"
     all_returned: "Đã trả tất cả"
     search_placeholder: "Nhập mã yêu cầu hoặc tên người dùng hoặc tên sách"
+    user_search_placeholder: "Nhập mã yêu cầu hoặc tên sách"
     new:
       back: "Quay lại"
       send_request: "Gửi yêu cầu"

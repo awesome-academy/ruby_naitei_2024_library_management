@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
   const fileInput = document.querySelector('.field');
   const previewImage = document.getElementById('image-preview');
   const dropzone = document.querySelector('#dropzone');

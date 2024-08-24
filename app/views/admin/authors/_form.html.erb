@@ -1,4 +1,4 @@
-<%= render_form_with model: author, url: url, method: method do |form| %>
+<%= render_form_with model: author, url: url, method: method, data: { turbo: false } do |form| %>
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :name, t("activerecord.attributes.author.name"), class: "text-left mr-4 text-lg" %>
     <%= form.text_field :name %>
@@ -15,7 +15,7 @@
 
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :bio, t("activerecord.attributes.author.bio"), class: "text-left mr-4 text-lg" %>
-    <%= form.text_area :bio, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+    <%= form.text_area :bio, class: "tinymce", rows: 20, cols: 120 , data: { turbo: false } %>
   </div>
 
   <div class="grid grid-cols-1 items-baseline mb-4">

@@ -1,9 +1,8 @@
 module RequestsHelper
   def status_request_options_for_select
-    options = Request.statuses.map do |status, value|
+    Request.statuses.map do |status, value|
       [t("requests.#{status}"), value]
     end
-    [[t("requests.all"), ""]] + options
   end
 
   def status_class status, is_book: false

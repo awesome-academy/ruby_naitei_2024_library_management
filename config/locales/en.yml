@@ -3,6 +3,7 @@ en:
   books: "Books"
   authors: "Authors"
   categories: "Categories"
+  sign_in_with_another_account: "Sign in with another account"
   home: "Home"
   search: "Search books or authors"
   update: "Update"
@@ -15,6 +16,7 @@ en:
   search2: "Search"
   search3: "Search by title, author, book series"
   search4: "Search by author name, nationality"
+  search5: "Search by name, email, phone"
   loading: "Loading ..."
   male: "Male"
   female: "Female"
@@ -136,6 +138,7 @@ en:
     invalid: "Change password fail"
     description: "Enter your new password and confirm it."
   noti:
+    invalid_phone: "must start with 0 and be 10 or 11 digits long"
     the_form_contains: "The form contains"
     error: "error"
     search_error: "An error occurred while searching. Please try again."
@@ -339,6 +342,7 @@ en:
     cancel: "Canceled"
     all_returned: "All returned"
     search_placeholder: "Search by request ID, user name, book name"
+    user_search_placeholder: "Search by request ID or book name"
     new:
       back: "Back"
       send_request: "Send Request"

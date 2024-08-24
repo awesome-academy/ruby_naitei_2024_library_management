@@ -1,12 +1,12 @@
-<%= render_form_with model: book, url: url, method: method do |form| %>
+<%= render_form_with model: book, url: url, method: method, data: { turbo: false } do |form| %>
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :title, t("activerecord.attributes.book.title"), class: "text-left mr-4 text-lg" %>
     <%= form.text_field :title %>
   </div>
 
   <div class="grid grid-cols-1 items-baseline mb-4">
-    <%= form.label :summary, t("activerecord.attributes.book.summary"), class: "text-left mr-4 text-lg" %>
-    <%= form.text_area :summary, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+    <%= form.label :summary, t("activerecord.attributes.book.description"), class: "text-left mr-4 text-lg" %>
+    <%= form.text_area :summary, class: "tinymce", rows: 20, cols: 120 , data: { turbo: false } %>
   </div>
 
   <div class="grid grid-cols-1 items-baseline mb-4">

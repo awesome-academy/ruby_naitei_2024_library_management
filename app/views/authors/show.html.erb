@@ -19,7 +19,7 @@
         <p class="text-lg"><%= t "authors_page.name" %>: <%= @author.name %></p>
         <p class="text-lg"><%= t "authors_page.birth" %>: <%= @author.birth %></p>
         <p class="text-lg"><%= t "authors_page.gender" %>: <%= @author.gender ? t("male") : t("female") %></p>
-        <p class="text-lg"><%= t "authors_page.bio" %>: <%= @author.bio %></p>
+        <p class="text-lg"><%= t "authors_page.bio" %>: <%= sanitize @author.bio %></p>
         <p class="text-lg"><%= t "authors_page.nationality" %>: <%= @author.nationality %></p>
       </div>
       <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
