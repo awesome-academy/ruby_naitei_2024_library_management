@@ -19,6 +19,18 @@ dependent: :destroy
   has_many :cart_users, through: :carts, source: :user, dependent: :destroy
 
   has_one_attached :cover_image
+
+  validates :title, presence: true, length: {maximum: Settings.number_255}
+  validates :summary, presence: true
+  validates :quantity,
+            numericality: {
+              only_integer: true,
+              greater_than_or_equal_to: Settings.number_0
+            }
+  validates :publication_date, presence: true
+  validates :description,
+            length: {maximum: Settings.number_500},
+            allow_blank: true
   scope :latest, ->{order(publication_date: :desc)}
   scope :oldest, ->{order(publication_date: :asc)}
   scope :default_order, ->{order(created_at: :asc)}

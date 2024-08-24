@@ -31,7 +31,7 @@
         </div>
         <div class="mb-8 flex items-center text-sm">
           <p class="mr-2"><%= t("sign_up.have_account") %></p>
-          <%= link_to t("sign_in.title"), "#", class: "text-blue-500 hover:text-blue-700" %>
+          <%= link_to t("sign_in_with_another_account"), destroy_account_session_path,  data: { turbo_method: :delete }, class: "text-blue-500 hover:text-blue-700" %>
         </div>
         <div class="flex justify-center">
           <%= form.submit t("sign_up.title") %>
