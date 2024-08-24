@@ -29,3 +29,4 @@ number_1: 1
 number_20: 20
 created_time_format: "%Y-%m-%d"
 type_img: "PNG, JPG"
+birth_valid: 5

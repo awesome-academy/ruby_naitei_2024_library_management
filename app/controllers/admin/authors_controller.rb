@@ -10,15 +10,16 @@ class Admin::AuthorsController < Admin::ApplicationController
 
   def new
     @author = Author.new
+    @author.birth ||= Settings.birth_valid.years.ago.to_date
   end
 
   def create
     @author = Author.new author_params
     if @author.save
-      flash[:success] = t("noti.author.created_success")
+      flash[:success] = t("noti.author_created_success")
       redirect_to admin_authors_path
     else
-      flash[:warning] = t("noti.author.created_fail")
+      flash[:warning] = @author.errors.full_messages[0]
       redirect_to new_admin_author_path
     end
   end
