@@ -24,9 +24,9 @@
           <% end %>
           <%= link_to t("forgot_password.title"), new_account_password_path, class: "text-blue-500 hover:underline text-sm" %>
         </div>
-        <div class="flex justify-center mt-8">
+        <div class="flex justify-center mt-8 w-full">
           <%= form.submit t("sign_in.submit"),
-              class: " h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md text-sm font-medium "%>
+              class: " h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md text-sm font-medium w-full "%>
         </div>
         <div class="mb-8 flex items-center text-sm mt-5">
           <p class="mr-2"><%= t("sign_in.have_account") %></p>
@@ -42,7 +42,10 @@
         <% if devise_mapping.omniauthable? %>
           <% resource_class.omniauth_providers.each do |provider| %>
             <% if provider == :google_oauth2 %>
-              <%= button_to t("sign_in.google"), account_google_oauth2_omniauth_authorize_path, method: :post, class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-red-600 text-red-600 font-semibold hover:text-white border border-red-600 hover:border-transparent rounded-md font-medium", data: { turbo: false } %>
+              <%= button_to account_google_oauth2_omniauth_authorize_path, method: :post, class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-red-600 text-red-600 font-semibold hover:text-white flex gap-x-2 border group border-red-600 hover:border-transparent rounded-md font-medium w-full", data: { turbo: false } do %>
+                <i class="bi group-hover:text-white  bi-google text-red-500"></i>
+                <%=  t("sign_in.google") %>
+              <% end %>
               <br />
             <% end %>
           <% end %>

@@ -47,7 +47,7 @@
     <% if !request.description.nil? %>
       <div class="flex items-center gap-4">
         <p class="font-bold w-1/4"><%= t "requests.request.description" %>: </span>
-        <p class="truncate text-wrap w-3/4"><%= request.description ? request.description : "No data"  %></span>
+        <p class="truncate text-wrap w-3/4"><%= request.description ? request.description : t("shared.data_empty")  %></span>
       </div>
     <% end %>
     <div class="flex flex-col gap-2">

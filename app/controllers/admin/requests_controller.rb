@@ -3,6 +3,7 @@ class Admin::RequestsController < Admin::ApplicationController
   before_action :set_request, only: %i(update edit)
 
   def index
+    validate_borrow_date
     @q = load_requests.ransack(params[:q] || {})
     @requests = @q.result(distinct: true)
     @requests = @requests.includes(:books)
@@ -35,6 +36,27 @@ class Admin::RequestsController < Admin::ApplicationController
   end
 
   private
+
+  def validate_borrow_date
+    if params.dig(:q, :borrow_date_gteq).present? &&
+       params.dig(:q, :borrow_date_lteq).present?
+      borrow_date_form = Date.parse(params[:q][:borrow_date_gteq])
+                             .strftime(Settings.created_time_format)
+      borrow_date_to = Date.parse(params[:q][:borrow_date_lteq])
+                           .strftime(Settings.created_time_format)
+
+      handle_wrong_borrow_date borrow_date_form, borrow_date_to
+    end
+  end
+
+  def handle_wrong_borrow_date borrow_date_form, borrow_date_to
+    return unless borrow_date_form > borrow_date_to
+
+    flash.now[:alert] = t "noti.validate_borrow_date"
+
+    params[:q][:publication_date_gteq] = ""
+    params[:q][:publication_date_lteq] = ""
+  end
 
   def set_request
     @request = Request.find_by(id: params[:id])

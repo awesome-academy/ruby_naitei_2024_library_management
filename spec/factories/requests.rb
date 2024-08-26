@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :request do
     association :user
-    status { 1 }
+    status { "pending" }
+    description { "Mô tả yêu cầu" }
   end
 end

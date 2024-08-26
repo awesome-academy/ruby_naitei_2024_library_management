@@ -65,11 +65,11 @@ RSpec.describe Book, type: :model do
 
   describe "borrowed for request" do
     let(:book) { create(:book) }
-    let(:borrow_request) { create(:borrow_request) }
-    let!(:borrow_book) { create(:borrow_book, book: book, request: borrow_request, is_borrow: true, return_date: Date.today) }
+    let(:request) { create(:request) }
+    let!(:borrow_book) { create(:borrow_book, book: book, request: request, is_borrow: true, return_date: Date.today) }
 
     it "returns correct borrowing information" do
-      result = book.borrowed_for_request(borrow_request.id)
+      result = book.borrowed_for_request(request.id)
       expect(result[:is_borrow]).to be true
       expect(result[:returned_date]).to eq(Date.today)
     end

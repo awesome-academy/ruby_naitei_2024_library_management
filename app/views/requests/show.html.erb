@@ -1,4 +1,4 @@
-<main class="container relative mt-[8rem] px-5">
+<main class="container relative mt-[8rem] mb-20 px-5">
   <%= link_to t("forgot_password.back"), requests_path, class: "text-gray-400 ml-4 hover:underline cursor-pointer" %>
   <div class="flex gap-4 w-full">
     <div class="flex flex-col gap-2 w-1/3 sticky top-32 border rounded-2xl p-4 h-fit bg-card">
@@ -55,7 +55,7 @@
         <% end %>
       </div>
     </div>
-    <div class="flex flex-col gap-2 w-2/3 p-4 border rounded-2xl bg-card">
+    <div class="flex flex-col gap-2 w-2/3 p-4 border rounded-2xl bg-card h-fit">
       <p class="mt-2 text-2xl font-semibold text-primary"><%= t "requests.request.borrowed_books_list" %></p>
       <%= render_separator class:"my-2" %>
       <%= render partial: "book", collection: @request.books, as: :book, locals: { show_trash_icon: false } %>

@@ -2,6 +2,9 @@
   <%= turbo_stream.prepend "comment_section" do %>
     <%= render "comment", comment: @comment %>
   <% end %>
+  <%= turbo_stream.update "comment_form" do %>
+    <%= render "form", comment: Comment.new %>
+  <% end %>
 <% else %>
   <%= turbo_stream.update dom_id(@comment.parent_comment, :reply) do %>
     <%= render "comments/reply_form", comment: @comment.parent_comment, book: @book %>

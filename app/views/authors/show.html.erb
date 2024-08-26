@@ -1,5 +1,5 @@
 <% provide :page_title, t("authors_page.title") %>
-<main class="container relative mx-auto mt-[84px] px-5">
+<main class="container relative mb-20 mx-auto mt-[84px] px-5">
   <div class="flex w-full py-10 gap-10 relative ">
     <div  class="border-2 flex-1 h-fit sticky top-32">
      <div class="w-full aspect-1 overflow-hidden"> <%= image_tag @author.profile_image.attached? ? @author.profile_image : "default_cover_image.png", alt: "cover", class: "w-full "  %></div>
