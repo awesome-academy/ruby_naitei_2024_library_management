@@ -30,7 +30,7 @@ class Api::V1::RequestsController < ApplicationController
   def index
     @q = initialize_ransack
     @requests = filter_by_status(@q.result(distinct: true))
-    @request_pagy, @requests = search_requests(@requests)
+    @request_pagy, @requests = pagy(@requests, items: Settings.number_20)
 
     result = @requests.map do |request|
       request.as_json.merge(
@@ -168,14 +168,6 @@ class Api::V1::RequestsController < ApplicationController
       requests
     else
       requests.filter_by_status(params[:status])
-    end
-  end
-
-  def search_requests requests
-    if params[:search].present?
-      pagy(requests.search_by_book(params[:search]), items: Settings.number_20)
-    else
-      pagy(requests, items: Settings.number_20)
     end
   end
 

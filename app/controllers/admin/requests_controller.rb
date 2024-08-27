@@ -81,10 +81,6 @@ class Admin::RequestsController < Admin::ApplicationController
 
   def load_requests
     requests = Request.with_user_name.with_borrow_info.newest_first
-
-    if params[:status].present?
-      requests = requests.filter_by_status(params[:status])
-    end
     if params[:q].blank? || !params[:q][:s]
       requests = requests.order(created_at: :desc)
     end
@@ -92,11 +88,7 @@ class Admin::RequestsController < Admin::ApplicationController
   end
 
   def paginate_requests requests
-    if params[:search].present?
-      pagy(requests.search_by_book(params[:search]), items: Settings.number_20)
-    else
-      pagy(requests, items: Settings.number_20)
-    end
+    pagy(requests, items: Settings.number_20)
   end
 
   def check_out_of_stock? selected_books
