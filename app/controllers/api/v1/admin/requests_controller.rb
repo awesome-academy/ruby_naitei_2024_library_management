@@ -79,11 +79,7 @@ class Api::V1::Admin::RequestsController < ApplicationController
   end
 
   def paginate_requests requests
-    if params[:search].present?
-      pagy(requests.search_by_book(params[:search]), items: Settings.number_20)
-    else
-      pagy(requests, items: Settings.number_20)
-    end
+    pagy(requests, items: Settings.number_20)
   end
 
   def check_out_of_stock? selected_books

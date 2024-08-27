@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
     validate_borrow_date
     @q = initialize_ransack
     @requests = @q.result(distinct: true)
-    @request_pagy, @requests = search_requests(@requests)
+    @request_pagy, @requests = pagy(@requests, items: Settings.number_20)
     @requests.map do |request|
       request.as_json.merge(
         books: request.books.map do |book|
@@ -40,15 +40,9 @@ class RequestsController < ApplicationController
     end
   end
 
-  def borrowed _books
-    @borrowed_pagy, @borrowed_books = pagy(
-      BorrowBook.borrowed.with_details,
-      items: Settings.number_5
-    )
-  end
-
   def update
     if @request.update(request_params)
+      @request.send_email
       respond_to do |format|
         format.turbo_stream
         format.html
@@ -123,10 +117,6 @@ class RequestsController < ApplicationController
     )
   end
 
-  def fetch_requests_with_books requests
-    requests.includes(:books)
-  end
-
   def fetch_selected_books
     Book.in_user_cart(@current_user)
   end
@@ -136,9 +126,6 @@ class RequestsController < ApplicationController
     true
   rescue StandardError => e
     flash[:warning] = e.message
-    false
-  rescue ActiveRecord::RecordInvalid
-    flash[:danger] = t("noti.request_failure_noti")
     false
   end
 
@@ -185,19 +172,6 @@ class RequestsController < ApplicationController
     params.require(:request).permit(:status, :description, :borrow_date)
   end
 
-  def handle_approved_status
-    @request.borrow_books.update_all(is_borrow: true)
-  end
-
-  def render_not_found
-    render json: {success: false, error: t("noti.request_not_found")},
-           status: :not_found
-  end
-
-  def render_update_error
-    render json: {success: false, errors: @request.errors.full_messages}
-  end
-
   def account_banned?
     @current_user.account.ban?
   end
@@ -207,31 +181,8 @@ class RequestsController < ApplicationController
     redirect_to new_request_path
   end
 
-  def decrement_available_quantity
-    @request.borrow_books.each do |borrow_book|
-      book_inventory = BookInventory.find_by(book_id: borrow_book.book_id)
-      if book_inventory.present?
-        book_inventory.decrement!(:available_quantity, 1)
-      else
-        flash[:danger] = t "noti.book_inventory_not_found"
-      end
-    end
-  end
-
-  def search_requests requests
-    if params[:search].present?
-      pagy(requests.search_by_book(params[:search]), items: Settings.number_20)
-    else
-      pagy(requests, items: Settings.number_20)
-    end
-  end
-
   def check_available_quantity selected_books
     @out_of_stock_books = Book.available?(selected_books)
     @out_of_stock_books.empty?
-  end
-
-  def redirect_on_error selected_books
-    redirect_to new_request_path unless handle_errors(selected_books)
   end
 end

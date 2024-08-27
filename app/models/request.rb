@@ -15,17 +15,9 @@ class Request < ApplicationRecord
       RequestMailer.with(request: self, user:).rejection_email.deliver_now
     end
   end
-  scope :filter_by_status, lambda {|status|
-    return if status.blank?
-
-    where(status:)
-  }
 
   scope :newest_first, ->{order(created_at: :desc)}
 
-  scope :search_by_book, lambda {|query|
-    joins(borrow_books: :book).merge(Book.filter_by_search(query))
-  }
   scope :pending_for_user, lambda {|user|
                              joins(:borrow_books).where(user:, status: :pending)
                            }
@@ -67,18 +59,12 @@ class Request < ApplicationRecord
 
   class << self
     def ransackable_attributes _auth_object = nil
-      %w(created_at description id status updated_at user_id user_name
-          book_quantity borrow_date borrow_date_eq)
+      %w(description id status updated_at user_id user_name
+          book_quantity borrow_date)
     end
 
     def ransackable_associations _auth_object = nil
       %w(books borrow_books user)
-    end
-
-    def borrow_date_eq date_string
-      where(borrow_date: Date.parse(date_string))
-    rescue ArgumentError
-      none
     end
   end
 end

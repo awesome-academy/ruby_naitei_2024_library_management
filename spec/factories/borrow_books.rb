@@ -3,7 +3,7 @@ FactoryBot.define do
     association :user
     association :book
     association :request
-    borrow_date { 1.week.ago.to_date }
+    borrow_date { 2.days.from_now }
     is_borrow { true }
   end
 end
