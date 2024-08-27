@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('turbo:load', function() {
   const fileInput = document.querySelector('.field');
   const previewImage = document.getElementById('image-preview');
   const dropzone = document.querySelector('#dropzone');
@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
       reader.onload = function(e) {
         previewImage.src = e.target.result;
         previewImage.classList.remove('hidden');
-        dropzone.classList.add('hidden');
       };
 
       reader.readAsDataURL(file);

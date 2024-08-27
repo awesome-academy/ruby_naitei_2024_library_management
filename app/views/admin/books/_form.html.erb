@@ -3,46 +3,46 @@
     <%= form.label :title, t("activerecord.attributes.book.title"), class: "text-left mr-4 text-lg" %>
     <%= form.text_field :title %>
   </div>
-
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :summary, t("activerecord.attributes.book.summary"), class: "text-left mr-4 text-lg" %>
     <%= form.text_area :summary, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
   </div>
-
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :description, t("activerecord.attributes.book.description"), class: "text-left mr-4 text-lg" %>
     <%= form.text_field :description %>
   </div>
-
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :quantity, t("activerecord.attributes.book.quantity"), class: "text-left mr-4 text-lg" %>
     <%= form.number_field :quantity, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
   </div>
-
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :publication_date, t("activerecord.attributes.book.publication_date"), class: "text-left mr-4 text-lg" %>
     <%= form.date_field :publication_date, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
   </div>
-
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :category, t("activerecord.attributes.book.category"), class: "text-left mr-4 text-lg" %>
     <%= form.collection_select :category_id, Category.all, :id, :name, {}, { class: "bg-background block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
   </div>
-
   <div class="grid grid-cols-1 items-baseline mb-4">
     <%= form.label :author, t("activerecord.attributes.book.author"), class:"text-left mr-4 text-lg" %>
     <%= form.collection_select :author_id, Author.all, :id, :name, {}, { class: "bg-background block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
   </div>
-
   <div class="mb-4">
     <label for="book_cover_image" class="block text-left text-lg font-medium text-gray-700">
       <%= t("activerecord.attributes.book.cover") %>
     </label>
-    <div class="mt-1">
-      <%= form.file_field :cover_image, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
-    </div>
+    <label id="dropzone" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+      <div class="flex flex-col items-center justify-center pt-5 pb-6 absolute ">
+        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+        </svg>
+        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold"><%= t "click_to_upload" %></span></p>
+        <p class="text-xs text-gray-500 dark:text-gray-400"><%= Settings.type_img %></p>
+      </div>
+      <img id="image-preview" src="#" alt="Image Preview" class="hidden max-h-64 rounded-lg z-10"/>
+      <%= form.file_field :cover_image, class:"field absolute top-0 right-0 opacity-0" %>
+    </label>
   </div>
-
   <div class="flex justify-center">
     <%= form.submit yield(:button_text) %>
   </div>

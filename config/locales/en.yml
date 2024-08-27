@@ -79,6 +79,8 @@ en:
         borrowed: "Borrowed"
         borrowing: "Borrowing"
         detail: "Detail"
+        ban_confirm: "Are you sure you want to ban this user?"
+        unban_confirm: "Are you sure you want to unban this user?"
       book:
         id: "ID"
         title: "Title"
@@ -87,6 +89,7 @@ en:
         category: "Category"
         status: "Status"
         rating: "Rating"
+        publication_date: "Publication Date"
         published_date: "Published Date"
         quantity: "Quantity"
         cover: "Cover"
@@ -96,6 +99,7 @@ en:
         from_year: "From Year"
         to_year: "To Year"
         delete_confirm: "Are you sure you want to delete this book?"
+        publication_date_invalid: " is invalid"
       author:
         id: "ID"
         name: "Name"
@@ -107,6 +111,7 @@ en:
         book_quantity: "Book Quantity"
         borrowing_quantity: "Borrowing Quantity"
         delete_confirm: "Are you sure you want to delete this author?"
+        birht_valid: " is invalid"
   sign_up:
     title: "Create Account"
     submit: "Next"
@@ -191,7 +196,12 @@ en:
     unauthorized: "Unauthorized"
     book_updated_fail: "Failed to update book."
     book_updated_success: "Book updated successfully."
+    book_created_fail: "Failed to create book."
     book_created_success: "Book created successfully."
+    author_created_fail: "Failed to create author."
+    author_created_success: "Author created successfully."
+    book_delete_success: "Book deleted successfully."
+    book_delete_fail: "Failed to delete book."
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."

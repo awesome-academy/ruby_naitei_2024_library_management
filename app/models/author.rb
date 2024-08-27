@@ -11,7 +11,7 @@ class Author < ApplicationRecord
   validates :name, length: {maximum: Settings.digit_50}
   validates :bio, length: {maximum: Settings.digit_255}
   validates :name, :birth, :bio, :nationality, :profile_image, presence: true
-
+  validate :birth_valid
   ransacker :books_sum do
     Arel.sql("(SELECT SUM(books.quantity)
                FROM books WHERE books.author_id = authors.id)")
@@ -37,5 +37,13 @@ class Author < ApplicationRecord
     def ransackable_associations _auth_object = nil
       %w(books author_followers)
     end
+  end
+
+  private
+
+  def birth_valid
+    return if birth.present? && birth <= Settings.birth_valid.years.ago.to_date
+
+    errors.add :birth, I18n.t("activerecord.attributes.author.birth_valid")
   end
 end

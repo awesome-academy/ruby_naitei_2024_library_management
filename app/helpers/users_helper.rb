@@ -53,7 +53,8 @@ module UsersHelper
     if user.account.ban?
       button_to t("user.banned.activate"),
                 update_status_admin_account_path(user.account),
-                method: :post, data: {turbo_stream: true},
+                method: :post, data: {turbo_stream: true, turbo_confirm:
+                  t("activerecord.attributes.user.unban_confirm")},
                 class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-green-700
                   text-green-700 font-semibold hover:text-white border
                   border-green-700 hover:border-transparent rounded-md
@@ -61,7 +62,8 @@ module UsersHelper
     elsif user.account.active?
       button_to t("user.overdue.ban"),
                 update_status_admin_account_path(user.account),
-                method: :post, data: {turbo_stream: true},
+                method: :post, data: {turbo_stream: true, turbo_confirm:
+                  t("activerecord.attributes.user.ban_confirm")},
                 class: "mr-2 p-3 py-1 mt-2 bg-transparent hover:bg-red-700
                   text-red-700 font-semibold hover:text-white border
                   border-red-700 hover:border-transparent rounded-md

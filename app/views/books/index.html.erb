@@ -10,8 +10,8 @@
           <h3><%= t "authors_page.total" %>: <%= @total_authors %> <%= t "authors" %></h3>
         </div>
         <%= render_separator class: "my-2" %>
-        <div class="grid grid-cols-4 gap-10">
-          <%= render @authors %>
+        <div class="grid grid-cols-5 gap-5">
+          <%= render partial: "books/author", collection: @authors, as: :author %>
         </div>
         <div class="w-full items-center justify-center flex py-5">
           <%== pagy_nav(@pagy) %>
@@ -36,9 +36,13 @@
       </div>
       <%= render_separator class: "my-2" %>
       <%= turbo_frame_tag "books" do %>
-        <div class="grid grid-cols-2 gap-8">
-          <%= render @books %>
-        </div>
+        <% unless @books.blank? %>
+          <div class="grid grid-cols-2 gap-8">
+            <%= render @books %>
+          </div>
+        <% else %>
+          <%= render "shared/no_data" %>
+        <% end %>
         <div class="w-full items-center justify-center flex py-5">
           <%== pagy_nav(@pagy) %>
         </div>

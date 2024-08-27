@@ -32,7 +32,7 @@ class Admin::BooksController < Admin::ApplicationController
       flash[:success] = t "noti.book_created_success"
       redirect_to admin_books_path
     else
-      flash[:warning] = t "noti.book_created_fail"
+      flash[:warning] = @book.errors.full_messages[0]
       redirect_to new_admin_book_path
     end
   end
@@ -73,10 +73,11 @@ class Admin::BooksController < Admin::ApplicationController
   def handle_wrong_publication_date from_year, to_year
     return unless from_year > to_year
 
-    flash[:alert] = t "noti.validate_year"
-
     params[:q][:publication_date_gteq] = ""
     params[:q][:publication_date_lteq] = ""
+
+    flash[:alert] = t "noti.validate_year"
+    redirect_to request.referer || admin_books_path
   end
 
   def validate_rating

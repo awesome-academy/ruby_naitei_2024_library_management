@@ -5,9 +5,9 @@
       <h1 class="text-3xl font-bold  text-center"><%= t("forgot_password.title") %></h1>
       <p class=" italic my-6 text-center"><%= t("forgot_password.description") %></p>
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <div class="grid grid-cols-1 items-baseline mb-4">
+        <div class="items-baseline mb-4 w-full">
           <%= f.label :email, t("activerecord.attributes.Account.email"), class: "text-left mr-4 text-lg font-medium" %>
-          <%= f.text_field :email, class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
+          <%= f.text_field :email, class: "mb-2 w-full rounded-md border border-input bg-background" %>
         </div>
         <div class="flex justify-center mt-8">
           <%= f.submit t("forgot_password.submit"),

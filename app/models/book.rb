@@ -19,7 +19,6 @@ dependent: :destroy
   has_many :cart_users, through: :carts, source: :user, dependent: :destroy
 
   has_one_attached :cover_image
-
   scope :latest, ->{order(publication_date: :desc)}
   scope :oldest, ->{order(publication_date: :asc)}
   scope :default_order, ->{order(created_at: :asc)}
@@ -61,6 +60,7 @@ dependent: :destroy
   scope :in_user_cart, ->(user){where(id: user.books_in_carts.pluck(:id))}
   validates :title, :summary, :quantity, :publication_date, :cover_image,
             presence: true
+  validate :publication_date_in_the_past
 
   ransack_alias :search_by, :title_or_summary_cont
 
@@ -125,5 +125,13 @@ dependent: :destroy
     else
       create_book_inventory(available_quantity: quantity)
     end
+  end
+
+  def publication_date_in_the_past
+    return unless publication_date.present? &&
+                  publication_date > Time.zone.today
+
+    errors.add(:publication_date,
+               I18n.t("activerecord.attributes.book.publication_date_invalid"))
   end
 end
