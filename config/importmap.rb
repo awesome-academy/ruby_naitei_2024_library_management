@@ -9,3 +9,5 @@ pin_all_from "app/javascript/custom", under: "custom"
 pin "hotkeys-js" # @3.13.7
 pin "@stimulus-components/notification", to: "@stimulus-components--notification.js" # @3.0.0
 pin "stimulus-use" # @0.52.2
+pin "tinymce", to: "tinymce.min.js"
+pin_all_from "app/assets/javascripts", under: "assets"

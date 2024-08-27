@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= tinymce_assets %>
   </head>
   <body>
     <main class="mx-auto w-[98vw]">
@@ -16,7 +17,7 @@
       <% flash.each do |message_type, message| %>
         <%= render partial: "shared/notification", locals: { message: message, message_type: message_type } %>
       <% end %>
-      <div class="flex gap-10 items-start w-full mt-[80px]">
+      <div class="flex gap-10 itefams-start w-full mt-[80px]">
         <%= render "layouts/admin/sidebar" %>
         <div class="mt-4 w-9/12 ml-[340px] relative z-0">
           <%= yield %>

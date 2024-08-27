@@ -27,8 +27,8 @@ class UsersController < ApplicationController
       flash[:success] = t "noti.user_update_success"
       redirect_to @user
     else
-      flash.now[:error] = t "noti.user_update_fail"
-      render :edit
+      flash[:error] = t "noti.user_update_fail"
+      redirect_to edit_user_path(@user)
     end
   end
 
