@@ -1,6 +1,6 @@
 <div id="<%= dom_id(comment, :reply_form) %>" class="flex gap-x-2 py-2">
   <div class="w-[52px] ">
-    <%= image_tag @current_user.profile_image.attached? ? @current_user.profile_image : "avatar.jpeg", alt: "cover", class: "w-12 h-12 rounded-full border border-primary" %>
+    <%= image_tag @current_user.profile_image.attached? ? @current_user.profile_image : "avatar.jpeg", alt: "cover", class: "w-12 h-12 rounded-full border border-primary object-cover" %>
   </div>
   <div class="w-full space-y-2">
     <div class="flex w-full justify-between">
