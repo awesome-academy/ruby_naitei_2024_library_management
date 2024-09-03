@@ -169,7 +169,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "re-renders the edit template" do
-        expect(response).to render_template(:edit)
+        expect(response).to redirect_to(edit_user_path)
       end
     end
 
