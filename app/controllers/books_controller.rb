@@ -54,7 +54,6 @@ class BooksController < ApplicationController
     category = @book.category
     category_ids = [category.id]
     category_ids += category.subcategories.pluck(:id) if category.parent_id.nil?
-
     Book.filter_related_books(category_ids, @book.id)
   end
 

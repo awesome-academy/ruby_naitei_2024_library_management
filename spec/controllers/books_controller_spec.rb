@@ -4,6 +4,8 @@ RSpec.describe BooksController, type: :controller do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
   let(:book) { create(:book, category: category) }
+  let!(:book2) { create(:book, category: category) }
+  let!(:book3) { create(:book, category: category) }
   let(:author) { create(:author) }
 
   describe "GET #index" do
@@ -46,7 +48,6 @@ RSpec.describe BooksController, type: :controller do
 
     context "when no books are found" do
       before do
-        # Simulate an empty Active Record relation
         empty_relation = Book.none
         allow(Book).to receive(:ransack).and_return(double(result: empty_relation))
       end
@@ -75,36 +76,45 @@ RSpec.describe BooksController, type: :controller do
     end
   end
 
-
   describe "GET #show" do
-    context "when the book exists" do
-      it "assigns @book, @initial_rating, @comments, @favourite, and @related_books" do
-        get :show, params: { id: book.id }
-        expect(assigns(:book)).to eq(book)
-        expect(assigns(:initial_rating)).to eq(0) # Assuming no rating exists
-        expect(assigns(:comments)).to eq(book.comments)
-        expect(assigns(:favourite)).to be_nil
-        expect(assigns(:related_books)).not_to be_nil
+      context "when the book exists" do
+        before :each do
+          get :show, params: { id: book.id }
+        end
+
+        it "render the show template" do
+          expect(response).to render_template(:show)
+        end
+
+        it "assigns @initial_rating" do
+          expect(assigns(:initial_rating)).to eq(0) # Assuming no rating exists
+        end
+
+        it "assigns @comments" do
+          expect(assigns(:comments)).to eq(book.comments)
+        end
+
+        it "assigns @favourite" do
+          expect(assigns(:favourite)).to be_nil
+        end
+
+        it "assigns @related_books" do
+          expect(assigns(:related_books)).to match_array([book2, book3])
+        end
+
       end
 
-      it "responds successfully with an HTTP 200 status code" do
-        get :show, params: { id: book.id }
-        expect(response).to be_successful
-        expect(response).to have_http_status(:ok)
-      end
+      context "when the book does not exist" do
+        before :each do
+          get :show, params: { id: 0 }
+        end
+        it "flash a danger message " do
+          expect(flash[:danger]).to eq(I18n.t("noti.book_not_found"))
+        end
 
-      it "renders the show template" do
-        get :show, params: { id: book.id }
-        expect(response).to render_template(:show)
+        it "redirect to books path" do
+          expect(response).to redirect_to(books_path)
+        end
       end
-    end
-
-    context "when the book does not exist" do
-      it "redirects to the books index and sets a flash message" do
-        get :show, params: { id: 0 }
-        expect(response).to redirect_to(books_path)
-        expect(flash[:danger]).to eq(I18n.t("noti.book_not_found"))
-      end
-    end
   end
 end

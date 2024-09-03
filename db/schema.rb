@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_15_081841) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_27_033653) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", null: false
@@ -209,6 +209,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_15_081841) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["citizen_id"], name: "index_users_on_citizen_id", unique: true
+    t.index ["phone"], name: "index_users_on_phone", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

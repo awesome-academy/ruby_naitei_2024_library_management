@@ -4,7 +4,7 @@ FactoryBot.define do
     name { Faker::Name.name }
     birth { 20.years.ago.to_date }
     gender { 1 }
-    phone { "0123456789" }
+    phone { Faker::Number.number(digits: 10) }
     address { Faker::Address.full_address }
     association :account
     after(:build) do |user|

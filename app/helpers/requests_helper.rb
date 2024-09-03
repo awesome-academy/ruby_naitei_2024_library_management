@@ -48,7 +48,7 @@ module RequestsHelper
     case status.to_sym
     when :pending
       t "requests.pending"
-    when :approved
+    when :approved  
       t "requests.approved"
     when :cancel
       t "requests.cancel"
@@ -73,7 +73,7 @@ module RequestsHelper
       request_url(id: request.id)
     else
       search_param = {id_or_books_title_or_user_name_cont: request.id}.to_query
-      admin_requests_url + "?q%5B#{search_param}%5D"
+      admin_requests_url + "?q%5B#{search_param}"
     end
   end
 
