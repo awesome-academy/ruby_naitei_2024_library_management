@@ -43,7 +43,7 @@ authors.each do |author_data|
   if author.save
     puts "Author #{author.name} created successfully."
   else
-    puts "Failed to create author #{author.name}: #{author.errors.full_messages.join(', ')}"
+    puts "Failed to create author #{author.name}: #{author.errors.full_messages.join(", ")}"
   end
 end
 
@@ -68,7 +68,13 @@ books.each do |item|
       book.cover_image.attach(io: file, filename: File.basename(URI.parse(item["book_cover"]).path))
     rescue => e
       puts "Failed to attach cover for book #{item["name"]}: #{e.message}"
+      default_image_path = Rails.root.join("app", "assets", "images", "default_cover_image.png")
+      book.cover_image.attach(io: File.open(default_image_path), filename: "default_cover_image.png")
     end
+  else
+    # Attach the default image if no image_url is provided
+    default_image_path = Rails.root.join("app", "assets", "images", "default_cover_image.png")
+    book.cover_image.attach(io: File.open(default_image_path), filename: "default_cover_image.png")
   end
 
   book.save!
@@ -102,7 +108,12 @@ books_series.each do |series|
         cbook.cover_image.attach(io: file, filename: File.basename(URI.parse(book["image_url"]).path))
       rescue => e
         puts "Failed to attach cover for book #{book["title"]}: #{e.message}"
+        default_image_path = Rails.root.join("app", "assets", "images", "default_cover_image.png")
+        cbook.cover_image.attach(io: File.open(default_image_path), filename: "default_cover_image.png")
       end
+    else
+      default_image_path = Rails.root.join("app", "assets", "images", "default_cover_image.png")
+      cbook.cover_image.attach(io: File.open(default_image_path), filename: "default_cover_image.png")
     end
     cbook.save!
     books_series_list << cbook
@@ -112,8 +123,10 @@ end
 Account.create!(
   email: "admin@gmail.com",
   password: "admin123",
-  status: 0,
-  is_admin: 1
+  status: 1,
+  is_admin: 1,
+  confirmed_at: Time.now,             # Set confirmed_at to the current time
+  confirmation_sent_at: Time.now
 )
 
 # Tạo tài khoản và người dùng giả
@@ -122,7 +135,9 @@ Account.create!(
     email: Faker::Internet.unique.email,
     password: "password",
     status: 0,
-    is_admin: false
+    is_admin: false,
+    confirmed_at: Time.now,             # Set confirmed_at to the current time
+    confirmation_sent_at: Time.now      # Set confirmation_sent_at to the current time
   )
 
   User.create!(
