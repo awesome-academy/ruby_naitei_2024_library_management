@@ -1,0 +1,64 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      PMA_HOST: ${PMA_HOST}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+ 
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      HOST: ${host}
+      PORT: ${port}
+      MAIL_ADDRESS: ${mail_address}
+      MAIL_PORT: ${mail_port}
+      MAIL_USERNAME: ${mail_username}
+      MAIL_PASSWORD: ${mail_password}
+      REDIS_URL: ${REDIS_URL} 
+    entrypoint: ["/usr/bin/entrypoint.sh"]
+    command: ["rails", "s", "-b", "0.0.0.0"]
+    volumes:
+      - "./:/app"
+
+  tailwind:
+    build: .
+    command: rails tailwindcss:build
+    volumes:
+      - "./:/app"
+    stdin_open: true
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+volumes:
+  mysql_data:
